@@ -1,0 +1,310 @@
+.blob-container {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    z-index: -2;
+}
+.blob {
+    background-color: rgba(42, 246, 255, 0.04);
+    position: absolute;
+}
+#blob-1 {
+    top: 30rem;
+    left: 0;
+    border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%;
+    -webkit-animation: blob-1 10s ease-in-out infinite;
+    -moz-animation: blob-1 10s ease-in-out infinite;
+    -o-animation: blob-1 10s ease-in-out infinite;
+    animation: blob-1 10s ease-in-out infinite;
+}
+#blob-2 {
+    top: 50rem;
+    right: 10%;
+    border-radius: 75% 25% 82% 18% / 88% 28% 72% 12%;
+    -webkit-animation: blob-2 10s ease-in-out infinite;
+    -moz-animation: blob-2 10s ease-in-out infinite;
+    -o-animation: blob-2 10s ease-in-out infinite;
+    animation: blob-2 10s ease-in-out infinite;
+}
+#blob-3 {
+    top: 100rem;
+    left: 10%;
+    border-radius: 79% 21% 88% 12% / 70% 10% 90% 30%;
+    -webkit-animation: blob-3 10s ease-in-out infinite;
+    -moz-animation: blob-3 10s ease-in-out infinite;
+    -o-animation: blob-3 10s ease-in-out infinite;
+    animation: blob-3 10s ease-in-out infinite;
+}
+#blob-4 {
+    top: 200rem;
+    left: 20%;
+    border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%;
+    -webkit-animation: blob-1 10s ease-in-out infinite;
+    -moz-animation: blob-1 10s ease-in-out infinite;
+    -o-animation: blob-1 10s ease-in-out infinite;
+    animation: blob-1 10s ease-in-out infinite;
+}
+#blob-5 {
+    top: 300rem;
+    left: 50%;
+    border-radius: 75% 25% 82% 18% / 88% 28% 72% 12%;
+    -webkit-animation: blob-2 10s ease-in-out infinite;
+    -moz-animation: blob-2 10s ease-in-out infinite;
+    -o-animation: blob-2 10s ease-in-out infinite;
+    animation: blob-2 10s ease-in-out infinite;
+}
+#blob-6 {
+    top: 260rem;
+    right: 10%;
+    border-radius: 79% 21% 88% 12% / 70% 10% 90% 30%;
+    -webkit-animation: blob-3 10s ease-in-out infinite;
+    -moz-animation: blob-3 10s ease-in-out infinite;
+    -o-animation: blob-3 10s ease-in-out infinite;
+    animation: blob-3 10s ease-in-out infinite;
+}
+#blob-7 {
+    top: 400rem;
+    left: 60%;
+    border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%;
+    -webkit-animation: blob-1 10s ease-in-out infinite;
+    -moz-animation: blob-1 10s ease-in-out infinite;
+    -o-animation: blob-1 10s ease-in-out infinite;
+    animation: blob-1 10s ease-in-out infinite;
+}
+#blob-8 {
+    top: 350rem;
+    right: 0;
+    border-radius: 79% 21% 88% 12% / 70% 10% 90% 30%;
+    -webkit-animation: blob-3 10s ease-in-out infinite;
+    -moz-animation: blob-3 10s ease-in-out infinite;
+    -o-animation: blob-3 10s ease-in-out infinite;
+    animation: blob-3 10s ease-in-out infinite;
+}
+.sizeBlob1 {
+    width: 200px;
+    height: 200px;
+}
+.sizeBlob2 {
+    width: 600px;
+    height: 600px;
+}
+.sizeBlob3 {
+    width: 400px;
+    height: 400px;
+}
+.sizeBlob4 {
+    width: 300px;
+    height:300px;
+}
+@-webkit-keyframes blob-1 {
+    0%, 100% {
+        border-radius: 40% 60% 70% 30% / 40% 40% 60% 50%;
+        transform: scale(1)
+    }
+    34% {
+        border-radius: 70% 30% 50% 50% / 30% 30% 70% 70%;
+        transform: scale(0.8, 1)  rotate(160deg);
+    }
+    67% {
+        border-radius: 100% 60% 60% 100% / 100% 100% 60% 60%;
+        transform: scale(1.3) rotate(-20deg);
+    }
+}
+@-moz-keyframes blob-1 {
+    0%, 100% {
+        border-radius: 40% 60% 70% 30% / 40% 40% 60% 50%;
+        transform: scale(1)
+    }
+    34% {
+        border-radius: 70% 30% 50% 50% / 30% 30% 70% 70%;
+        transform: scale(0.8, 1)  rotate(160deg);
+    }
+    67% {
+        border-radius: 100% 60% 60% 100% / 100% 100% 60% 60%;
+        transform: scale(1.3) rotate(-20deg);
+    }
+}
+@-ms-keyframes blob-1 {
+    0%, 100% {
+        border-radius: 40% 60% 70% 30% / 40% 40% 60% 50%;
+        transform: scale(1)
+    }
+    34% {
+        border-radius: 70% 30% 50% 50% / 30% 30% 70% 70%;
+        transform: scale(0.8, 1)  rotate(160deg);
+    }
+    67% {
+        border-radius: 100% 60% 60% 100% / 100% 100% 60% 60%;
+        transform: scale(1.3) rotate(-20deg);
+    }
+}
+@-o-keyframes blob-1 {
+    0%, 100% {
+        border-radius: 40% 60% 70% 30% / 40% 40% 60% 50%;
+        transform: scale(1)
+    }
+    34% {
+        border-radius: 70% 30% 50% 50% / 30% 30% 70% 70%;
+        transform: scale(0.8, 1)  rotate(160deg);
+    }
+    67% {
+        border-radius: 100% 60% 60% 100% / 100% 100% 60% 60%;
+        transform: scale(1.3) rotate(-20deg);
+    }
+}
+@keyframes blob-1 {
+    0%, 100% {
+        border-radius: 40% 60% 70% 30% / 40% 40% 60% 50%;
+        transform: scale(1)
+    }
+    34% {
+        border-radius: 70% 30% 50% 50% / 30% 30% 70% 70%;
+        transform: scale(0.8, 1)  rotate(160deg);
+    }
+    67% {
+        border-radius: 100% 60% 60% 100% / 100% 100% 60% 60%;
+        transform: scale(1.3) rotate(-20deg);
+    }
+}
+
+@-webkit-keyframes blob-2 {
+    0%, 100% {
+        border-radius: 79% 21% 22% 78% / 45% 57% 43% 55%;
+        transform: scale(1)
+    }
+    34% {
+        border-radius: 16% 84% 21% 79% / 45% 18% 82% 55%;
+        transform: scale(0.8, 1)  rotate(160deg);
+    }
+    67% {
+        border-radius: 40% 60% 64% 36% / 70% 50% 50% 30%;
+        transform: scale(1.3) rotate(-20deg);
+    }
+}
+@-moz-keyframes blob-2 {
+    0%, 100% {
+        border-radius: 79% 21% 22% 78% / 45% 57% 43% 55%;
+        transform: scale(1)
+    }
+    34% {
+        border-radius: 16% 84% 21% 79% / 45% 18% 82% 55%;
+        transform: scale(0.8, 1)  rotate(160deg);
+    }
+    67% {
+        border-radius: 40% 60% 64% 36% / 70% 50% 50% 30%;
+        transform: scale(1.3) rotate(-20deg);
+    }
+}
+@-ms-keyframes blob-2 {
+    0%, 100% {
+        border-radius: 79% 21% 22% 78% / 45% 57% 43% 55%;
+        transform: scale(1)
+    }
+    34% {
+        border-radius: 16% 84% 21% 79% / 45% 18% 82% 55%;
+        transform: scale(0.8, 1)  rotate(160deg);
+    }
+    67% {
+        border-radius: 40% 60% 64% 36% / 70% 50% 50% 30%;
+        transform: scale(1.3) rotate(-20deg);
+    }
+}
+@-o-keyframes blob-2 {
+    0%, 100% {
+        border-radius: 79% 21% 22% 78% / 45% 57% 43% 55%;
+        transform: scale(1)
+    }
+    34% {
+        border-radius: 16% 84% 21% 79% / 45% 18% 82% 55%;
+        transform: scale(0.8, 1)  rotate(160deg);
+    }
+    67% {
+        border-radius: 40% 60% 64% 36% / 70% 50% 50% 30%;
+        transform: scale(1.3) rotate(-20deg);
+    }
+}
+@keyframes blob-2 {
+    0%, 100% {
+        border-radius: 79% 21% 22% 78% / 45% 57% 43% 55%;
+        transform: scale(1)
+    }
+    34% {
+        border-radius: 16% 84% 21% 79% / 45% 18% 82% 55%;
+        transform: scale(0.8, 1)  rotate(160deg);
+    }
+    67% {
+        border-radius: 40% 60% 64% 36% / 70% 50% 50% 30%;
+        transform: scale(1.3) rotate(-20deg);
+    }
+}
+
+@-webkit-keyframes blob-3 {
+    0%, 100% {
+        border-radius: 79% 21% 88% 12% / 70% 10% 90% 30%;
+        transform: scale(1)
+    }
+    34% {
+        border-radius: 30% 70% 88% 12% / 89% 10% 90% 11%;
+        transform: scale(0.8, 1)  rotate(160deg);
+    }
+    67% {
+        border-radius: 47% 53% 88% 12% / 89% 66% 34% 11%;
+        transform: scale(1.3) rotate(-20deg);
+    }
+}
+@-moz-keyframes blob-3 {
+    0%, 100% {
+        border-radius: 79% 21% 88% 12% / 70% 10% 90% 30%;
+        transform: scale(1)
+    }
+    34% {
+        border-radius: 30% 70% 88% 12% / 89% 10% 90% 11%;
+        transform: scale(0.8, 1)  rotate(160deg);
+    }
+    67% {
+        border-radius: 47% 53% 88% 12% / 89% 66% 34% 11%;
+        transform: scale(1.3) rotate(-20deg);
+    }
+}
+@-ms-keyframes blob-3 {
+    0%, 100% {
+        border-radius: 79% 21% 88% 12% / 70% 10% 90% 30%;
+        transform: scale(1)
+    }
+    34% {
+        border-radius: 30% 70% 88% 12% / 89% 10% 90% 11%;
+        transform: scale(0.8, 1)  rotate(160deg);
+    }
+    67% {
+        border-radius: 47% 53% 88% 12% / 89% 66% 34% 11%;
+        transform: scale(1.3) rotate(-20deg);
+    }
+}
+@-o-keyframes blob-3 {
+    0%, 100% {
+        border-radius: 79% 21% 88% 12% / 70% 10% 90% 30%;
+        transform: scale(1)
+    }
+    34% {
+        border-radius: 30% 70% 88% 12% / 89% 10% 90% 11%;
+        transform: scale(0.8, 1)  rotate(160deg);
+    }
+    67% {
+        border-radius: 47% 53% 88% 12% / 89% 66% 34% 11%;
+        transform: scale(1.3) rotate(-20deg);
+    }
+}
+@keyframes blob-3 {
+    0%, 100% {
+        border-radius: 79% 21% 88% 12% / 70% 10% 90% 30%;
+        transform: scale(1)
+    }
+    34% {
+        border-radius: 30% 70% 88% 12% / 89% 10% 90% 11%;
+        transform: scale(0.8, 1)  rotate(160deg);
+    }
+    67% {
+        border-radius: 47% 53% 88% 12% / 89% 66% 34% 11%;
+        transform: scale(1.3) rotate(-20deg);
+    }
+}
