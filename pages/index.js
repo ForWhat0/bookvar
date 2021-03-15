@@ -1,11 +1,12 @@
 import { useEffect } from "react";
-import { TeamSwiper } from "../src/components/team/teamSwipper";
 import animationButton from "../src/components/button/animationButton";
 import { Lines } from "../src/components/lines/lines";
 import { MainApproach } from "../src/components/main-approach/mainApproach";
 import { Products } from "../src/components/products/products";
 import Layout from "../src/components/layouts/layout";
 import { BlobVideoAndTextContainer } from "../src/components/blob-video-text/BlobVideoAndTextContainer";
+import {SwiperComponent} from "../src/components/swiper/swiper";
+import {AppSizeLayout} from "../src/components/layouts/appSizeLayout";
 
 export default function Home() {
   const arrswper = [
@@ -103,12 +104,17 @@ export default function Home() {
     <Layout headerLogo="/logo.svg" headerMenu={headerArr}>
       <Lines />
       <MainApproach approach={arr} />
-      <BlobVideoAndTextContainer  text="КАК ВЫГЛЯДЯТ УРОКИ ПО ФИЗИКЕ В AR" />
-      <TeamSwiper employees={arrswper} />
+      <BlobVideoAndTextContainer  text="КАК ВЫГЛЯДЯТ УРОКИ ПО ФИЗИКЕ В VR" />
+      <AppSizeLayout>
+        <SwiperComponent content={arrswper} />
+      </AppSizeLayout>
       <BlobVideoAndTextContainer
-        text="КАК ВЫГЛЯДЯТ УРОКИ ПО ФИЗИКЕ В VR"
+        text="КАК ВЫГЛЯДЯТ УРОКИ ПО ФИЗИКЕ В AR"
         right={true}
       />
+      <AppSizeLayout>
+        <SwiperComponent content={arrswper} />
+      </AppSizeLayout>
       <Lines />
       <Products products={arrPrice} />
     </Layout>

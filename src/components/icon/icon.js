@@ -1,11 +1,6 @@
 import Image from "next/image";
 import styled from "styled-components";
 
-function Icon({ src, alt, width, height }) {
-  return <Image src={src} alt={alt} width={width} height={height} />;
-}
-
-export default Icon;
 
 const IconBackground = styled.div`
   background: url(${(props) => props.src}) no-repeat;
@@ -24,7 +19,7 @@ const IconBackgroundContainer = styled.div`
   border-radius: 30px;
   align-items: center;
   justify-content: center;
-  background: white;
+  background: linear-gradient(180deg, #b0ffc6 0%, #00b4ff 100%);
 `;
 export const IconBackgroundSvg = ({ src }) => {
   return (
@@ -32,4 +27,15 @@ export const IconBackgroundSvg = ({ src }) => {
       <IconBackground src={src} />
     </IconBackgroundContainer>
   );
+};
+
+const IconContainer = styled.div`
+  width: 40px;
+  height: 40px;
+  background: url(${(props) => props.src}) center center no-repeat;
+  background-size: contain;
+`;
+
+export const Icon = ({ src }) => {
+  return <IconContainer src={src} />;
 };

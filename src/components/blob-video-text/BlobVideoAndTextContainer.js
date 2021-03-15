@@ -89,20 +89,21 @@ export const BlobVideoAndTextContainer = ({ text, right }) => {
   const marginRight = right ? "10%" : "unset";
   const rowAlign = right ? "row-reverse" : "row";
   const borderRadius = right
-    ? "6% 94% 14% 86% / 73% 54% 46% 27% "
-    : "40% 60% 70% 30% / 40% 50% 60% 50%";
+    ? "32% 68% 64% 36% / 30% 42% 58% 70%"
+    : "73% 27% 34% 66% / 26% 21% 79% 74%";
   return (
     <Container
-      onClick={() =>
-        dispatch(
-          actionClickVideoModal(
-            "https://www.youtube.com/watch?v=_ZO6mXmdeD8&list=RDx1zWCizNoRo&index=6"
-          )
-        )
-      }
       rowAlign={rowAlign}
     >
-      <BlobContainer>
+      <BlobContainer
+          onClick={() =>
+              dispatch(
+                  actionClickVideoModal(
+                      "https://www.youtube.com/watch?v=_ZO6mXmdeD8&list=RDx1zWCizNoRo&index=6"
+                  )
+              )
+          }
+      >
         <Blob left={leftAlign} right={rightAlign} borderRadius={borderRadius}>
           <Background>
             <PLayIcon />

@@ -4,6 +4,8 @@ import ReactPlayer from "react-player/lazy";
 import styled from "styled-components";
 import { useDispatch, useSelector } from "react-redux";
 import { actionClickVideoModal } from "../../redux/actions/actions";
+import StyledLoader from "../loader/loader";
+import { useState } from "react";
 
 const VideoContainer = styled.div`
   position: fixed;
@@ -36,26 +38,53 @@ const VideoWrapper = styled.div`
   height: 80%;
   position: relative;
   background: #12162b;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 12;
 `;
-
+const Video = styled.div`
+  width: 100%;
+  height: 100%;
+  display: ${(props) => props.display};
+`;
+const Error = styled.h1`
+  font-weight: 500;
+  font-size: 30px;
+  line-height: 37px;
+  letter-spacing: 0.04em;
+  color: #ffffff;
+`;
 export const VideoModal = () => {
+  const [done, setDone] = useState(false);
+  const [error, setError] = useState(false);
   const { VideoModalIsOpen } = useSelector((state) => state.app);
   const dispatch = useDispatch();
+  const close = () => {
+    dispatch(actionClickVideoModal(false));
+    setError(false);
+    setDone(false);
+  };
   return (
     VideoModalIsOpen && (
-      <VideoContainer>
-        <span onClick={() => dispatch(actionClickVideoModal(false))}>X</span>
-        <VideoWrapper>
+      <VideoContainer onClick={() => close()}>
+        <span onClick={() => close()}>X</span>
+        <VideoWrapper onClick={(e) => e.preventDefault()}>
           <PlanetMoveBorder topPosition={true} size={40} />
           <PlanetMoveBorder size={80} />
-          <ReactPlayer
-            controls={true}
-            playing={true}
-            width="100%"
-            height="100%"
-            wrapper={VideoWrapper}
-            url={VideoModalIsOpen}
-          />
+          <Video display={!done || error ? "none" : "flex"}>
+            <ReactPlayer
+              controls={true}
+              playing={true}
+              width="100%"
+              height="100%"
+              wrapper={Video}
+              url={VideoModalIsOpen}
+              onBufferEnd={() => setDone(true)}
+              onError={() => setError(true)}
+            />
+          </Video>
+          {error ? <Error>Ошибка</Error> : !done && <StyledLoader />}
         </VideoWrapper>
       </VideoContainer>
     )

@@ -44,27 +44,9 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   display: none;
 }
 
-.swiper-container {
-  width: 100%;
-}
 
-.swiper-slide {
-  width: 47%!important;
-}
 
-.swiper-container-3d .swiper-slide-shadow-right, .swiper-slide-shadow-left {
-  background-image: unset!important;
-}
-@media screen and (max-width: 768px) {
-  .swiper-container {
-    width: 100%;
-    padding: unset !important;
-  }
-}
 @media screen and (max-width: 450px) {
-  .swiper-slide {
-    width: 50% !important;
-  }
   .wp-block-column p {
     width: 100% !important;
   }

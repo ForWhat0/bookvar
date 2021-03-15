@@ -3,7 +3,6 @@ import { useEffect, useState } from "react";
 
 const icon = keyframes`
   0%   {opacity:1;}
-  55% {  top: -10px;left: 100%; opacity: 1;transform: rotate(-10deg); }
   100% {opacity:0; left:150%;top:-20px; transform:rotate(30deg);}
 `;
 
@@ -22,13 +21,16 @@ const ButtonContainer = styled.div`
   justify-content: center;
   animation: ${(props) => props.animation};
 `;
-const PaperIcon = styled.i`
+const PaperIcon = styled.div`
   opacity: 0;
-  transform: rotate(-44deg);
+  transform: rotate(-10deg);
   left: 80%;
   top: 5px;
   z-index: 1;
-  font-size: 30px;
+  width: 40px;
+  height: 40px;
+  background: url(/send-icon.svg) center center no-repeat;
+  background-size: contain;
   position: absolute;
   animation: ${(props) => props.animation};
 `;
@@ -92,16 +94,12 @@ export const SendButton = ({ loading, click, sendText, sentText, padding }) => {
 
   return (
     <Global padding={padding ? padding : "unset"}>
-      <ButtonContainer
-        onClick={click}
-      >
+      <ButtonContainer onClick={click}>
         <Button disabled={loading}>
           <PaperIcon
             display={animationFinished ? "none" : "block"}
             onAnimationEnd={onAnimationEnd}
             animation={animation ? PaperIconAnimation : ""}
-            className="fa fa-rocket"
-            aria-hidden="true"
           />
           <SuccessText display={animationFinished ? "block" : "none"}>
             {sentText}

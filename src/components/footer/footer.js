@@ -1,12 +1,12 @@
 import styled from "styled-components";
-import { IconBackgroundSvg } from "../icon/icon";
+import { Icon } from "../icon/icon";
 import { Header } from "../header/header";
 import { AppSizeLayout } from "../layouts/appSizeLayout";
 
 const Contacts = styled.div`
   display: grid;
   grid-template-areas: "first second three";
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr 0.5fr;
   grid-template-rows: 1fr;
   font-weight: 500;
   font-size: 20px;
@@ -20,7 +20,7 @@ const FirstBlock = styled.div`
   grid-area: first;
   grid-area: first;
   display: flex;
-  justify-content: center;
+  justify-content: left;
 `;
 const FirstContent = styled.div`
   display: flex;
@@ -33,6 +33,7 @@ const FirstContent = styled.div`
   }
 
   div span {
+    padding-left: 15px;
     padding-bottom: unset;
   }
 
@@ -49,7 +50,7 @@ const SecondBlock = styled.div`
 const SecondContent = styled.div`
   display: flex;
   flex-direction: column;
-
+  padding-left: 15px;
   span {
     padding: 10px 0;
   }
@@ -57,7 +58,7 @@ const SecondContent = styled.div`
 const ThreeBlock = styled.div`
   grid-area: three;
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
 `;
 
@@ -73,6 +74,24 @@ const Develop = styled.div`
   letter-spacing: 0.04em;
   color: #ffffff;
   padding: 50px 40px;
+
+  div {
+    display: flex;
+    align-items: center;
+  }
+
+  a div {
+    padding-left: 10px;
+    background: url(/flex-reality.svg) center center no-repeat;
+    background-size: contain;
+    height: 24px;
+    width: 150px;
+    opacity: 0.4;
+
+    &:hover {
+      opacity: 1;
+    }
+  }
 `;
 
 export const PageFooter = ({ logo, menu }) => {
@@ -86,27 +105,30 @@ export const PageFooter = ({ logo, menu }) => {
               <span>Адрес: Киев, пр. Победы, 36</span>
               <span>Адрес: Киев, пр. Победы, 36</span>
               <div>
-                <IconBackgroundSvg src="/logo.svg" />
+                <Icon src="/gmail-icon.svg" />
                 <span>Адрес: Киев, пр. Победы, 36</span>
               </div>
             </FirstContent>
           </FirstBlock>
           <SecondBlock>
-            <IconBackgroundSvg src="/logo.svg" />
+            <Icon src="/phone-icon.svg" />
             <SecondContent>
               <span>+380 961 77 45 74</span>
               <span>+380 961 77 45 74</span>
             </SecondContent>
           </SecondBlock>
           <ThreeBlock>
-            <IconBackgroundSvg src="/logo.svg" />
-            <IconBackgroundSvg src="/logo.svg" />
-            <IconBackgroundSvg src="/logo.svg" />
+            <Icon src="/instagram-icon.svg" />
+            <Icon src="/youtube-icon.svg" />
+            <Icon src="/facebook-icon.svg" />
           </ThreeBlock>
         </Contacts>
         <Develop>
           <div>
-            <span>Компания-разработчик FlexReality</span>
+            <span>Компания-разработчик</span>
+            <a href="https://flexreality.pro/" target="_blank">
+              <div />
+            </a>
           </div>
           <span>© 2017-2020</span>
         </Develop>
