@@ -1,7 +1,9 @@
 import { AppSizeLayout } from "../layouts/appSizeLayout";
 import { TitleForComponent } from "../titleForComponent/title";
 import styled from "styled-components";
-import {FieldTextIcon} from "../field-text-icon/field-text-icon";
+import { FieldTextIcon } from "../field-text-icon/field-text-icon";
+import { StyledButton } from "../button/button";
+import { ButtonHandler } from "../use-experience/button-handler";
 
 const Container = styled.div`
   display: grid;
@@ -10,29 +12,29 @@ const Container = styled.div`
   grid-gap: 20%;
 `;
 const DevicesWrapper = styled.div`
-display:flex;
-flex-direction:column;
-`
-const IconContainer = styled.div`
-display:flex;
-align-items: center;
-padding-bottom:40px;
+  display: flex;
+  flex-direction: column;
+`;
+const FlexContainer = styled.div`
+  display: flex;
+  align-items: center;
+  padding-bottom: 40px;
 
-span {
-padding-left:20px;
-font-weight: 500;
-font-size: 25px;
-line-height: 30px;
-letter-spacing: 0.04em;
-color: #FFFFFF;
-}
-`
+  span {
+    padding-left: 20px;
+    font-weight: 500;
+    font-size: 25px;
+    line-height: 30px;
+    letter-spacing: 0.04em;
+    color: #ffffff;
+  }
+`;
 const Icon = styled.div`
-background: url(${props=>props.icon}) center center no-repeat;
-background-size:contain;
-width:60px;
-height:60px;
-`
+  background: url(${(props) => props.icon}) center center no-repeat;
+  background-size: contain;
+  width: 60px;
+  height: 60px;
+`;
 const Devices = styled.div`
   display: flex;
   overflow-y: scroll;
@@ -75,8 +77,35 @@ const Devices = styled.div`
     color: rgba(255, 255, 255, 0.8);
   }
 `;
+const Models = styled.div`
+  width: calc(100% - 60px);
+  background: rgba(140, 140, 140, 0.1);
+  border-radius: 20px;
+  display: flex;
+  justify-content: space-around;
+  padding: 12px 0;
 
+  span {
+  padding-left:unset;
+  }
+
+  div {
+    border: 1px solid #ffffff;
+  }
+`;
 export const SupportingDevices = ({ devices }) => {
+  const iosDevices = [
+    {
+      name: "iPhone",
+    },
+    {
+      name: "iPad",
+    },
+    {
+      name: "Ipod",
+    },
+  ];
+
   return (
     <AppSizeLayout>
       <TitleForComponent>
@@ -85,37 +114,49 @@ export const SupportingDevices = ({ devices }) => {
         технологию
       </TitleForComponent>
       <Container>
-          <DevicesWrapper>
-              <IconContainer>
-                  <Icon icon='/ios-icon.svg'/>
-                  <span>IOS устройства</span>
-              </IconContainer>
-              <Devices>
-                  <ul>
-                      {devices.map((device) => (
-                          <li>{device.name}</li>
-                      ))}
-                  </ul>
-              </Devices>
-          </DevicesWrapper>
-          <DevicesWrapper>
-              <IconContainer>
-                  <Icon icon='/android-icon.svg'/>
-                  <span>Android устройства</span>
-              </IconContainer>
-              <Devices>
-                  <ul>
-                      {devices.map((device) => (
-                          <li>{device.name}</li>
-                      ))}
-                  </ul>
-                  <ul>
-                      {devices.map((device) => (
-                          <li>{device.name}</li>
-                      ))}
-                  </ul>
-              </Devices>
-          </DevicesWrapper>
+        <DevicesWrapper>
+          <FlexContainer>
+            <Icon icon="/ios-icon.svg" />
+            <span>IOS устройства</span>
+          </FlexContainer>
+          <FlexContainer>
+            {iosDevices.map((item) => (
+              <ButtonHandler key={item.name} type={item.name} />
+            ))}
+          </FlexContainer>
+          <Devices>
+            <ul>
+              {devices.map((device) => (
+                <li>{device.name}</li>
+              ))}
+            </ul>
+          </Devices>
+        </DevicesWrapper>
+        <DevicesWrapper>
+          <FlexContainer>
+            <Icon icon="/android-icon.svg" />
+            <span>Android устройства</span>
+          </FlexContainer>
+          <FlexContainer>
+            <Models>
+              <span>Мануфактура</span>
+              <div />
+              <span>Модель</span>
+            </Models>
+          </FlexContainer>
+          <Devices>
+            <ul>
+              {devices.map((device) => (
+                <li>{device.name}</li>
+              ))}
+            </ul>
+            <ul>
+              {devices.map((device) => (
+                <li>{device.name}</li>
+              ))}
+            </ul>
+          </Devices>
+        </DevicesWrapper>
       </Container>
     </AppSizeLayout>
   );

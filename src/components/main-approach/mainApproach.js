@@ -56,6 +56,11 @@ const IconContainer = styled.div`
   top: ${(props) => props.top};
   bottom: ${(props) => props.bottom};
 `;
+export const ButtonContainer = styled.div`
+margin-top:30px;
+margin-left: 22%;
+width:44%;
+`
 
 
 
@@ -83,7 +88,9 @@ export const MainApproach = ({ approach }) => {
                 ? `${item.text.substring(0, 195)}...`
                 : item.text}
             </p>
-              <StyledButton text='Узнать подробнее'/>
+              <ButtonContainer>
+                  <StyledButton text='Узнать подробнее'/>
+              </ButtonContainer>
             {item.topPhoto && (
               <IconContainer right="-70px" top="-20px">
                 <IconBackground background={item.topPhoto} />

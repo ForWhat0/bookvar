@@ -4,6 +4,9 @@ import {BlobVideoAndTextContainer} from "../../src/components/blob-video-text/Bl
 import {UseExperience} from "../../src/components/use-experience/use-experience";
 import {DevelopSteps} from "../../src/components/develop-steps/develop-steps";
 import {SupportingDevices} from "../../src/components/supporting-devices/supporting-devices";
+import {AppSizeLayout} from "../../src/components/layouts/appSizeLayout";
+import {MainText} from "../../src/components/main-text/main-text";
+import {Product} from "../../src/components/product/product";
 
 export default function Home() {
   const arrswper = [
@@ -227,6 +230,10 @@ export default function Home() {
   ]
   return (
     <Layout headerLogo="/logo.svg" headerMenu={headerArr}>
+      <AppSizeLayout>
+        <MainText/>
+        <Product/>
+      </AppSizeLayout>
       <AdvantageOfVr advantage={advantageArr}/>
       <BlobVideoAndTextContainer  text="КАК ВЫГЛЯДЯТ УРОКИ ПО ФИЗИКЕ В VR" />
       <UseExperience/>

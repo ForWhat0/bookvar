@@ -1,7 +1,7 @@
 import styled, { keyframes } from "styled-components";
 import { device } from "../deviceSizes/deviceSizes";
 
- const open = keyframes`
+const open = keyframes`
 0%{
 opacity:0;
 }
@@ -36,7 +36,6 @@ export const Video = (isActive) => styled.div`
   color: #313149;
   border: 4px solid transparent;
   border-radius: 33px;
-
 `;
 const WrapRotate = keyframes`
   0%{
@@ -48,21 +47,25 @@ const WrapRotate = keyframes`
 `;
 export const Arrow = styled.div`
   position: absolute;
+  top: 30%;
   width: 100px;
   height: 100px;
   cursor: pointer;
   left: ${(props) => props.left};
   right: ${(props) => props.right};
-`;
-export const ArrowIconMobile = styled.div`
-  position: relative;
-  background-position: center;
-  background-size: contain;
-  background: url(${(props) => props.arrow}) no-repeat;
-  width: 100%;
-  height: 100%;
-  ${Arrow}:hover & {
+  z-index: 2;
+
+  &:hover div {
     animation: ${WrapRotate} 0.5s ease-in-out;
+  }
+
+  div {
+    position: relative;
+    background-position: center;
+    background-size: contain;
+    background: url(${(props) => props.arrow}) no-repeat;
+    width: 100%;
+    height: 100%;
   }
 `;
 export const SwiperContainerWrapper = styled.div`
@@ -72,35 +75,49 @@ export const SwiperContainerWrapper = styled.div`
     height: 250px;
   }
 `;
-export const ArrowsMobile = styled.div`
-  display: flex;
-  justify-content: center;
-  padding-top: 20px;
-`;
 export const SwiperContainer = styled.div`
   overflow: ${(props) => props.overflow};
   width: 100%;
   padding: 40px 0 0 0;
+  position: relative;
 `;
 export const SwiperContent = styled.div`
-display:flex;
-flex-direction:column;
-`
-export  const Text = styled.div`
-    margin-top: 10px;
-    display: ${props=>props.display};
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    animation: ${open} 2s ease-in-out;
+  display: flex;
+  flex-direction: column;
+`;
+export const Text = styled.div`
+  margin-top: 10px;
+  display: ${(props) => props.display};
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  animation: ${open} 2s ease-in-out;
+  width: ${(props) => props.width};
+  padding-left: ${(props) => props.paddingLeft};
 
-    p {
-      font-weight: 500;
-      font-size: 20px;
-      line-height: 24px;
-      color: rgba(255, 255, 255, 0.8);
-      padding-top: 20px;
-      margin: 0;
-    
-    }
-  `;
+  p {
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 24px;
+    color: rgba(255, 255, 255, 0.8);
+    padding-top: 20px;
+    margin: 0;
+  }
+`;
+export const IndexContainer = styled.div`
+  position: relative;
+  width: 100%;
+
+  h1 {
+    text-align: left;
+    font-weight: bold;
+    font-size: 65px;
+    line-height: 79px;
+    letter-spacing: 0.04em;
+    background: linear-gradient(180deg, #b0ffc6 0%, #00b4ff 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin: 0;
+    padding: 0;
+  }
+`;

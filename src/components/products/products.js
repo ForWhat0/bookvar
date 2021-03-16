@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import { TitleForComponent } from "../titleForComponent/title";
 import {StyledButton} from "../button/button";
+import {ButtonContainer} from "../main-approach/mainApproach";
 
 const ContainerProduct = styled.div`
   display: flex;
@@ -105,7 +106,9 @@ export const Products = ({ products }) => {
               {item.discount && <Discount>{item.discount}</Discount>}
               <Price>{item.price}</Price>
             </PriceContainer>
-              <StyledButton text='Узнать подробнее'/>
+              <ButtonContainer>
+                  <StyledButton text='Узнать подробнее'/>
+              </ButtonContainer>
           </Product>
         ))}
       </ContainerProduct>

@@ -1,119 +1,60 @@
 import { Swiper, SwiperSlide } from "swiper/react";
-import SwiperCore, {
-  HashNavigation,
-  Navigation,
-  EffectCoverflow,
-  EffectCube,
-  Pagination,
-} from "swiper";
-import {
-  SwiperContainerWrapper,
-  SwiperContainer,
-  Video,
-  SwiperContent,
-  Text,
-} from "./swiperStyled";
+import { createRef } from "react";
+import { SwiperContainer, IndexContainer, Text, Arrow } from "./swiperStyled";
 
-import ReactPlayer from "react-player/lazy";
-import { IconBackground } from "../leftComment/leftCommentStyLedComponents";
 import { LinearGradientText } from "../linear-gradient-text/linear-gradient-text";
 
-export const SwiperSteps = ({ cube, content }) => {
-  SwiperCore.use([
-    HashNavigation,
-    Navigation,
-    EffectCoverflow,
-    EffectCube,
-    Pagination,
-  ]);
-
-  const showPLayer = (isActive, item) => {
-    return (
-      <ReactPlayer
-        controls={false}
-        playing={isActive}
-        onClickPreview={(e) => e.preventDefault()}
-        light
-        playIcon={<IconBackground background="play-icon.svg" />}
-        width="100%"
-        height="100%"
-        wrapper={Video(isActive)}
-        url={item.url}
-      />
-    );
+import { Blob } from "../blobBg/blob";
+export const SwiperSteps = ({ content }) => {
+  const swiperRef = createRef();
+  const previous = () => {
+    const swiper = swiperRef?.current?.swiper ? swiperRef.current.swiper : null;
+    swiper && swiper.slidePrev();
+  };
+  const next = () => {
+    const swiper = swiperRef?.current?.swiper ? swiperRef.current.swiper : null;
+    swiper && swiper.slideNext();
   };
   const media = {
     320: {
-      slidesPerView: 2,
+      slidesPerView: 1.5,
       spaceBetween: 10,
+      slidesPerGroup: 1,
     },
     1024: {
-      slidesPerView: 3,
-      spaceBetween: 15,
-    },
-    1800: {
-      slidesPerView: 4,
-      spaceBetween: 20,
+      slidesPerView: 2,
+      spaceBetween: 30,
+      slidesPerGroup: 2,
     },
   };
+  const showNavigation = () => {
+    return (
+      <>
+        <Arrow arrow="/leftArrow.svg" left="0" onClick={() => previous()}>
+          <div />
+        </Arrow>
+        <Arrow arrow="/rightArrow.svg" right="0" onClick={() => next()}>
+          <div />
+        </Arrow>
+      </>
+    );
+  };
   return (
-    <SwiperContainer overflow={cube ? "unset" : "hidden"}>
-      <Swiper
-        centeredSlides
-        slideToClickedSlide
-        effect={cube ? "cube" : "coverflow"}
-        loop={false}
-        navigation
-        hashNavigation
-        pagination={cube ? { clickable: false } : false}
-        breakpoints={cube ? false : media}
-      >
+    <SwiperContainer overflow={"hidden"}>
+      {showNavigation()}
+      <Swiper loop loopFillGroupWithBlank breakpoints={media} ref={swiperRef}>
         {content.map((item, index) => {
+          const step = index + 1;
           return (
             <SwiperSlide key={index + item.name}>
-              {({ isActive }) => (
-                <SwiperContent>
-                  {content[index + 1] && (
-                    <Text display={isActive ? "flex" : "none"}>
-                      <LinearGradientText
-                        text={
-                          index === 0
-                            ? content[index].name
-                            : content[index + index]?.name
-                        }
-                        size="45px"
-                      />
-                      <p>
-                        {index === 0
-                          ? content[index].text
-                          : content[index + index]?.text}
-                      </p>
-                    </Text>
-                  )}
-                  {content[index + 1] ? (
-                    <Text display={isActive ? "flex" : "none"}>
-                      <LinearGradientText
-                        text={
-                          index === 0
-                            ? content[index + 1].name
-                            : content[index + index + 1]?.name
-                        }
-                        size="45px"
-                      />
-                      <p>
-                        {index === 0
-                          ? content[index + 1].text
-                          : content[index + index + 1]?.text}
-                      </p>
-                    </Text>
-                  ) : (
-                    <Text display={isActive ? "flex" : "none"}>
-                      <LinearGradientText text={item.name} size="45px" />
-                      <p>{item.text}</p>
-                    </Text>
-                  )}
-                </SwiperContent>
-              )}
+              <Text paddingLeft="20%" width="60%" display="flex">
+                <IndexContainer>
+                  <h1>{index > 8 ? step : `0${step}`}</h1>
+                  <Blob different={step % 2 === 0} />
+                </IndexContainer>
+                <LinearGradientText text={item.name} size="45px" />
+                <p>{item.text}</p>
+              </Text>
             </SwiperSlide>
           );
         })}
