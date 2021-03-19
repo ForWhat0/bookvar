@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import { actionClickVideoModal } from "../../redux/actions/actions";
 import { useDispatch } from "react-redux";
+import { device } from "../deviceSizes/deviceSizes";
 
 const Container = styled.div`
   display: flex;
@@ -9,6 +10,18 @@ const Container = styled.div`
   height: 700px;
   flex-direction: ${(props) => props.rowAlign};
   padding: 180px 0 80px 0;
+
+  @media screen and (max-width: 950px) {
+    height: 400px;
+  }
+
+  @media screen and ${device.tablet} {
+    padding: 60px 0 90px 0;
+    flex-direction: column-reverse;
+    width: 93.6%;
+    margin-left: 3.2%;
+    height: auto;
+  }
 `;
 const Text = styled.div`
   width: 40%;
@@ -16,17 +29,45 @@ const Text = styled.div`
   align-items: center;
   margin-left: ${(props) => props.mR};
 
+  @media screen and ${device.tablet} {
+    width: 100%;
+  }
+
   span {
     font-weight: bold;
     font-size: 54px;
     line-height: 66px;
     text-align: ${(props) => props.textAlign};
     color: #ffffff;
+
+    @media screen and (max-width: 950px) {
+      font-size: 40px;
+      line-height: 50px;
+    }
+    @media screen and ${device.tablet} {
+      margin-left: unset;
+      font-size: 30px;
+      line-height: 30px;
+      text-align: center;
+      padding-bottom: 40px;
+    }
+    @media screen and ${device.mobileL} {
+      font-size: 20px;
+      line-height: 24px;
+    }
   }
 `;
 const BlobContainer = styled.div`
   width: 50%;
   position: relative;
+
+  @media screen and ${device.tablet} {
+    width: 100%;
+    height: 300px;
+  }
+  @media screen and ${device.mobileL} {
+    height: 220px;
+  }
 `;
 const Blob = styled.div`
   position: absolute;
@@ -58,10 +99,14 @@ const Blob = styled.div`
       rgba(255, 255, 255, 0) 100%
     );
   }
+
+  @media screen and ${device.tablet} {
+    position: initial;
+  }
 `;
 
 const Background = styled.div`
-  background: url(https://images.indianexpress.com/2020/06/astronuat-space-pixabay-1200.jpg)
+  background: url(${(props) => props.background});
     center center no-repeat;
   background-size: cover;
   width: 100%;
@@ -79,9 +124,19 @@ const PLayIcon = styled.div`
   background-position: center;
   background-repeat: no-repeat;
   background-size: contain;
+
+  @media screen and (max-width: 950px) {
+    width: 50%;
+    height: 50%;
+  }
 `;
 
-export const BlobVideoAndTextContainer = ({ text, right }) => {
+export const BlobVideoAndTextContainer = ({
+  text,
+  video,
+  background,
+  right,
+}) => {
   const dispatch = useDispatch();
   const leftAlign = right ? "unset" : "-5%";
   const rightAlign = right ? "-5%" : "unset";
@@ -92,20 +147,10 @@ export const BlobVideoAndTextContainer = ({ text, right }) => {
     ? "32% 68% 64% 36% / 30% 42% 58% 70%"
     : "73% 27% 34% 66% / 26% 21% 79% 74%";
   return (
-    <Container
-      rowAlign={rowAlign}
-    >
-      <BlobContainer
-          onClick={() =>
-              dispatch(
-                  actionClickVideoModal(
-                      "https://www.youtube.com/watch?v=_ZO6mXmdeD8&list=RDx1zWCizNoRo&index=6"
-                  )
-              )
-          }
-      >
+    <Container rowAlign={rowAlign}>
+      <BlobContainer onClick={() => dispatch(actionClickVideoModal(video))}>
         <Blob left={leftAlign} right={rightAlign} borderRadius={borderRadius}>
-          <Background>
+          <Background background={background}>
             <PLayIcon />
           </Background>
         </Blob>

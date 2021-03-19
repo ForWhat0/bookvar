@@ -17,9 +17,11 @@ export const SwiperSteps = ({ content }) => {
   };
   const media = {
     320: {
-      slidesPerView: 1.5,
+      slidesPerView: 2,
       spaceBetween: 10,
       slidesPerGroup: 1,
+      centeredSlides: true
+
     },
     1024: {
       slidesPerView: 2,
@@ -46,14 +48,14 @@ export const SwiperSteps = ({ content }) => {
         {content.map((item, index) => {
           const step = index + 1;
           return (
-            <SwiperSlide key={index + item.name}>
+            <SwiperSlide key={index + item.titleLesson}>
               <Text paddingLeft="20%" width="60%" display="flex">
                 <IndexContainer>
                   <h1>{index > 8 ? step : `0${step}`}</h1>
                   <Blob different={step % 2 === 0} />
                 </IndexContainer>
-                <LinearGradientText text={item.name} size="45px" />
-                <p>{item.text}</p>
+                <LinearGradientText text={item.titleLesson} size="45px" />
+                <p>{item.textLesson}</p>
               </Text>
             </SwiperSlide>
           );

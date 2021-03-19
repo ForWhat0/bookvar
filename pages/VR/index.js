@@ -1,14 +1,17 @@
 import Layout from "../../src/components/layouts/layout";
 import { AdvantageOfVr } from "../../src/components/advantage-of-vr/advantage-of-vr";
-import {BlobVideoAndTextContainer} from "../../src/components/blob-video-text/BlobVideoAndTextContainer";
-import {UseExperience} from "../../src/components/use-experience/use-experience";
-import {DevelopSteps} from "../../src/components/develop-steps/develop-steps";
-import {SupportingDevices} from "../../src/components/supporting-devices/supporting-devices";
-import {AppSizeLayout} from "../../src/components/layouts/appSizeLayout";
-import {MainText} from "../../src/components/main-text/main-text";
-import {Product} from "../../src/components/product/product";
+import { BlobVideoAndTextContainer } from "../../src/components/blob-video-text/BlobVideoAndTextContainer";
+import { UseExperience } from "../../src/components/use-experience/use-experience";
+import { DevelopSteps } from "../../src/components/develop-steps/develop-steps";
+import { SupportingDevices } from "../../src/components/supporting-devices/supporting-devices";
+import { AppSizeLayout } from "../../src/components/layouts/appSizeLayout";
+import { MainText } from "../../src/components/main-text/main-text";
+import { Product } from "../../src/components/product/product";
+import { GET_VR_PAGE_CONTENT } from "../../src/queries/GetVrPageContent";
+import client from "../../src/apollo/client";
 
-export default function Home() {
+export default function Home({ data }) {
+  console.log(data);
   const arrswper = [
     {
       text:
@@ -103,142 +106,173 @@ export default function Home() {
       title: " Погружение в ситуацию",
       icon: "/gmail-icon.svg",
       text:
-          "Человеческий мозг быстро забывает, что он находится в приложении и человек начинает вести себя абсолютно естественно. Таким образом мы не только обучаем его, но и видим его поведение на примере различных событий",
+        "Человеческий мозг быстро забывает, что он находится в приложении и человек начинает вести себя абсолютно естественно. Таким образом мы не только обучаем его, но и видим его поведение на примере различных событий",
     },
     {
       title: " Погружение в ситуацию",
       icon: "/gmail-icon.svg",
       text:
-          "Человеческий мозг быстро забывает, что он находится в приложении и человек начинает вести себя абсолютно естественно. Таким образом мы не только обучаем его, но и видим его поведение на примере различных событий",
+        "Человеческий мозг быстро забывает, что он находится в приложении и человек начинает вести себя абсолютно естественно. Таким образом мы не только обучаем его, но и видим его поведение на примере различных событий",
     },
     {
       title: " Погружение в ситуацию",
       icon: "/gmail-icon.svg",
       text:
-          "Человеческий мозг быстро забывает, что он находится в приложении и человек начинает вести себя абсолютно естественно. Таким образом мы не только обучаем его, но и видим его поведение на примере различных событий",
+        "Человеческий мозг быстро забывает, что он находится в приложении и человек начинает вести себя абсолютно естественно. Таким образом мы не только обучаем его, но и видим его поведение на примере различных событий",
     },
     {
       title: " Погружение в ситуацию",
       icon: "/gmail-icon.svg",
       text:
-          "Человеческий мозг быстро забывает, что он находится в приложении и человек начинает вести себя абсолютно естественно. Таким образом мы не только обучаем его, но и видим его поведение на примере различных событий",
+        "Человеческий мозг быстро забывает, что он находится в приложении и человек начинает вести себя абсолютно естественно. Таким образом мы не только обучаем его, но и видим его поведение на примере различных событий",
     },
     {
       title: " Погружение в ситуацию",
       icon: "/gmail-icon.svg",
       text:
-          "Человеческий мозг быстро забывает, что он находится в приложении и человек начинает вести себя абсолютно естественно. Таким образом мы не только обучаем его, но и видим его поведение на примере различных событий",
+        "Человеческий мозг быстро забывает, что он находится в приложении и человек начинает вести себя абсолютно естественно. Таким образом мы не только обучаем его, но и видим его поведение на примере различных событий",
     },
     {
       title: " Погружение в ситуацию",
       icon: "/gmail-icon.svg",
       text:
-          "Человеческий мозг быстро забывает, что он находится в приложении и человек начинает вести себя абсолютно естественно. Таким образом мы не только обучаем его, но и видим его поведение на примере различных событий",
+        "Человеческий мозг быстро забывает, что он находится в приложении и человек начинает вести себя абсолютно естественно. Таким образом мы не только обучаем его, но и видим его поведение на примере различных событий",
     },
   ];
   const devices = [
     {
-      name:'iPhone 11 Pro'
+      name: "iPhone 11 Pro",
     },
     {
-      name:'iPhone 11 Pro'
+      name: "iPhone 11 Pro",
     },
     {
-      name:'iPhone 11 Pro'
+      name: "iPhone 11 Pro",
     },
     {
-      name:'iPhone 11 Pro'
+      name: "iPhone 11 Pro",
     },
     {
-      name:'iPhone 11 Pro'
+      name: "iPhone 11 Pro",
     },
     {
-      name:'iPhone 11 Pro'
+      name: "iPhone 11 Pro",
     },
     {
-      name:'iPhone 11 Pro'
+      name: "iPhone 11 Pro",
     },
     {
-      name:'iPhone 11 Pro'
+      name: "iPhone 11 Pro",
     },
     {
-      name:'iPhone 11 Pro'
+      name: "iPhone 11 Pro",
     },
     {
-      name:'iPhone 11 Pro'
+      name: "iPhone 11 Pro",
     },
     {
-      name:'iPhone 11 Pro'
+      name: "iPhone 11 Pro",
     },
     {
-      name:'iPhone 11 Pro'
+      name: "iPhone 11 Pro",
     },
     {
-      name:'iPhone 11 Pro'
+      name: "iPhone 11 Pro",
     },
     {
-      name:'iPhone 11 Pro'
+      name: "iPhone 11 Pro",
     },
     {
-      name:'iPhone 11 Pro'
+      name: "iPhone 11 Pro",
     },
     {
-      name:'iPhone 11 Pro'
+      name: "iPhone 11 Pro",
     },
     {
-      name:'iPhone 11 Pro'
+      name: "iPhone 11 Pro",
     },
     {
-      name:'iPhone 11 Pro'
+      name: "iPhone 11 Pro",
     },
     {
-      name:'iPhone 11 Pro'
+      name: "iPhone 11 Pro",
     },
     {
-      name:'iPhone 11 Pro'
+      name: "iPhone 11 Pro",
     },
     {
-      name:'iPhone 11 Pro'
+      name: "iPhone 11 Pro",
     },
     {
-      name:'iPhone 11 Pro'
+      name: "iPhone 11 Pro",
     },
     {
-      name:'iPhone 11 Pro'
+      name: "iPhone 11 Pro",
     },
     {
-      name:'iPhone 11 Pro'
+      name: "iPhone 11 Pro",
     },
     {
-      name:'iPhone 11 Pro'
+      name: "iPhone 11 Pro",
     },
     {
-      name:'iPhone 11 Pro'
-    },{
-      name:'iPhone 11 Pro'
+      name: "iPhone 11 Pro",
     },
     {
-      name:'iPhone 11 Pro'
+      name: "iPhone 11 Pro",
     },
     {
-      name:'iPhone 11 Pro'
+      name: "iPhone 11 Pro",
     },
     {
-      name:'iPhone 11 Pro'
+      name: "iPhone 11 Pro",
     },
-
-  ]
+    {
+      name: "iPhone 11 Pro",
+    },
+  ];
   return (
     <Layout headerLogo="/logo.svg" headerMenu={headerArr}>
       <AppSizeLayout>
-        <MainText/>
-        <Product/>
+        <MainText
+          text={data.page.content}
+          src={data.page.featuredImage.node.sourceUrl}
+        />
+        <Product />
       </AppSizeLayout>
-      <AdvantageOfVr advantage={advantageArr}/>
-      <BlobVideoAndTextContainer  text="КАК ВЫГЛЯДЯТ УРОКИ ПО ФИЗИКЕ В VR" />
-      <UseExperience/>
-      <DevelopSteps />
-      <SupportingDevices devices={devices}/>
+      <AdvantageOfVr advantage={data.page.VrField.listBenefits} />
+      <BlobVideoAndTextContainer
+        video={data.page.VrField.linkVideo}
+        text={data.page.VrField.titleVideo}
+        background={data.page.VrField.imgVideo.sourceUrl}
+      />
+      <UseExperience />
+      <DevelopSteps steps={data.page.VrField.sliderLessons} />
+      <SupportingDevices devices={devices} />
     </Layout>
   );
+}
+
+export async function getStaticProps({ locale }) {
+  const pageUri = "/vr/";
+  const location =
+    locale === "EN"
+      ? "HEADER_MENU___EN"
+      : locale === "RU"
+      ? "HEADER_MENU___RU"
+      : "HEADER_MENU";
+
+  const { data } = await client.query({
+    query: GET_VR_PAGE_CONTENT,
+    variables: {
+      pageUri,
+    },
+  });
+
+  return {
+    props: {
+      data,
+    },
+    revalidate: 1,
+  };
 }

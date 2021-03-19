@@ -1,26 +1,28 @@
 import styled from "styled-components";
 
 const Content = styled.div`
+ div {
   display: grid;
   grid-template-areas:
     "title picture"
     "text picture";
   grid-template-columns 1fr 0.3fr;
-`;
-
-const Title = styled.div`
-  grid-area: title;
-
-  div {
+ }
+  
+  div h2 {
+  padding: 0;
+    margin: 0;
+    grid-area: title;
     font-weight: bold;
     font-size: 54px;
     line-height: 66px;
     color: #ffffff;
-    display: inline-block;
+    display: inline;
   }
 
   div h1 {
-    display: inline-block;
+    grid-area: title;
+    display: inline;
     margin: 0;
     padding: 0 20px;
     font-weight: bold;
@@ -31,41 +33,30 @@ const Title = styled.div`
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
   }
-`;
-const Text = styled.p`
+  
+  div p {
   grid-area: text;
   font-weight: 500;
   font-size: 25px;
   line-height: 30px;
   color: #ffffff;
-  padding-bottom: 40px;
-`;
-const Picture = styled.div`
-  grid-area: picture;
-  background: url(/light_bulb_with_brain.svg) center center no-repeat;
-  background-size: contain;
-  width: 100%;
-  height: 100%;
+  padding: 50px 0 0 0;
+    margin: 0;
+  }
+  
+  div figure {
+      padding: 0;
+    margin: 0;
+   grid-area: picture;
+   width:100%;
+   height:100%;
+  }
 `;
 
-export const MainText = () => {
+export const MainText = ({ text }) => {
   return (
     <Content>
-      <Title>
-        <div>
-          МЫ СОЗДАЕМ ЭФФЕКТИВНЫЕ ОБУЧАЮЩИЕ УРОКИ В<h1>VR</h1>
-          ДЛЯ ШКОЛ УКРАИНЫ
-        </div>
-      </Title>
-      <Text>
-        Технологии виртуальной реальности дают практически безграничные
-        возможности по созданию обучающих курсов разного уровня сложности,
-        тестирования и мониторинга процесса обучения. Для создания обучающего
-        курса подходят большинство моделей недорогих очков виртуальной
-        реальности, поэтому самой затратной частью курса становится его
-        создание.
-      </Text>
-      <Picture />
+      <div dangerouslySetInnerHTML={{ __html: text }} />
     </Content>
   );
 };

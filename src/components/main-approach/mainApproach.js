@@ -1,17 +1,26 @@
 import { IconBackground } from "../leftComment/leftCommentStyLedComponents";
 import { PlanetMoveBorder } from "../planet/planet-move-on-border";
 import styled from "styled-components";
-import { LinearGradientText } from "../linear-gradient-text/linear-gradient-text";
 import {TitleForComponent} from "../titleForComponent/title";
 import {StyledButton} from "../button/button";
+import {device} from "../deviceSizes/deviceSizes";
 
 const Container = styled.div`
-  display: grid;
-  grid-template-columns: 1fr 1fr;
+  display: flex;
   grid-gap: 80px;
   justify-content: space-between;
   width: 80%;
   margin-left: 10%;
+  
+   @media screen and (max-width: 1290px) {
+    display:flex;
+    flex-direction:column;
+  }
+  
+  @media screen and ${device.tablet} {
+    width: 93.6%;
+    margin-left: 3.2%;
+  }
 `;
 
 const Global = styled.div`

@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { LinearGradientText } from "../linear-gradient-text/linear-gradient-text";
+import {device} from "../deviceSizes/deviceSizes";
 
 const Container = styled.div`
   display: flex;
@@ -17,6 +18,12 @@ const Elliplse = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  
+  @media screen and ${device.mobileL} {
+    width: 100px;
+  height: 100px;
+  padding-bottom:30px;
+  }
 `;
 const ElliplseWrapper = styled.div`
   background: url(/ellipse-border.svg) center center no-repeat;
@@ -51,6 +58,10 @@ const Text = styled.div`
   font-size: 16px;
   line-height: 20px;
   color: #ffffff;
+  
+  @media screen and ${device.mobileL} {
+  font-size: 14px;
+  }
 `;
 
 export const SingleAdvantage = ({ icon, title, text }) => {

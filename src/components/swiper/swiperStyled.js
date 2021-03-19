@@ -36,6 +36,7 @@ export const Video = (isActive) => styled.div`
   color: #313149;
   border: 4px solid transparent;
   border-radius: 33px;
+  width: calc(100% - 8px) !important;
 `;
 const WrapRotate = keyframes`
   0%{
@@ -61,9 +62,8 @@ export const Arrow = styled.div`
 
   div {
     position: relative;
-    background-position: center;
+    background: url(${(props) => props.arrow}) center center no-repeat;
     background-size: contain;
-    background: url(${(props) => props.arrow}) no-repeat;
     width: 100%;
     height: 100%;
   }
@@ -73,6 +73,9 @@ export const SwiperContainerWrapper = styled.div`
   position: relative;
   @media screen and ${device.tablet} {
     height: 250px;
+  }
+  @media screen and ${device.mobileL} {
+    height: 200px;
   }
 `;
 export const SwiperContainer = styled.div`
@@ -102,6 +105,11 @@ export const Text = styled.div`
     color: rgba(255, 255, 255, 0.8);
     padding-top: 20px;
     margin: 0;
+
+    @media screen and ${device.mobileL} {
+      font-size: 14px;
+      line-height: 17px;
+    }
   }
 `;
 export const IndexContainer = styled.div`

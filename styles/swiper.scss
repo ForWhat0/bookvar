@@ -143,6 +143,18 @@
     transform:scale(1.1);
   }
 }
+@media screen and (max-width: 768px) {
+  .swiper-button-next,
+  .swiper-button-prev {
+    top: 250px
+  }
+}
+@media screen and (max-width: 425px) {
+  .swiper-button-next,
+  .swiper-button-prev {
+    top: 100%;
+  }
+}
 
 .swiper-button-next {
   background: url(/rightArrow.svg) center center no-repeat;
