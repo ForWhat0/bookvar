@@ -14,24 +14,12 @@ export const StyledMenu = styled.nav`
   transition: all 0.3s linear;
   padding: 0;
   text-align: left;
-  background-color: white;
-
-  a {
-    font-size: 16px;
-    padding: 10px 0;
-    font-weight: normal;
-    color: black;
-    text-decoration: none;
-    transition: color 0.3s linear;
-
-    @media (max-width: 900px) {
-      text-align: center;
-    }
-  }
+  background: linear-gradient(360deg, #04184c 0%, #12162a 100%, #5860b8 100%);
 `;
 export const Ul = styled.ul`
   list-style-type: none;
   display: flex;
+  color: #ffffff;
   flex-direction: column;
   z-index: 5;
   align-items: center;
@@ -46,6 +34,7 @@ export const Ul = styled.ul`
 `;
 export const Li = styled.li`
   margin-bottom: 20px;
+  cursor: pointer;
 `;
 export const SignIn = styled.div`
     display: flex;
@@ -67,15 +56,19 @@ export const CircleBackground = styled.div`
   }
 `;
 export const ALink = styled.a`
-  cursor: pointer;
-  background: ${(props) => props.activeLink?.background};
-  -webkit-background-clip: ${(props) => props.activeLink?.text};
-  -webkit-text-fill-color: ${(props) => props.activeLink?.transparent};
+  padding: 10px 20px;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 20px;
+  color: #ffffff;
+  text-decoration: none;
+  transition: color 0.3s linear;
+  background: ${(props) => props.activeLink.background};
+  -webkit-background-clip: ${(props) => props.activeLink.text};
+  -webkit-text-fill-color: ${(props) => props.activeLink.transparent};
 `;
 export const HeaderInner = styled.div`
-  background: url(/diia_gradient.png);
   width: 100%;
-  height: 73.2px;
   z-index: 6;
   position: fixed;
   background-size: cover;
@@ -95,4 +88,28 @@ export const Header = styled.div`
     width: 93.6%;
     margin-left: 3.2%;
   }
+`;
+
+export const PlanetContainer = styled.div`
+  display: flex;
+  align-items: center;
+
+  div {
+    display: ${(props) => props.display};
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: radial-gradient(
+        96% 96% at 70.4% 31.2%,
+        #0089e3 0%,
+        rgba(0, 2, 16, 0) 100%
+      ),
+      #0069ae;
+    box-shadow: 0px 4px 80px #0089e3,
+      inset 0px 2px 10px rgba(255, 255, 255, 0.58),
+      inset 10px 16px 20px rgba(42, 246, 255, 0.95);
+  }
+`;
+export const SpaceBetween = styled.div`
+  padding-top: 30px;
 `;

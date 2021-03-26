@@ -25,13 +25,17 @@ const Input = styled.input.attrs((props) => ({
   background: transparent;
   width: 100%;
   color: white;
-  font-size:20px;
+  font-size: 20px;
   ::placeholder,
   ::-webkit-input-placeholder {
     color: white;
   }
   :-ms-input-placeholder {
     color: white;
+  }
+
+  @media screen and ${device.tablet} {
+    font-size: 16px;
   }
 `;
 export const Text = styled.label`
@@ -107,7 +111,6 @@ export const InputStyled = ({
 
   return (
     <InputField width={width} onClick={() => setWarningText("")}>
-
       <div>
         <InputContainer>
           <Icon

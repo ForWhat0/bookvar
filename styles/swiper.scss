@@ -83,30 +83,30 @@
 }
 .swiper-container-3d .swiper-slide-shadow-left {
   background-image: linear-gradient(
-                  to left,
-                  rgba(0, 0, 0, 0.5),
-                  rgba(0, 0, 0, 0)
+    to left,
+    rgba(0, 0, 0, 0.5),
+    rgba(0, 0, 0, 0)
   );
 }
 .swiper-container-3d .swiper-slide-shadow-right {
   background-image: linear-gradient(
-                  to right,
-                  rgba(0, 0, 0, 0.5),
-                  rgba(0, 0, 0, 0)
+    to right,
+    rgba(0, 0, 0, 0.5),
+    rgba(0, 0, 0, 0)
   );
 }
 .swiper-container-3d .swiper-slide-shadow-top {
   background-image: linear-gradient(
-                  to top,
-                  rgba(0, 0, 0, 0.5),
-                  rgba(0, 0, 0, 0)
+    to top,
+    rgba(0, 0, 0, 0.5),
+    rgba(0, 0, 0, 0)
   );
 }
 .swiper-container-3d .swiper-slide-shadow-bottom {
   background-image: linear-gradient(
-                  to bottom,
-                  rgba(0, 0, 0, 0.5),
-                  rgba(0, 0, 0, 0)
+    to bottom,
+    rgba(0, 0, 0, 0.5),
+    rgba(0, 0, 0, 0)
   );
 }
 .swiper-container-css-mode > .swiper-wrapper {
@@ -140,19 +140,21 @@
   transition: all 0.5s ease-in-out;
 
   &:hover {
-    transform:scale(1.1);
+    transform: scale(1.1);
   }
 }
 @media screen and (max-width: 768px) {
   .swiper-button-next,
   .swiper-button-prev {
-    top: 250px
+    top: 250px;
   }
 }
 @media screen and (max-width: 425px) {
   .swiper-button-next,
   .swiper-button-prev {
     top: 100%;
+    width: 44px;
+    height: 33px;
   }
 }
 
@@ -266,42 +268,42 @@ button.swiper-pagination-bullet {
   transform: translate3d(0px, -50%, 0);
 }
 .swiper-container-vertical
-> .swiper-pagination-bullets
-.swiper-pagination-bullet {
+  > .swiper-pagination-bullets
+  .swiper-pagination-bullet {
   margin: 6px 0;
   display: block;
 }
 .swiper-container-vertical
-> .swiper-pagination-bullets.swiper-pagination-bullets-dynamic {
+  > .swiper-pagination-bullets.swiper-pagination-bullets-dynamic {
   top: 50%;
   transform: translateY(-50%);
   width: 8px;
 }
 .swiper-container-vertical
-> .swiper-pagination-bullets.swiper-pagination-bullets-dynamic
-.swiper-pagination-bullet {
+  > .swiper-pagination-bullets.swiper-pagination-bullets-dynamic
+  .swiper-pagination-bullet {
   display: inline-block;
   transition: 0.2s transform, 0.2s top;
 }
 .swiper-container-horizontal
-> .swiper-pagination-bullets
-.swiper-pagination-bullet {
+  > .swiper-pagination-bullets
+  .swiper-pagination-bullet {
   margin: 0 4px;
 }
 .swiper-container-horizontal
-> .swiper-pagination-bullets.swiper-pagination-bullets-dynamic {
+  > .swiper-pagination-bullets.swiper-pagination-bullets-dynamic {
   left: 50%;
   transform: translateX(-50%);
   white-space: nowrap;
 }
 .swiper-container-horizontal
-> .swiper-pagination-bullets.swiper-pagination-bullets-dynamic
-.swiper-pagination-bullet {
+  > .swiper-pagination-bullets.swiper-pagination-bullets-dynamic
+  .swiper-pagination-bullet {
   transition: 0.2s transform, 0.2s left;
 }
 .swiper-container-horizontal.swiper-container-rtl
-> .swiper-pagination-bullets-dynamic
-.swiper-pagination-bullet {
+  > .swiper-pagination-bullets-dynamic
+  .swiper-pagination-bullet {
   transition: 0.2s transform, 0.2s right;
 }
 .swiper-pagination-progressbar {
@@ -319,20 +321,20 @@ button.swiper-pagination-bullet {
   transform-origin: left top;
 }
 .swiper-container-rtl
-.swiper-pagination-progressbar
-.swiper-pagination-progressbar-fill {
+  .swiper-pagination-progressbar
+  .swiper-pagination-progressbar-fill {
   transform-origin: right top;
 }
 .swiper-container-horizontal > .swiper-pagination-progressbar,
 .swiper-container-vertical
-> .swiper-pagination-progressbar.swiper-pagination-progressbar-opposite {
+  > .swiper-pagination-progressbar.swiper-pagination-progressbar-opposite {
   width: 100%;
   height: 4px;
   left: 0;
   top: 0;
 }
 .swiper-container-horizontal
-> .swiper-pagination-progressbar.swiper-pagination-progressbar-opposite,
+  > .swiper-pagination-progressbar.swiper-pagination-progressbar-opposite,
 .swiper-container-vertical > .swiper-pagination-progressbar {
   width: 4px;
   height: 100%;

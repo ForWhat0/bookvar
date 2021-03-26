@@ -1,19 +1,30 @@
 import { AppSizeLayout } from "../layouts/appSizeLayout";
 import { TitleForComponent } from "../titleForComponent/title";
 import styled from "styled-components";
-import { FieldTextIcon } from "../field-text-icon/field-text-icon";
-import { StyledButton } from "../button/button";
 import { ButtonHandler } from "../use-experience/button-handler";
+import { device } from "../deviceSizes/deviceSizes";
+import { useState } from "react";
+import {SupportingDevicesLsi} from "../../Lsi/lsi";
 
 const Container = styled.div`
-  display: grid;
-  grid-template-columns: 0.6fr 1fr;
-  padding: 80px 0 140px 0;
-  grid-gap: 20%;
+  display: flex;
+  padding: 0 0 140px 0;
+  justify-content: space-between;
+
+  @media screen and (max-width: 1250px) {
+    flex-direction: column;
+    padding: unset;
+  }
 `;
 const DevicesWrapper = styled.div`
+  width: ${(props) => props.width};
   display: flex;
   flex-direction: column;
+
+  @media screen and (max-width: 1250px) {
+    width: 100%;
+    margin-bottom: 60px;
+  }
 `;
 const FlexContainer = styled.div`
   display: flex;
@@ -27,6 +38,20 @@ const FlexContainer = styled.div`
     line-height: 30px;
     letter-spacing: 0.04em;
     color: #ffffff;
+
+    @media screen and ${device.tablet} {
+      font-size: 20px;
+      line-height: 20px;
+      justify-content: center;
+    }
+    @media screen and ${device.mobileL} {
+      font-size: 16px;
+    }
+  }
+
+  @media screen and ${device.mobileL} {
+    padding-bottom: 30px;
+    justify-content: center;
   }
 `;
 const Icon = styled.div`
@@ -34,15 +59,28 @@ const Icon = styled.div`
   background-size: contain;
   width: 60px;
   height: 60px;
+
+  @media screen and ${device.tablet} {
+    width: 40px;
+    height: 40px;
+  }
+  @media screen and ${device.mobileL} {
+    width: 30px;
+    height: 30px;
+  }
 `;
 const Devices = styled.div`
   display: flex;
   overflow-y: scroll;
-  height: 400px;
+  max-height: 400px;
   justify-content: space-between;
 
   &::-webkit-scrollbar {
     width: 20px;
+
+    @media screen and ${device.tablet} {
+      width: 10px;
+    }
   }
 
   &::-webkit-scrollbar-track {
@@ -75,6 +113,15 @@ const Devices = styled.div`
     font-size: 20px;
     line-height: 24px;
     color: rgba(255, 255, 255, 0.8);
+
+    @media screen and ${device.tablet} {
+      font-size: 16px;
+      line-height: 17px;
+      padding: 0 20px 0 0;
+    }
+    @media screen and ${device.mobileL} {
+      font-size: 14px;
+    }
   }
 `;
 const Models = styled.div`
@@ -86,15 +133,27 @@ const Models = styled.div`
   padding: 12px 0;
 
   span {
-  padding-left:unset;
+    padding-left: unset;
   }
 
   div {
     border: 1px solid #ffffff;
   }
+
+  @media screen and ${device.tablet} {
+    width: 100%;
+  }
 `;
-export const SupportingDevices = ({ devices }) => {
-  const iosDevices = [
+export const SupportingDevices = ({
+  locale,
+  androidListModel,
+  ipadListModel,
+  iphoneListModel,
+  ipodListModel,
+}) => {
+  const [iosDevices, setIosDevices] = useState(iphoneListModel);
+  const [typeDevices, setTypeDevices] = useState("iPhone");
+  const TypeOfIosDevices = [
     {
       name: "iPhone",
     },
@@ -106,33 +165,47 @@ export const SupportingDevices = ({ devices }) => {
     },
   ];
 
+  const changeIosDevicesHandler = (type) => {
+    setTypeDevices(type);
+    type === "iPhone"
+      ? setIosDevices(iphoneListModel)
+      : type === "iPad"
+      ? setIosDevices(ipadListModel)
+      : setIosDevices(ipodListModel);
+  };
+  const { firstTitle, secondTitle } = SupportingDevicesLsi;
   return (
     <AppSizeLayout>
       <TitleForComponent>
-        Устройства поддерживающие
+        {firstTitle[locale]}
         <h1>AR</h1>
-        технологию
+        {secondTitle[locale]}
       </TitleForComponent>
       <Container>
-        <DevicesWrapper>
+        <DevicesWrapper width="40%">
           <FlexContainer>
             <Icon icon="/ios-icon.svg" />
             <span>IOS устройства</span>
           </FlexContainer>
           <FlexContainer>
-            {iosDevices.map((item) => (
-              <ButtonHandler key={item.name} type={item.name} />
+            {TypeOfIosDevices.map((item) => (
+              <ButtonHandler
+                opacity={item.name === typeDevices}
+                key={item.name}
+                onClick={() => changeIosDevicesHandler(item.name)}
+                type={item.name}
+              />
             ))}
           </FlexContainer>
           <Devices>
             <ul>
-              {devices.map((device) => (
-                <li>{device.name}</li>
+              {iosDevices.map((device) => (
+                <li>{device.itemModel}</li>
               ))}
             </ul>
           </Devices>
         </DevicesWrapper>
-        <DevicesWrapper>
+        <DevicesWrapper width="50%">
           <FlexContainer>
             <Icon icon="/android-icon.svg" />
             <span>Android устройства</span>
@@ -146,13 +219,17 @@ export const SupportingDevices = ({ devices }) => {
           </FlexContainer>
           <Devices>
             <ul>
-              {devices.map((device) => (
-                <li>{device.name}</li>
+              {androidListModel.map((device, index) => (
+                <li key={device.androidItemManufactory + index}>
+                  {device.androidItemManufactory}
+                </li>
               ))}
             </ul>
             <ul>
-              {devices.map((device) => (
-                <li>{device.name}</li>
+              {androidListModel.map((device, index) => (
+                <li key={device.androidItemModel + index}>
+                  {device.androidItemModel}
+                </li>
               ))}
             </ul>
           </Devices>

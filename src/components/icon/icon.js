@@ -1,6 +1,6 @@
 import Image from "next/image";
 import styled from "styled-components";
-
+import { device } from "../deviceSizes/deviceSizes";
 
 const IconBackground = styled.div`
   background: url(${(props) => props.src}) no-repeat;
@@ -34,6 +34,11 @@ const IconContainer = styled.div`
   height: 40px;
   background: url(${(props) => props.src}) center center no-repeat;
   background-size: contain;
+
+  @media screen and ${device.tablet} {
+    width: 25px;
+    height: 25px;
+  }
 `;
 
 export const Icon = ({ src }) => {

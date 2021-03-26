@@ -1,11 +1,11 @@
 import { Swiper, SwiperSlide } from "swiper/react";
+import SwiperCore, { HashNavigation, Navigation } from "swiper";
 import { createRef } from "react";
-import { SwiperContainer, IndexContainer, Text, Arrow } from "./swiperStyled";
-
-import { LinearGradientText } from "../linear-gradient-text/linear-gradient-text";
+import {SwiperContainer, IndexContainer, Text, Arrow, ArrowContainer, StepTitle} from "./swiperStyled";
 
 import { Blob } from "../blobBg/blob";
 export const SwiperSteps = ({ content }) => {
+  SwiperCore.use([HashNavigation, Navigation]);
   const swiperRef = createRef();
   const previous = () => {
     const swiper = swiperRef?.current?.swiper ? swiperRef.current.swiper : null;
@@ -17,11 +17,12 @@ export const SwiperSteps = ({ content }) => {
   };
   const media = {
     320: {
-      slidesPerView: 2,
+      slidesPerView: 1.5,
       spaceBetween: 10,
       slidesPerGroup: 1,
-      centeredSlides: true
-
+      centeredSlides: true,
+      navigation: true,
+      hashNavigation: true,
     },
     1024: {
       slidesPerView: 2,
@@ -31,20 +32,19 @@ export const SwiperSteps = ({ content }) => {
   };
   const showNavigation = () => {
     return (
-      <>
-        <Arrow arrow="/leftArrow.svg" left="0" onClick={() => previous()}>
+      <ArrowContainer>
+        <Arrow arrow="/leftArrow.svg" onClick={() => previous()}>
           <div />
         </Arrow>
-        <Arrow arrow="/rightArrow.svg" right="0" onClick={() => next()}>
+        <Arrow arrow="/rightArrow.svg" onClick={() => next()}>
           <div />
         </Arrow>
-      </>
+      </ArrowContainer>
     );
   };
   return (
     <SwiperContainer overflow={"hidden"}>
-      {showNavigation()}
-      <Swiper loop loopFillGroupWithBlank breakpoints={media} ref={swiperRef}>
+      <Swiper breakpoints={media} ref={swiperRef}>
         {content.map((item, index) => {
           const step = index + 1;
           return (
@@ -54,13 +54,14 @@ export const SwiperSteps = ({ content }) => {
                   <h1>{index > 8 ? step : `0${step}`}</h1>
                   <Blob different={step % 2 === 0} />
                 </IndexContainer>
-                <LinearGradientText text={item.titleLesson} size="45px" />
+                <StepTitle>{item.titleLesson}</StepTitle>
                 <p>{item.textLesson}</p>
               </Text>
             </SwiperSlide>
           );
         })}
       </Swiper>
+      {showNavigation()}
     </SwiperContainer>
   );
 };

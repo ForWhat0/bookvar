@@ -1,9 +1,9 @@
 import { IconBackground } from "../leftComment/leftCommentStyLedComponents";
 import { PlanetMoveBorder } from "../planet/planet-move-on-border";
 import styled from "styled-components";
-import {TitleForComponent} from "../titleForComponent/title";
-import {StyledButton} from "../button/button";
-import {device} from "../deviceSizes/deviceSizes";
+import { TitleForComponent } from "../titleForComponent/title";
+import { StyledButton } from "../button/button";
+import { device } from "../deviceSizes/deviceSizes";
 
 const Container = styled.div`
   display: flex;
@@ -11,12 +11,12 @@ const Container = styled.div`
   justify-content: space-between;
   width: 80%;
   margin-left: 10%;
-  
-   @media screen and (max-width: 1290px) {
-    display:flex;
-    flex-direction:column;
+
+  @media screen and (max-width: 1290px) {
+    display: flex;
+    flex-direction: column;
   }
-  
+
   @media screen and ${device.tablet} {
     width: 93.6%;
     margin-left: 3.2%;
@@ -66,12 +66,17 @@ const IconContainer = styled.div`
   bottom: ${(props) => props.bottom};
 `;
 export const ButtonContainer = styled.div`
-margin-top:30px;
-margin-left: 22%;
-width:44%;
-`
+  margin-top: 30px;
+  margin-left: 22%;
+  width: 44%;
 
-
+  @media screen and ${device.tablet} {
+    margin-top: unset;
+  }
+  @media screen and ${device.mobileL} {
+    margin-left: 26%;
+  }
+`;
 
 export const MainApproach = ({ approach }) => {
   const titleGradient = `from 180deg at 56.08% 101.02%, #131C35 0deg, #2AF6FF 360deg`;
@@ -81,11 +86,11 @@ export const MainApproach = ({ approach }) => {
       #2af6ff 360deg`;
   return (
     <>
-        <TitleForComponent>
-            Мы используем
-            <h1>2</h1>
-            подхода к закреплению полученных знаний на практике во время урока
-        </TitleForComponent>
+      <TitleForComponent>
+        Мы используем
+        <h1>2</h1>
+        подхода к закреплению полученных знаний на практике во время урока
+      </TitleForComponent>
       <Container>
         {approach.map((item, index) => (
           <Global
@@ -97,9 +102,9 @@ export const MainApproach = ({ approach }) => {
                 ? `${item.text.substring(0, 195)}...`
                 : item.text}
             </p>
-              <ButtonContainer>
-                  <StyledButton text='Узнать подробнее'/>
-              </ButtonContainer>
+            <ButtonContainer>
+              <StyledButton text="Узнать подробнее" />
+            </ButtonContainer>
             {item.topPhoto && (
               <IconContainer right="-70px" top="-20px">
                 <IconBackground background={item.topPhoto} />

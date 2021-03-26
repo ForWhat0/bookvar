@@ -248,7 +248,7 @@ export default function Home({ data }) {
       />
       <UseExperience />
       <DevelopSteps steps={data.page.VrField.sliderLessons} />
-      <SupportingDevices devices={devices} />
+
     </Layout>
   );
 }

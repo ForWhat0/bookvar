@@ -1,9 +1,165 @@
 export const app = {
   languages: {
-    UK: "Українська",
-    EN: "English",
-    RU: "Русский",
+    UK: "Ua",
+    EN: "En",
+    RU: "Ru",
   },
+};
+export const BookVarApp = {
+  firstTitle: {
+    UK: "Скачайте",
+    EN: "Download",
+    RU: "Скачайте",
+  },
+  secondTitle: {
+    UK: "додаток для проведення експеримент",
+    EN: "experiment application",
+    RU: "приложение для проведения експериментов",
+  },
+};
+export const SupportingDevicesLsi = {
+  firstTitle: {
+    UK: "Скачайте",
+    EN: "Download",
+    RU: "Скачайте",
+  },
+  secondTitle: {
+    UK: "додаток для проведення експеримент",
+    EN: "experiment application",
+    RU: "приложение для проведения експериментов",
+  },
+};
+export const DevelopStepsLsi = {
+  firstTitle: {
+    UK: "Як ми розробляємо",
+    EN: "How we develop",
+    RU: "Как мы разрабатываем",
+  },
+  secondTitle: {
+    UK: "уроки",
+    EN: "lessons",
+    RU: "уроки",
+  },
+};
+export const DevicesText = {
+  title: {
+    UK: "Гарнітура",
+    EN: "Devices",
+    RU: "Гарнитура",
+  },
+  details: {
+    UK: "Детальніше",
+    EN: "More details",
+    RU: "Подробнее",
+  }
+}
+export const footerInfo = {
+  address: {
+    UK: "Адреса :",
+    EN: "The address :",
+    RU: "Адрес :",
+  },
+  schedule: {
+    UK: "Пн-пт :",
+    EN: "Mon-Fri :",
+    RU: "Пн-пт :",
+  },
+  developBy: {
+    UK: "Копанія розробник:",
+    EN: "Developer company:",
+    RU: "Компания разработчик:",
+  },
+};
+export const menu = {
+  headerMenu: {
+    mainPage: {
+      UK: "Шкільні уроки в VR і AR",
+      EN: "School lessons in VR and AR",
+      RU: "Школьные уроки в VR и AR",
+    },
+    mainPageLink: "/",
+    signUp: {
+      UK: "Записатися на демонстрацію",
+      EN: "Sign up for a demonstration",
+      RU: "Записаться на демонстрацию",
+    },
+  },
+  burgerMenu: [
+    {
+      name: {
+        UK: "Уроки в VR",
+        EN: "Lessons in VR",
+        RU: "Уроки в VR",
+      },
+      link: "/Vr",
+    },
+    {
+      name: {
+        UK: "Уроки в АR",
+        EN: "Lessons in АR",
+        RU: "Уроки в АR",
+      },
+      link: "/Ar",
+    },
+    {
+      name: {
+        UK: "Всі уроки в VR і AR",
+        EN: "All lessons in VR and AR",
+        RU: "Все уроки в VR и AR",
+      },
+      link: "/LessonsVrAr",
+    },
+    {
+      name: {
+        UK: "Гарнітура",
+        EN: "Devices",
+        RU: "Гарнитура",
+      },
+      link: "/Devices",
+    },
+    {
+      name: {
+        UK: "Записатися на демонстрацію",
+        EN: "Sign up for a demonstration",
+        RU: "Записаться на демонстрацию",
+      },
+      link: "#",
+    },
+  ],
+  footerMenu: [
+    {
+      name: {
+        UK: "Уроки в VR",
+        EN: "Lessons in VR",
+        RU: "Уроки в VR",
+      },
+      link: "/Vr",
+    },
+    {
+      name: {
+        UK: "Уроки в АR",
+        EN: "Lessons in АR",
+        RU: "Уроки в АR",
+      },
+      link: "/Ar",
+    },
+    {
+      name: {
+        UK: "Гарнітура",
+        EN: "Devices",
+        RU: "Гарнитура",
+      },
+      link: "/Devices",
+    },
+    {
+      name: {
+        UK: "Записатися на демонстрацію",
+        EN: "Sign up for a demonstration",
+        RU: "Записаться на демонстрацию",
+      },
+      link: "#",
+    },
+  ],
 };
 export const headerLsi = {
   register: {

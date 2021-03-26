@@ -46,18 +46,31 @@ const WrapRotate = keyframes`
     transform:rotateX(-360deg);
   }
 `;
-export const Arrow = styled.div`
+export const ArrowContainer = styled.div`
   position: absolute;
   top: 30%;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+
+  @media screen and ${device.laptop} {
+    padding-top: 10px;
+    position: initial;
+  }
+`;
+export const Arrow = styled.div`
   width: 100px;
   height: 100px;
   cursor: pointer;
-  left: ${(props) => props.left};
-  right: ${(props) => props.right};
   z-index: 2;
 
   &:hover div {
     animation: ${WrapRotate} 0.5s ease-in-out;
+  }
+  
+   @media screen and ${device.mobileL} {
+    width:44px;
+    height:33px;
   }
 
   div {
@@ -81,12 +94,30 @@ export const SwiperContainerWrapper = styled.div`
 export const SwiperContainer = styled.div`
   overflow: ${(props) => props.overflow};
   width: 100%;
-  padding: 40px 0 0 0;
   position: relative;
 `;
 export const SwiperContent = styled.div`
   display: flex;
   flex-direction: column;
+`;
+export const StepTitle = styled.span`
+  background: linear-gradient(180deg, #b0ffc6 0%, #00b4ff 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-weight: bold;
+  font-size: 45px;
+  padding-top: 10px;
+
+  @media screen and ${device.laptop} {
+    font-size: 32px;
+  }
+  @media screen and ${device.tablet} {
+    font-size: 24px;
+     line-height: 24px;
+  }
+  @media screen and ${device.mobileL} {
+    font-size: 20px;
+  }
 `;
 export const Text = styled.div`
   margin-top: 10px;
@@ -127,5 +158,12 @@ export const IndexContainer = styled.div`
     -webkit-text-fill-color: transparent;
     margin: 0;
     padding: 0;
+
+    @media screen and ${device.laptop} {
+      font-size: 45px;
+    }
+    @media screen and ${device.mobileL} {
+      font-size: 25px;
+    }
   }
 `;

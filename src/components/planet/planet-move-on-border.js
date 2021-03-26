@@ -1,4 +1,5 @@
 import styled, { keyframes } from "styled-components";
+import { device } from "../deviceSizes/deviceSizes";
 
 const moveContainerTopPosition = (size, calcSize) => keyframes`
   25% { left: -${size}px; top: ${calcSize}; transform: translate(0%, -100%); }
@@ -62,6 +63,10 @@ const PlanetContainer = styled.div`
   height: ${(props) => props.size}px;
   position: absolute;
   border-radius: 50%;
+
+  @media screen and ${device.laptop} {
+    display: ${(props) => props.display};
+  }
 `;
 
 const PlanetWrap = styled.div`
@@ -111,7 +116,7 @@ export const PlanetMoveBorder = ({ topPosition, size, form }) => {
   const translate = topPosition
     ? `translate(-0%, 0%)`
     : `translate(-100%, -100%)`;
-
+  const display = form ? "none" : "initial";
   return (
     <PlanetContainer
       size={size}
@@ -122,6 +127,7 @@ export const PlanetMoveBorder = ({ topPosition, size, form }) => {
       left={left}
       translate={translate}
       form={form}
+      display={display}
     >
       <PlanetWrap size={size}>
         <PlanetBackground doubleSize={doubleSize} size={size} />

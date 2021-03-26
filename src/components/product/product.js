@@ -1,6 +1,7 @@
 import styled, { css, keyframes } from "styled-components";
 import { StyledButton } from "../button/button";
 import { useState } from "react";
+import { device } from "../deviceSizes/deviceSizes";
 
 const growAnimation = keyframes`
 from {
@@ -18,12 +19,33 @@ const growAnimationHandler = (props) =>
   `;
 const Container = styled.div`
   display: flex;
+
+  @media screen and ${device.laptop} {
+    flex-direction: column;
+  }
 `;
 const Gallery = styled.div`
   display: flex;
   flex-direction: column;
   width: 360px;
   margin-right: 120px;
+
+  @media screen and (max-width: 1200px) {
+    width: 300px;
+    margin-right: 80px;
+  }
+
+  @media screen and ${device.laptop} {
+    margin-right: unset;
+    width: 360px;
+  }
+
+  @media screen and ${device.tablet} {
+    align-self: center;
+  }
+  @media screen and ${device.mobileL} {
+    width: 100%;
+  }
 `;
 const MainProductPhoto = styled.div`
   height: 373px;
@@ -62,6 +84,23 @@ const RestProductPhoto = styled.div`
     height: 100%;
     width: 100%;
     animation: ${(props) => props.animation};
+
+    @media screen and ${device.mobileL} {
+      background-size: 80%;
+    }
+  }
+
+  @media screen and (max-width: 1200px) {
+    width: 140px;
+  }
+
+  @media screen and ${device.laptop} {
+    width: 165px;
+  }
+
+  @media screen and ${device.mobileL} {
+    width: 48%;
+    height: 128px;
   }
 `;
 const Content = styled.div`
@@ -72,14 +111,35 @@ const Content = styled.div`
   display: flex;
   flex-direction: column;
   text-align: left;
+  
+  @media screen and ${device.mobileL} {
+    font-size: 16px;
+    line-height: 20px;
+  }
 `;
 const Title = styled.h1`
+  display: ${(props) => (props.display ? "block" : "none")};
   font-weight: bold;
   font-size: 54px;
   line-height: 66px;
   color: #ffffff;
   margin: 0;
   padding: 0;
+
+  @media screen and ${device.laptop} {
+    display: ${(props) => (props.display ? "none" : "block")};
+    padding-bottom: 30px;
+  }
+  @media screen and ${device.tablet} {
+    font-size: 32px;
+    text-align:center;
+  }
+  @media screen and ${device.mobileL} {
+    font-size: 20px;
+    line-height: 24px;
+    text-align: center;
+    padding-bottom: 20px;
+  }
 `;
 const Exist = styled.span`
   margin-top: 40px;
@@ -91,27 +151,57 @@ const CountContainer = styled.div`
   display: flex;
   align-items: center;
   margin-top: 50px;
+  
+  @media screen and ${device.mobileL} {
+        justify-content: space-between;
+    margin-top: 20px;
+  }
 `;
 const PriceContainer = styled.div`
-  display: flex;
+  display: ${(props) => (props.display ? "flex" : "none")};
   flex-wrap: wrap;
   margin-top: 60px;
   align-items: baseline;
   color: #ffffff;
+
+  @media screen and ${device.mobileL} {
+    display: ${(props) => (props.display ? "none" : "flex")};
+    justify-content: center;
+    margin-top:40px;
+  }
 `;
 const Discount = styled.span`
   letter-spacing: 0.04em;
   text-decoration-line: line-through;
   margin-right: 20px;
+  
+  @media screen and ${device.mobileL} {
+        font-size: 16px;
+    line-height: 20px;
+  }
 `;
 const Price = styled.span`
   font-size: 30px;
   line-height: 37px;
   letter-spacing: 0.04em;
+  
+  @media screen and ${device.mobileL} {
+    font-size: 20px;
+    line-height: 24px;
+  }
 `;
 const ButtonContainer = styled.div`
   width: 255px;
   margin-top: 60px;
+  
+  
+  @media screen and ${device.tablet} {
+    display:flex;
+    align-self:center;
+  }
+  @media screen and ${device.mobileL} {
+    width: 100%;
+  }
 `;
 const Count = styled.div`
   margin-left: 20px;
@@ -183,6 +273,7 @@ export const Product = () => {
   return (
     <>
       <Container>
+        <Title display={false}>OCULUS QUEST</Title>
         <Gallery>
           <MainProductPhoto
             src={mainPhoto}
@@ -213,8 +304,12 @@ export const Product = () => {
             )}
           </RestProductPhotoContainer>
         </Gallery>
+        <PriceContainer display={false}>
+          <Discount>2 990 грн.</Discount>
+          <Price>1190 грн.</Price>
+        </PriceContainer>
         <Content>
-          <Title>OCULUS QUEST</Title>
+          <Title display={true}>OCULUS QUEST</Title>
           <Exist>Наличие: Есть в наличии.</Exist>
           <Id>Артикул: 1234576890</Id>
           <CountContainer>
@@ -225,7 +320,7 @@ export const Product = () => {
               <div onClick={() => setCount(count + 1)}>+</div>
             </Count>
           </CountContainer>
-          <PriceContainer>
+          <PriceContainer display={true}>
             <Discount>2 990 грн.</Discount>
             <Price>1190 грн.</Price>
           </PriceContainer>

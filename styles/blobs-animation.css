@@ -8,6 +8,27 @@
   background-color: rgba(42, 246, 255, 0.04);
   position: absolute;
 }
+#blobModal {
+  z-index:-1;
+  left: -25%;
+  top: 0;
+  border-radius: 32% 68% 64% 36% / 30% 42% 58% 70%;
+  -webkit-animation: blob_nor 5s linear infinite;
+  -moz-animation: blob_nor 5s linear infinite;
+  -o-animation: blob_nor 5s linear infinite;
+  animation: blob_nor 5s linear infinite;
+}
+#blobModalDiff {
+  z-index:-1;
+  right: -25%;
+  bottom: 0;
+  transform:rotate(180deg);
+  border-radius: 32% 68% 64% 36% / 30% 42% 58% 70%;
+  -webkit-animation: blob_nor 5s linear infinite;
+  -moz-animation: blob_nor 5s linear infinite;
+  -o-animation: blob_nor 5s linear infinite;
+  animation: blob_nor 5s linear infinite;
+}
 #blob {
   left: -5%;
   top: 0;
@@ -104,6 +125,11 @@
   width: 20%;
   height: 100%;
 }
+@media screen and (max-width: 1024px) {
+  .sizeBlob {
+    width: 40%;
+  }
+}
 .sizeBlob1 {
   width: 200px;
   height: 200px;
@@ -120,7 +146,29 @@
   width: 300px;
   height: 300px;
 }
-
+.sizeBlobModal {
+  width: 50%;
+  height: 70%;
+}
+@media screen and (max-width: 425px) {
+  #blob_diff {
+    left: -35%;
+  }
+  .sizeBlob {
+    width: 55px;
+    height: 80%;
+  }
+  .sizeBlobModal {
+    width: 100%;
+    height: 70%;
+  }
+  #blobModal {
+    left: -50%;
+  }
+  #blobModalDiff {
+    right: -50%;
+  }
+}
 @-webkit-keyframes blob_nor {
   0%,
   100% {

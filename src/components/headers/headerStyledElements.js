@@ -3,7 +3,7 @@ import Link from "next/link";
 import { StyledButton } from "../button/button";
 import { ChangeLanguageSelector } from "./changeLanguageSelector";
 import { SearchBarStyled } from "../searchBar/searchBar";
-import Icon from "../icon/icon";
+
 import { AnimationSearchBarStyled } from "../searchBar/animationSearchBar";
 import { device } from "../deviceSizes/deviceSizes";
 import Burger from "../burgerMenu/burgerMenu";

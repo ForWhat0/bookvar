@@ -31,6 +31,8 @@ const Text = styled.div`
 
   @media screen and ${device.tablet} {
     width: 100%;
+    margin-left:unset;
+    justify-content: center;
   }
 
   span {
@@ -46,14 +48,13 @@ const Text = styled.div`
     }
     @media screen and ${device.tablet} {
       margin-left: unset;
-      font-size: 30px;
-      line-height: 30px;
+      font-size: 24px;
+line-height: 24px;
       text-align: center;
       padding-bottom: 40px;
     }
     @media screen and ${device.mobileL} {
       font-size: 20px;
-      line-height: 24px;
     }
   }
 `;

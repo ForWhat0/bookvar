@@ -1,8 +1,10 @@
 import styled from "styled-components";
 import { device } from "../deviceSizes/deviceSizes";
 
-const Container = styled.div`
+const Container = styled.button`
+  opacity: ${(props) => props.opacity};
   background: rgba(0, 255, 255, 0.5);
+  border: unset;
   border-radius: 20px;
   font-weight: 500;
   font-size: 25px;
@@ -27,9 +29,14 @@ const ContentWrapper = styled.div`
   &:hover {
     transform: scale(0.9);
   }
-  
+
   @media screen and ${device.tablet} {
-     padding: ${(props) => props.padding === "12px 30px" ? "12px 24px" : '8px 13px'};
+    padding: ${(props) =>
+      props.padding === "12px 30px" ? "12px 24px" : "8px 13px"};
+  }
+  @media screen and ${device.mobileL} {
+    padding: ${(props) =>
+      props.padding === "12px 30px" ? "12px 24px" : "8px 13px"};
   }
 `;
 const First = styled.div`
@@ -52,9 +59,9 @@ const Second = styled.div`
   }
 `;
 
-export const ButtonHandler = ({ type, classNum, icon, less }) => {
+export const ButtonHandler = ({ type, classNum, icon, less, opacity, onClick }) => {
   return (
-    <Container>
+    <Container opacity={opacity ? "1" : "0.5"} onClick={onClick}>
       <ContentWrapper padding={icon ? "8px 10px" : "12px 30px"}>
         <First
           background={icon ? `url(${icon}) center center no-repeat` : "unset"}

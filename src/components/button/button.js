@@ -1,8 +1,9 @@
 import styled from "styled-components";
+import { device } from "../deviceSizes/deviceSizes";
 
 const Button = styled.div`
   width: 100%;
-  cursor:pointer;
+  cursor: pointer;
   background: radial-gradient(
     233.93% 3285.08% at 52.55% 50%,
     #0367a9 0%,
@@ -19,10 +20,21 @@ const Button = styled.div`
   font-size: 20px;
   line-height: 24px;
   text-align: center;
-  
+
   &:hover {
-  transform: scale(1.1);
-  } 
+    transform: scale(1.1);
+  }
+
+  @media screen and ${device.tablet} {
+    font-size: 16px;
+    line-height: 20px;
+  }
+
+  @media screen and ${device.mobileL} {
+    padding: 16px 0;
+    font-size: 14px;
+    line-height: 17px;
+  }
 `;
 
 export const StyledButton = ({ text }) => {

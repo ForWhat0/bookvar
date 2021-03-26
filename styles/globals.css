@@ -108,11 +108,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     margin: 0;
   }
   .wp-block-column figure,
-  .wp-block-image {
-    width: 100% !important;
-    margin-left: unset !important;
-    margin-right: unset !important;
-  }
+
   .wp-block-column figure iframe,
   .wp-block-column figure image {
     width: 100%;
@@ -240,9 +236,8 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 }
 
 figure img {
-  margin-bottom: 40px !important;
   width: 100% !important;
-  height: unset !important;
+  height: auto !important;
   align-self: flex-start;
   justify-self: flex-start;
 }
