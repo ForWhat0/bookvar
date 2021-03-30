@@ -37,6 +37,6 @@ const Button = styled.div`
   }
 `;
 
-export const StyledButton = ({ text }) => {
-  return <Button>{text}</Button>;
+export const StyledButton = ({ onclick, text }) => {
+  return <Button onClick={onclick}>{text}</Button>;
 };

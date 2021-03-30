@@ -1,4 +1,3 @@
-import { LinearGradientText } from "../linear-gradient-text/linear-gradient-text";
 import { PlanetMoveBorder } from "../planet/planet-move-on-border";
 import ReactPlayer from "react-player/lazy";
 import styled from "styled-components";

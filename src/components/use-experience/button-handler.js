@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { device } from "../deviceSizes/deviceSizes";
+import {addSpacesBetweenNumbers, separatePriceAndCurrency} from "../hooks/hooks";
 
 const Container = styled.button`
   opacity: ${(props) => props.opacity};
@@ -59,17 +60,27 @@ const Second = styled.div`
   }
 `;
 
+const showClassNum= (classNum) => {
+    const {price}=separatePriceAndCurrency(classNum)
+    return price
+}
+const showClassStr= (classNum) => {
+    const {currency}=separatePriceAndCurrency(classNum)
+    return currency
+}
+
 export const ButtonHandler = ({ type, classNum, icon, less, opacity, onClick }) => {
-  return (
+
+    return (
     <Container opacity={opacity ? "1" : "0.5"} onClick={onClick}>
       <ContentWrapper padding={icon ? "8px 10px" : "12px 30px"}>
         <First
           background={icon ? `url(${icon}) center center no-repeat` : "unset"}
           size={icon ? "40px" : "auto"}
         >
-          {type ? type : classNum && classNum}
+          {type ? type : classNum && showClassNum(classNum)}
         </First>
-        {classNum ? <Second>класс</Second> : less && <Second>{less}</Second>}
+        {classNum ? <Second>{showClassStr(classNum)}</Second> : less && <Second>{less}</Second>}
       </ContentWrapper>
     </Container>
   );

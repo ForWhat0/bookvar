@@ -1,6 +1,6 @@
 const nodemailer = require("nodemailer");
 
-export const nodemailerHook = ({ subject, text, res, file }) => {
+export const nodemailerHook = ({ subject, sendContent, res }) => {
   const transporter = nodemailer.createTransport({
     service: "Gmail",
     host: "smtp.gmail.com",
@@ -14,16 +14,8 @@ export const nodemailerHook = ({ subject, text, res, file }) => {
     from: process.env.FROM_USER_LOGIN,
     to: process.env.TO_USER_LOGIN,
     subject: subject,
-    text: text,
+    html: sendContent,
   };
-
-  file
-    ? (mailOption.attachments = [
-        {
-          path: file,
-        },
-      ])
-    : null;
 
   transporter.sendMail(mailOption, (err, data) => {
     if (err) {

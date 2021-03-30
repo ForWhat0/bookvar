@@ -4,30 +4,49 @@ import { device } from "../deviceSizes/deviceSizes";
 
 const StyledBlock = styled.div`
   display: flow-root;
-  margin-top: 40px;
-  margin-bottom: ${(props) => props.margin};
-  border-bottom: 1px solid ${(props) => props.color};
-  padding-bottom: 30px;
   position: relative;
-  && h2,
+
+  h2,
   h1 {
-    font-size: 24px !important;
-    font-weight: 500 !important;
-    margin-bottom: 20px !important;
+    margin: 50px 0 0 0;
+    font-size: 54px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    line-height: 66px;
+    color: #ffffff;
+
+    @media screen and (max-width: 1300px) {
+      font-size: 32px;
+      line-height: 34px;
+    }
+
     @media screen and ${device.tablet} {
-      font-size: 16px !important;
+      margin: 10px 0 0 0;
+    }
+
+    @media screen and ${device.tablet} {
+      font-size: 20px;
+      line-height: 24px;
     }
   }
+
   && p,
   div,
   li {
+    font-size: 20px;
+    line-height: 24px;
+    font-weight: 500;
+    line-height: 24px;
+    color: rgba(255, 255, 255, 0.8);
+
     @media screen and ${device.tablet} {
-      font-size: 12px !important;
+      font-size: 14px;
+      line-height: 17px;
     }
   }
   && a {
     display: block;
-    color: rgb(0, 114, 188);
+    color: white;
     border-bottom: 1px solid;
   }
   && p {
@@ -38,23 +57,16 @@ const StyledBlock = styled.div`
   }
 
   figure {
-    display: ${(props) => props.display}!important;
+    margin: 50px 50px 0 0;
     justify-content: center;
+    @media screen and ${device.laptop} {
+      margin: 10px 0 0 0;
+    }
   }
 `;
 
 export default function PostBody({ content }) {
-  const { images } = useSelector((state) => state.app);
-  const { visuallyImpairedModeWhiteTheme } = useSelector((state) => state.app);
-  return (
-    <StyledBlock
-      margin={!visuallyImpairedModeWhiteTheme ? "unset" : "50px"}
-      color={!visuallyImpairedModeWhiteTheme ? "white" : "black"}
-      display={!images ? "none" : "flex"}
-    >
-      <div dangerouslySetInnerHTML={{ __html: content }} />
-    </StyledBlock>
-  );
+  return <StyledBlock dangerouslySetInnerHTML={{ __html: content }} />;
 }
 
 const StyledBlockZNO = styled.div`

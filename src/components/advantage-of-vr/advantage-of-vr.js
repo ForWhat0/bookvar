@@ -3,6 +3,7 @@ import { AppSizeLayout } from "../layouts/appSizeLayout";
 import { SingleAdvantage } from "./single-advantage";
 import styled from "styled-components";
 import {device} from "../deviceSizes/deviceSizes";
+import {VrText} from "../../Lsi/lsi";
 
 const Container = styled.div`
   display: grid;
@@ -21,24 +22,34 @@ const Container = styled.div`
   }
 `;
 
-export const AdvantageOfVr = ({ advantage }) => {
+const Space = styled.div`
+margin-top:150px;
+
+ @media screen and ${device.tablet} {
+   margin-top:40px;
+  }
+`
+
+const {first, second} = VrText.benefitsTitle
+
+export const AdvantageOfVr = ({ advantage, locale }) => {
   return (
-    <AppSizeLayout>
-      <TitleForComponent>
-        Преимущество
-        <h1>VR</h1>
-        обучение
-      </TitleForComponent>
-      <Container>
-        {advantage.map((item, index) => (
-          <SingleAdvantage
-            key={index + item.titleItem}
-            icon={item.imgItem.sourceUrl}
-            title={item.titleItem}
-            text={item.textItem}
-          />
-        ))}
-      </Container>
-    </AppSizeLayout>
+      <Space>
+              <TitleForComponent>
+                  {first[locale]}
+                  <h1>VR</h1>
+                  {second[locale]}
+              </TitleForComponent>
+              <Container>
+                  {advantage.map((item, index) => (
+                      <SingleAdvantage
+                          key={index + item.titleItem}
+                          icon={item.imgItem.sourceUrl}
+                          title={item.titleItem}
+                          text={item.textItem}
+                      />
+                  ))}
+              </Container>
+      </Space>
   );
 };

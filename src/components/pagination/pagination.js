@@ -1,70 +1,16 @@
 import Link from "next/link";
-import { pagination } from "../../Lsi/lsi";
-import Icon from "../icon/icon";
-import { NumberOfPage, Container, Arrows } from "./paginationStyled";
-import { useSelector } from "react-redux";
-
-const { prevPage, nextPage } = pagination;
+import { NumberOfPage, Container, Arrows, Icon } from "./paginationStyled";
 
 export const Pagination = ({
-  locale,
   currentPageNumber,
   endPage,
   startPage,
   href,
-  loading,
   hasMore,
   hasPrevious,
 }) => {
   const nextArrowClick =
     currentPageNumber === 0 ? currentPageNumber + 2 : currentPageNumber + 1;
-  const { visuallyImpairedModeWhiteTheme } = useSelector((state) => state.app);
-  const LeftArrow = () => {
-    return (
-      <Arrows
-        color={!visuallyImpairedModeWhiteTheme ? "white" : "black"}
-        opacity={loading || !hasPrevious ? "0.5" : "unset"}
-        right="unset"
-        left="0"
-      >
-        <Icon
-          width="40px"
-          height="30px"
-          alt="prev"
-          src={
-            !visuallyImpairedModeWhiteTheme
-              ? "/WhiteLeftArrow.svg"
-              : "/leftArrow.svg"
-          }
-        />
-        <span>{prevPage[locale]}</span>
-      </Arrows>
-    );
-  };
-
-  const RightArrow = () => {
-    return (
-      <Arrows
-        color={!visuallyImpairedModeWhiteTheme ? "white" : "black"}
-        opacity={loading || !hasMore ? "0.5" : "unset"}
-        right="0"
-        left="unset"
-      >
-        <span>{nextPage[locale]}</span>
-        <Icon
-          width="40px"
-          height="30px"
-          alt="prev"
-          src={
-            !visuallyImpairedModeWhiteTheme
-              ? "/WhiteRightArrow.svg"
-              : "/rightArrow.svg"
-          }
-        />
-      </Arrows>
-    );
-  };
-
   const showArrow = (arrow) => {
     if (arrow === "left") {
       if (hasPrevious) {
@@ -74,12 +20,12 @@ export const Pagination = ({
             as={`/${href}/page/${currentPageNumber - 1}`}
           >
             <a>
-              <LeftArrow />
+              <Icon opacity="1" icon="/leftArrow.svg" />
             </a>
           </Link>
         );
       } else {
-        return <LeftArrow />;
+        return <Icon opacity="0.5" icon="/leftArrow.svg" />;
       }
     } else {
       if (hasMore) {
@@ -89,12 +35,12 @@ export const Pagination = ({
             as={`/${href}/page/${nextArrowClick}`}
           >
             <a>
-              <RightArrow />
+              <Icon opacity="1" icon="/rightArrow.svg" />
             </a>
           </Link>
         );
       } else {
-        return <RightArrow />;
+        return <Icon opacity="0.5" icon="/rightArrow.svg" />;
       }
     }
   };
@@ -111,7 +57,6 @@ export const Pagination = ({
           >
             <a>
               <NumberOfPage
-                color={!visuallyImpairedModeWhiteTheme ? "white" : "black"}
                 current={
                   startPage + i === currentPageNumber ||
                   (currentPageNumber === 0 && currentPageNumber === i)
@@ -123,7 +68,7 @@ export const Pagination = ({
           </Link>
         ))}
       </ul>
-      {showArrow("right")}
+      {showArrow()}
     </Container>
   );
 };

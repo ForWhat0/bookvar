@@ -8,7 +8,7 @@ export const Container = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
 
   ul {
     display: flex;
@@ -18,14 +18,32 @@ export const Container = styled.div`
 `;
 
 export const NumberOfPage = styled.li`
-  color: ${(props) => props.color};
+  color: ${(props) => (props.current ? "unset" : "white")};
+  background: ${(props) => (props.current ? "linear-gradient(180deg, #b0ffc6 0%, #00b4ff 100%);" : "unset")};
+  -webkit-background-clip: ${(props) => (props.current ? "text" : "unset")}; 
+  -webkit-text-fill-color: ${(props) => (props.current ? "transparent" : "unset")};
   list-style-type: none;
   margin: 0 15px 0 15px;
-  border-radius: 28px;
-  padding: ${(props) => (props.current ? "5px 12px" : "5px 0")};
-  border: ${(props) => props.current && "1px solid"};
+  font-weight: bold;
+  font-size: 35px;
+  line-height: 43px;
+  transition: all 0.1s linear;
+  &:hover {
+  transform:scale(0.9);
+  }
 `;
-
+export const Icon = styled.div`
+  width: 97px;
+  height: 83px;
+  background: url(${(props) => props.icon}) no-repeat center center;
+  background-size: contain;
+  cursor:pointer;
+  opacity:${props=>props.opacity};
+  transition: all 0.1s linear;
+  &:hover {
+  transform:scale(0.9);
+  }
+`;
 export const Arrows = styled.div`
   display: block;
   position: absolute;

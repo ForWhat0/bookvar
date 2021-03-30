@@ -1,8 +1,8 @@
 import gql from "graphql-tag";
 
-const GET_NEWS_COUNT = gql`
-  query GET_NEWS_COUNT {
-    news {
+export const GET_DEVICES_COUNT = gql`
+  query GET_DEVICES_COUNT {
+    posts {
       pageInfo {
         offsetPagination {
           hasMore
@@ -13,4 +13,4 @@ const GET_NEWS_COUNT = gql`
     }
   }
 `;
-export default GET_NEWS_COUNT;
+

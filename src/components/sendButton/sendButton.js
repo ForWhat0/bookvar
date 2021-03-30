@@ -104,7 +104,7 @@ export const SendButton = ({ loading, click, sendText, sentText, padding }) => {
           <SuccessText display={animationFinished ? "block" : "none"}>
             {sentText}
           </SuccessText>
-          <Text display={animation ? "none" : "block"}>{sendText}</Text>
+          <Text display={animationFinished ? "none" : "block"}>{sendText}</Text>
         </Button>
       </ButtonContainer>
     </Global>

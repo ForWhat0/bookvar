@@ -47,7 +47,6 @@ export default function Home({ data, locale }) {
         background={data.page.ArField.imgVideo.sourceUrl}
         right={true}
       />
-      <UseExperience />
       <App
         locale={locale}
         playLink={data.page.ArField.arLinkAndroidApp}

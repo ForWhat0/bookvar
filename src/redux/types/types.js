@@ -13,3 +13,4 @@ export const clickOnOffVisuallyImpairedModeWhiteTheme = 'APP/ON_OFF_VISUALLY_IMP
 export const changeFontSizeNormal = 'APP/CHANGE_FONT_SIZE'
 export const inputNewsByTitle = 'NEWS/CHANGE_INPUT_NEWS_BY_TITLE'
 export const getNewsByTitle = 'NEWS/NEWS_BY-TITLE'
+export const slideToRedux = 'SWIPER/SLIDE_TO'

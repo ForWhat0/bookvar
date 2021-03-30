@@ -12,7 +12,7 @@ import {
   changeFontSizeNormal,
   inputNewsByTitle,
   getNewsByTitle,
-  scrollToElement,
+  scrollToElement, slideToRedux,
 } from "../types/types";
 import GET_MOORE_NEWS from "../../queries/get_moore_news";
 import GET_NEWS_BY_TITLE from "../../queries/get-news-by-title";
@@ -149,3 +149,8 @@ export const ScrollToElement = (string) => {
     dispatch({ type: scrollToElement, payload: string });
   };
 };
+export const SlideToHandler = (string) =>{
+  return (dispatch) => {
+    dispatch({ type: slideToRedux, payload: string });
+  };
+}

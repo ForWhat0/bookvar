@@ -29,6 +29,7 @@ const ContainerProduct = styled.div`
 `;
 const Product = styled.div`
   width: 42%;
+  cursor:pointer;
   margin-top: 150px;
   min-width: 488px;
   height: 544px;
@@ -150,7 +151,7 @@ export const Products = ({ products, locale, bottom }) => {
       </TitleForComponent>
       <ContainerProduct>
         {products.map((item, index) => (
-          <Link href="/devices/[id]/" as={`/devices/${item.databaseId}/`}>
+          <Link href="/Devices/[id]/" as={`/Devices/${item.databaseId}/`}>
               <Product
                 position={
                   (index + 1) % 2 === 0 && bottom ? "absolute" : "initial"
@@ -168,8 +169,8 @@ export const Products = ({ products, locale, bottom }) => {
                   <h1>{item.title}</h1>
                 </TitleBlock>
                 <PriceContainer>
-                  {item.ProductField?.priceDiscount && (
-                    <Discount>{item.ProductField.priceDiscount}</Discount>
+                  {item.ProductField?.oldPrice && (
+                    <Discount>{item.ProductField.oldPrice}</Discount>
                   )}
                   <Price>{item.ProductField?.productPrice}</Price>
                 </PriceContainer>

@@ -221,18 +221,25 @@ export const sendAppeal = async (fName, lName, reason, email, text, file) => {
     return error;
   }
 };
-export const sendComment = async (name, phone, email, comment) => {
+export const separatePriceAndCurrency = (str) => {
+  const replaceSpace =  str.replace(/\s/g,'')
+  const price = replaceSpace.replace(/\D/g, "");
+  const currency = replaceSpace.replace(price, "");
+  return {price ,currency}
+}
+export const addSpacesBetweenNumbers = (str, count) => {
+  const price =  Number(str) * count
+  return price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
+}
+export const sendGmail = async (sendContent) => {
   const data = {
-    name,
-    phone,
-    email,
-    comment,
+    sendContent
   };
 
   try {
     const res = await axios({
       method: "post",
-      url: "/api/leftComment",
+      url: "/api/orderProduct",
       headers: {
         "Content-Type": "application/json",
         Accept: "application/json, text/plain, */*",

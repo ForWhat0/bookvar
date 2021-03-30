@@ -17,8 +17,11 @@ import {
 import ReactPlayer from "react-player/lazy";
 import { IconBackground } from "../leftComment/leftCommentStyLedComponents";
 import { LinearGradientText } from "../linear-gradient-text/linear-gradient-text";
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { SlideToHandler } from "../../redux/actions/actions";
 
-export const SwiperComponent = ({ cube, content }) => {
+export const SwiperComponent = ({ classOn, cube, content }) => {
   SwiperCore.use([
     HashNavigation,
     Navigation,
@@ -26,6 +29,23 @@ export const SwiperComponent = ({ cube, content }) => {
     EffectCube,
     Pagination,
   ]);
+  const [swiper, setSwiper] = useState(null);
+  const dispatch = useDispatch();
+  const slideTo = (index) => swiper && swiper.slideTo(index);
+
+  const { swiperSlideTo } = useSelector((state) => state.app);
+
+  useEffect(() => {
+    if (swiperSlideTo !== "null" && classOn) {
+      slideTo(swiperSlideTo);
+    }
+  }, [swiperSlideTo]);
+
+  swiper &&
+    classOn &&
+    swiper.once("slideChange", function () {
+      dispatch(SlideToHandler(swiper.activeIndex));
+    });
 
   const showPLayer = (isActive, item) => {
     return (
@@ -56,36 +76,38 @@ export const SwiperComponent = ({ cube, content }) => {
       spaceBetween: 20,
     },
   };
+
   return (
-      <SwiperContainer overflow={cube ? "unset" : "hidden"}>
-        <Swiper
-          centeredSlides
-          slideToClickedSlide
-          effect={cube ? "cube" : "coverflow"}
-          loop={!cube}
-          navigation
-          hashNavigation
-          pagination={cube ? { clickable: false } : false}
-          breakpoints={cube ? false : media}
-        >
-          {content.map((item, index) => {
-            return (
-              <SwiperSlide key={index + item.name}>
-                {({ isActive }) => (
-                  <SwiperContent>
-                    <SwiperContainerWrapper>
-                      {showPLayer(isActive, item)}
-                    </SwiperContainerWrapper>
-                    <Text display={isActive ? "flex" : "none"}>
-                      <LinearGradientText text={item.name} size="45px" />
-                      <p>{item.text}</p>
-                    </Text>
-                  </SwiperContent>
-                )}
-              </SwiperSlide>
-            );
-          })}
-        </Swiper>
-      </SwiperContainer>
+    <SwiperContainer overflow={cube ? "unset" : "hidden"}>
+      <Swiper
+        onSwiper={setSwiper}
+        centeredSlides
+        slideToClickedSlide
+        effect={cube ? "cube" : "coverflow"}
+        loop={!cube}
+        navigation
+        hashNavigation
+        pagination={cube ? { clickable: false } : false}
+        breakpoints={cube ? false : media}
+      >
+        {content.map((item, index) => {
+          return (
+            <SwiperSlide key={index + item.name}>
+              {({ isActive }) => (
+                <SwiperContent>
+                  <SwiperContainerWrapper>
+                    {showPLayer(isActive, item)}
+                  </SwiperContainerWrapper>
+                  <Text display={isActive ? "flex" : "none"}>
+                    <LinearGradientText text={item.name} size="45px" />
+                    <p>{item.text}</p>
+                  </Text>
+                </SwiperContent>
+              )}
+            </SwiperSlide>
+          );
+        })}
+      </Swiper>
+    </SwiperContainer>
   );
 };

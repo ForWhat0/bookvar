@@ -7,7 +7,7 @@ import {
   clickVisuallyImpairedModeOff,
   clickOnOffVisuallyImpairedModeWhiteTheme,
   changeFontSizeNormal,
-  scrollToElement, clickVideoModal,
+  scrollToElement, clickVideoModal, slideToRedux,
 } from "../types/types";
 
 const initialState = {
@@ -19,10 +19,17 @@ const initialState = {
   images: true,
   visuallyImpairedModeWhiteTheme: true,
   scrollToElement: null,
+  swiperSlideTo: 'null'
 };
 
 export const appReducer = (state = initialState, action) => {
   switch (action.type) {
+    case slideToRedux: {
+      return {
+        ...state,
+        swiperSlideTo: action.payload,
+      };
+    }
     case scrollToElement: {
       return {
         ...state,

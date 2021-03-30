@@ -2,8 +2,14 @@ import styled from "styled-components";
 import { TitleForComponent } from "../titleForComponent/title";
 import { AppSizeLayout } from "../layouts/appSizeLayout";
 import { ButtonHandler } from "./button-handler";
-import { SwiperComponent } from "../swiper/swiper";
+import { HandlerlideTo, slideTo, SwiperComponent } from "../swiper/swiper";
 import { device } from "../deviceSizes/deviceSizes";
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { SlideToHandler } from "../../redux/actions/actions";
+import { useLazyQuery, useMutation } from "@apollo/client";
+import { GET_VR_CLASS } from "../../queries/get-vr-class";
+import StyledLoader from "../loader/loader";
 
 const Content = styled.div``;
 const FirstBlock = styled.div`
@@ -88,7 +94,7 @@ const Theme = styled.span`
   line-height: 24px;
   text-align: center;
   letter-spacing: 0.04em;
-  color: #ffffff;
+  color: ${(props) => props.color};
   width: 100%;
   cursor: pointer;
   transition: color 0.3s linear;
@@ -104,6 +110,7 @@ const Theme = styled.span`
   }
 `;
 const Icon = styled.div`
+  display: ${(props) => props.display};
   width: 40px;
   height: 40px;
   background: url(${(props) => props.src}) center center no-repeat;
@@ -116,10 +123,10 @@ const Icon = styled.div`
     right: -25px;
   }
   @media screen and ${device.tablet} {
-     right: 0;
-     top:0;
-     width:35px;
-     height:25px;
+    right: 0;
+    top: 0;
+    width: 35px;
+    height: 25px;
   }
 `;
 const Video = styled.div`
@@ -129,51 +136,71 @@ const Video = styled.div`
     width: 100%;
   }
 `;
-const arrswper = [
-  {
-    text:
-      "Воду взято за температури 15 градусів, охолоджуємо, потім нагріваємо до кипіння.Під час досліду вода перебуває в трьох агрегатних станах: рідина, твердий стан та газоподібний.",
-    url:
-      "https://www.youtube.com/watch?v=H0IKOM5973E&list=RDx1zWCizNoRo&index=20",
-    name: "Відое 1",
-  },
-  {
-    text:
-      "Воду взято за температури 15 градусів, охолоджуємо, потім нагріваємо до кипіння.Під час досліду вода перебуває в трьох агрегатних станах: рідина, твердий стан та газоподібний.",
-    url:
-      "https://www.youtube.com/watch?v=3rkJ3L5Ce80&list=RDx1zWCizNoRo&index=27",
-    name: "Відое 2",
-  },
-  {
-    text:
-      "Воду взято за температури 15 градусів, охолоджуємо, потім нагріваємо до кипіння.Під час досліду вода перебуває в трьох агрегатних станах: рідина, твердий стан та газоподібний.",
-    url:
-      "https://www.youtube.com/watch?v=_ZO6mXmdeD8&list=RDx1zWCizNoRo&index=6",
-    name: "Відое 3",
-  },
-  {
-    text:
-      "Воду взято за температури 15 градусів, охолоджуємо, потім нагріваємо до кипіння.Під час досліду вода перебуває в трьох агрегатних станах: рідина, твердий стан та газоподібний.",
-    url:
-      "https://www.youtube.com/watch?v=_ZO6mXmdeD8&list=RDx1zWCizNoRo&index=6",
-    name: "Відое 4",
-  },
-  {
-    text:
-      "Воду взято за температури 15 градусів, охолоджуємо, потім нагріваємо до кипіння.Під час досліду вода перебуває в трьох агрегатних станах: рідина, твердий стан та газоподібний.",
-    url:
-      "https://www.youtube.com/watch?v=_ZO6mXmdeD8&list=RDx1zWCizNoRo&index=6",
-    name: "Відое 5",
-  },
-  {
-    text:
-      "Воду взято за температури 15 градусів, охолоджуємо, потім нагріваємо до кипіння.Під час досліду вода перебуває в трьох агрегатних станах: рідина, твердий стан та газоподібний.",
-    url:
-      "https://www.youtube.com/watch?v=_ZO6mXmdeD8&list=RDx1zWCizNoRo&index=6",
-    name: "Відое 6",
-  },
-];
-export const UseExperience = () => {
+const LoaderContainer = styled.div`
+display:flex;
+justify-content:center;
+align-items;center;
+padding:50px 0;
+`;
+
+export const UseExperience = ({ video, classes }) => {
+  const dispatch = useDispatch();
+  const [state, setState] = useState(
+    video.VideoField.flexibleContent[0].listVideoLesson
+  );
+  const [currentLesson, setCurrentLesson] = useState(
+    video.VideoField.flexibleContent[0].nameLesson
+  );
+  const [currentClass, setCurrentClass] = useState(video?.databaseId);
+  let [getClass, { data, loading }] = useLazyQuery(GET_VR_CLASS, {
+    variables: { classId: currentClass },
+  });
+
+  useEffect(() => {
+    if (data) {
+      setState(data.videoVR.VideoField.flexibleContent[0].listVideoLesson);
+      setCurrentLesson(data.videoVR.VideoField.flexibleContent[0].nameLesson);
+      setCurrentClass(data.videoVR.databaseId);
+    }
+  }, [data]);
+
+  const HandleChangeLesson = (str, arr) => {
+    dispatch(SlideToHandler("null"));
+    setState(arr);
+    setCurrentLesson(str);
+  };
+  const { swiperSlideTo } = useSelector((state) => state.app);
+  const handleGetClass = async (id) => {
+    await setCurrentClass(id);
+    getClass();
+  };
+  const showLessonHandler = (firstArr, mooreArr) => {
+    if (mooreArr) {
+      return mooreArr.videoVR.VideoField.flexibleContent.map((item) => (
+        <ButtonHandler
+          opacity={item.nameLesson === currentLesson}
+          key={item.nameLesson}
+          icon={item?.iconLesson?.sourceUrl}
+          less={item.nameLesson}
+          onClick={() =>
+            HandleChangeLesson(item.nameLesson, item.listVideoLesson)
+          }
+        />
+      ));
+    }
+
+    return firstArr.map((item) => (
+      <ButtonHandler
+        opacity={item.nameLesson === currentLesson}
+        key={item.nameLesson}
+        icon={item?.iconLesson?.sourceUrl}
+        less={item.nameLesson}
+        onClick={() =>
+          HandleChangeLesson(item.nameLesson, item.listVideoLesson)
+        }
+      />
+    ));
+  };
   return (
     <AppSizeLayout>
       <TitleForComponent>
@@ -185,45 +212,63 @@ export const UseExperience = () => {
         <FirstBlock>
           <ArVrContainer>
             <ButtonHandler type="AR" />
-            <ButtonHandler type="VR" />
+            <ButtonHandler opacity={true} type="VR" />
           </ArVrContainer>
           <KlassContainer>
-            <ButtonHandler classNum="8" />
-            <ButtonHandler classNum="8" />
-            <ButtonHandler classNum="8" />
-            <ButtonHandler classNum="8" />
+            {classes.map((item) => (
+              <ButtonHandler
+                key={item.title}
+                opacity={item.databaseId === currentClass}
+                classNum={item.title}
+                onClick={() => handleGetClass(item.databaseId)}
+              />
+            ))}
           </KlassContainer>
         </FirstBlock>
-        <SecondBlock>
-          <ButtonHandler icon="/gmail-icon.svg" less="Физика" />
-          <ButtonHandler icon="/gmail-icon.svg" less="Физика" />
-          <ButtonHandler icon="/gmail-icon.svg" less="Физика" />
-          <ButtonHandler icon="/gmail-icon.svg" less="Физика" />
-          <ButtonHandler icon="/gmail-icon.svg" less="Физика" />
-        </SecondBlock>
-        <ThreeBlock>
-          <ThemeContainer>
-            <ThemeWrapper>
-              <Theme>Механические явления</Theme>
-              <Icon src="selected-theme-icon.svg" />
-            </ThemeWrapper>
-            <ThemeWrapper>
-              <Theme>Механические явления</Theme>
-              <Icon src="selected-theme-icon.svg" />
-            </ThemeWrapper>
-            <ThemeWrapper>
-              <Theme>Механические явления</Theme>
-              <Icon src="selected-theme-icon.svg" />
-            </ThemeWrapper>
-            <ThemeWrapper>
-              <Theme>Механические явления</Theme>
-              <Icon src="selected-theme-icon.svg" />
-            </ThemeWrapper>
-          </ThemeContainer>
-          <Video>
-            <SwiperComponent cube={true} content={arrswper} />
-          </Video>
-        </ThreeBlock>
+        {loading ? (
+          <LoaderContainer>
+            <StyledLoader />
+          </LoaderContainer>
+        ) : (
+          <>
+            <SecondBlock>
+              {showLessonHandler(video.VideoField.flexibleContent, data)}
+            </SecondBlock>
+            <ThreeBlock>
+              <ThemeContainer>
+                {state.map((item, index) => (
+                  <ThemeWrapper>
+                    <Theme
+                      color={
+                        swiperSlideTo === "null" && index === 0
+                          ? "#2accff"
+                          : swiperSlideTo === index
+                          ? "#2accff"
+                          : "#ffffff"
+                      }
+                      onClick={() => dispatch(SlideToHandler(index))}
+                    >
+                      {item.name}
+                    </Theme>
+                    <Icon
+                      display={
+                        swiperSlideTo === "null" && index === 0
+                          ? "block"
+                          : swiperSlideTo === index
+                          ? "block"
+                          : "none"
+                      }
+                      src="selected-theme-icon.svg"
+                    />
+                  </ThemeWrapper>
+                ))}
+              </ThemeContainer>
+              <Video>
+                <SwiperComponent classOn={true} cube={true} content={state} />
+              </Video>
+            </ThreeBlock>
+          </>
+        )}
       </Content>
     </AppSizeLayout>
   );

@@ -5,6 +5,20 @@ export const app = {
     RU: "Ru",
   },
 };
+export const VrText={
+  benefitsTitle: {
+    first: {
+      UK: "Переваги",
+      EN: "Benefits",
+      RU: "Преимущества",
+    },
+    second: {
+      UK: "навчання",
+      EN: "learning",
+      RU: "обучения",
+    }
+  }
+}
 export const BookVarApp = {
   firstTitle: {
     UK: "Скачайте",
@@ -41,6 +55,119 @@ export const DevelopStepsLsi = {
     RU: "уроки",
   },
 };
+export const SendText = {
+  Errors: {
+    emptyFields: {
+      UK: "Будь ласка,заповніть всі поля",
+      EN: "Please fill in all fields",
+      RU: "Пожалуйста, заполните все поля",
+    },
+    wrongEmail: {
+      UK: "введіть коректний email",
+      EN: "enter the correct email",
+      RU: "введите корректный email",
+    },
+    wrongPhoneNumber: {
+      UK: "введіть коректний телефон",
+      EN: "enter the correct phone number",
+      RU: "введите корректный телефон",
+    },
+  },
+  FieldsName: {
+    nameLsi: {
+      UK: "Ім'я",
+      EN: "Name",
+      RU: "Имя",
+    },
+    phoneNumberLsi: {
+      UK: "Телефон",
+      EN: "Phone number",
+      RU: "Телефон",
+    },
+    emailLsi: {
+      UK: "Email",
+      EN: "Email",
+      RU: "Email",
+    },
+    sent: {
+      UK: "Відправлено",
+      EN: "Sent",
+      RU: "Отправлено",
+    },
+    send: {
+      UK: "Відправити",
+      EN: "Send",
+      RU: "Отправить",
+    },
+  },
+};
+export const Device = {
+  availability: {
+    UK: "Наявність:",
+    EN: "Availability:",
+    RU: "Наличие:",
+  },
+  exist: {
+    UK: "Є в наявності",
+    EN: "In stock",
+    RU: "Есть в наличии",
+  },
+  notExist: {
+    UK: "Немає в наявності",
+    EN: "Out of stock",
+    RU: "Нет в наличии",
+  },
+  vendor: {
+    UK: "Артикул:",
+    EN: "Vendor code:",
+    RU: "Артикул:",
+  },
+  amount: {
+    UK: "Кількість:",
+    EN: "Amount:",
+    RU: "Количество:",
+  },
+  buy: {
+    UK: "Купити",
+    EN: "Buy",
+    RU: "Купить",
+  },
+  descriptionLsi: {
+    UK: "Опис",
+    EN: "Description",
+    RU: "Описание",
+  },
+  specifications: {
+    UK: "Характеристики",
+    EN: "Specifications",
+    RU: "Характеристики",
+  },
+  quality: {
+    UK: "Кількість:",
+    EN: "Qty:",
+    RU: "Кол-во:",
+  },
+  item: {
+    UK: "шт.",
+    EN: "pc.",
+    RU: "шт.",
+  },
+  thanks: {
+    UK: "Дякуємо!",
+    EN: "Thanks!",
+    RU: "Спасибо!",
+  },
+  orderIsAccepted: {
+    UK: "Ваше замовлення прийнято.",
+    EN: "Your order is accepted.",
+    RU: "Ваш заказ принят.",
+  },
+  linkToMain: {
+    UK: "На головну",
+    EN: "To the main",
+    RU: "На главную",
+  }
+};
 export const DevicesText = {
   title: {
     UK: "Гарнітура",
@@ -51,8 +178,8 @@ export const DevicesText = {
     UK: "Детальніше",
     EN: "More details",
     RU: "Подробнее",
-  }
-}
+  },
+};
 export const footerInfo = {
   address: {
     UK: "Адреса :",

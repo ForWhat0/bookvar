@@ -12,7 +12,7 @@ export const GET_ALL_DEVICES = gql`
         }
       }
       ProductField {
-        priceDiscount
+        oldPrice
         productPrice
       }
     }

@@ -19,7 +19,7 @@ export default function AllDevices({ locale, devices, currentPageNumber }) {
         {devices.nodes && (
           <>
             <Products locale={locale} products={devices.nodes} />
-            {/*<Pagination
+            <Pagination
               locale={locale}
               currentPageNumber={currentPageNumber}
               hasMore={hasMore}
@@ -27,7 +27,7 @@ export default function AllDevices({ locale, devices, currentPageNumber }) {
               startPage={startPage}
               endPage={endPage}
               href="Devices"
-            />*/}
+            />
           </>
         )}
       </AppSizeLayout>
