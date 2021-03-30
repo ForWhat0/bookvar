@@ -101,7 +101,7 @@ export default function Home() {
     },
   ];
   return (
-    <Layout headerLogo="/logo.svg" locale={locale}>
+    <Layout headerLogo="/logo.svg" locale="UK">
       <Lines />
       <MainApproach approach={arr} />
       <BlobVideoAndTextContainer  text="КАК ВЫГЛЯДЯТ УРОКИ ПО ФИЗИКЕ В VR" />
