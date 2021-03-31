@@ -1,122 +1,88 @@
-import { useEffect } from "react";
+import React, { useEffect } from "react";
 import animationButton from "../src/components/button/animationButton";
 import { Lines } from "../src/components/lines/lines";
 import { MainApproach } from "../src/components/main-approach/mainApproach";
 import { Products } from "../src/components/products/products";
 import Layout from "../src/components/layouts/layout";
 import { BlobVideoAndTextContainer } from "../src/components/blob-video-text/BlobVideoAndTextContainer";
-import {SwiperComponent} from "../src/components/swiper/swiper";
-import {AppSizeLayout} from "../src/components/layouts/appSizeLayout";
+import { AppSizeLayout } from "../src/components/layouts/appSizeLayout";
+import client from "../src/apollo/client";
+import { GET_MAIN_PAGE_CONTENT } from "../src/queries/get-main-page";
+import { MainText } from "../src/components/main-text/main-text";
+import { VrLessonsSwiper } from "../src/components/vr-lessons-swiper/vr-lessons-swiper";
+import { ArLessonsSwiper } from "../src/components/ar-lessons-swiper/ar-lessons-swiper";
 
-export default function Home() {
-  const arrswper = [
-    {
-      text:
-        "Воду взято за температури 15 градусів, охолоджуємо, потім нагріваємо до кипіння.Під час досліду вода перебуває в трьох агрегатних станах: рідина, твердий стан та газоподібний.",
-      url:
-        "https://www.youtube.com/watch?v=H0IKOM5973E&list=RDx1zWCizNoRo&index=20",
-      name: "Відое 1",
-    },
-    {
-      text:
-        "Воду взято за температури 15 градусів, охолоджуємо, потім нагріваємо до кипіння.Під час досліду вода перебуває в трьох агрегатних станах: рідина, твердий стан та газоподібний.",
-      url:
-        "https://www.youtube.com/watch?v=3rkJ3L5Ce80&list=RDx1zWCizNoRo&index=27",
-      name: "Відое 2",
-    },
-    {
-      text:
-        "Воду взято за температури 15 градусів, охолоджуємо, потім нагріваємо до кипіння.Під час досліду вода перебуває в трьох агрегатних станах: рідина, твердий стан та газоподібний.",
-      url:
-        "https://www.youtube.com/watch?v=_ZO6mXmdeD8&list=RDx1zWCizNoRo&index=6",
-      name: "Відое 3",
-    },
-    {
-      text:
-        "Воду взято за температури 15 градусів, охолоджуємо, потім нагріваємо до кипіння.Під час досліду вода перебуває в трьох агрегатних станах: рідина, твердий стан та газоподібний.",
-      url:
-        "https://www.youtube.com/watch?v=_ZO6mXmdeD8&list=RDx1zWCizNoRo&index=6",
-      name: "Відое 4",
-    },
-    {
-      text:
-        "Воду взято за температури 15 градусів, охолоджуємо, потім нагріваємо до кипіння.Під час досліду вода перебуває в трьох агрегатних станах: рідина, твердий стан та газоподібний.",
-      url:
-        "https://www.youtube.com/watch?v=_ZO6mXmdeD8&list=RDx1zWCizNoRo&index=6",
-      name: "Відое 5",
-    },
-    {
-      text:
-        "Воду взято за температури 15 градусів, охолоджуємо, потім нагріваємо до кипіння.Під час досліду вода перебуває в трьох агрегатних станах: рідина, твердий стан та газоподібний.",
-      url:
-        "https://www.youtube.com/watch?v=_ZO6mXmdeD8&list=RDx1zWCizNoRo&index=6",
-      name: "Відое 6",
-    },
-  ];
-  const arrPrice = [
-    {
-      img: "/testVr.svg",
-      title: "Окуляри за 1200",
-      price: "1 200 грн.",
-      discount: "1 000 грн.",
-    },
-    {
-      img: "/testVr.svg",
-      title: "Окуляри за 1200",
-      price: "1 200 грн.",
-      discount: undefined,
-    },
-  ];
-  const arr = [
-    {
-      title: "Виртуальный мир",
-      text: `Процесс обучения происходит только в специальных очках, которые дарят
-          зрителю эффект погружения в определенную искуственно созданную
-          реальность.`,
-      topPhoto: "testVr.svg",
-      bottomPhoto: "key.svg",
-    },
-    {
-      title: "Дополненная реальность",
-      text: `В процессе обучения ученики могут взаимодействовать с рабочей средой, через свои мобильные устройства. Эта технология не требует подключения гарнитур, нужна только камера устройства и приложение.`,
-      topPhoto: "testVr.svg",
-      bottomPhoto: null,
-    },
-  ];
+export default function Home({ data, locale }) {
+  const {
+    titleVr,
+    textVr,
+    titleAr,
+    textAr,
+    imgLessonVr,
+    linkLessonVr,
+    titleLessonVr,
+    sliderLessonsVr,
+    imgLessonAr,
+    linkLessonAr,
+    titleLessonAr,
+    sliderLessonsAr,
+    productList,
+  } = data.page.mainFields;
   useEffect(() => {
     animationButton();
   }, []);
-  const headerArr = [
-    {
-      name: "Уроки в VR",
-    },
-    {
-      name: "Уроки в AR",
-    },
-    {
-      name: "Гарнитура",
-    },
-    {
-      name: "Получить технологию",
-    },
-  ];
   return (
-    <Layout headerLogo="/logo.svg" locale="UK">
-      <Lines />
-      <MainApproach approach={arr} />
-      <BlobVideoAndTextContainer  text="КАК ВЫГЛЯДЯТ УРОКИ ПО ФИЗИКЕ В VR" />
+    <Layout
+      partners={data?.page?.mainFields?.listPartners}
+      headerLogo="/logo.svg"
+      locale={locale}
+    >
       <AppSizeLayout>
-        <SwiperComponent content={arrswper} />
+        <MainText locale={locale} textCenter={true} text={data.page.content} />
       </AppSizeLayout>
-      <BlobVideoAndTextContainer
-        text="КАК ВЫГЛЯДЯТ УРОКИ ПО ФИЗИКЕ В AR"
-        right={true}
+      <Lines />
+      <MainApproach
+        locale={locale}
+        titleVr={titleVr}
+        textVr={textVr}
+        titleAr={titleAr}
+        textAr={textAr}
       />
-      <AppSizeLayout>
-        <SwiperComponent content={arrswper} />
-      </AppSizeLayout>
+      <BlobVideoAndTextContainer
+        text={titleLessonVr}
+        background={imgLessonVr?.sourceUrl}
+        video={linkLessonVr}
+      />
+      <VrLessonsSwiper content={sliderLessonsVr} locale={locale} />
+      <BlobVideoAndTextContainer
+        right={true}
+        text={titleLessonAr}
+        background={imgLessonAr?.sourceUrl}
+        video={linkLessonAr}
+      />
+      <ArLessonsSwiper content={sliderLessonsAr} locale={locale} />
       <Lines />
-      <Products products={arrPrice} />
+      <AppSizeLayout>
+        <Products locale={locale} bottom={true} products={productList} />
+      </AppSizeLayout>
     </Layout>
   );
+}
+export async function getStaticProps({ locale }) {
+  const pageUri = "/";
+
+  const { data } = await client.query({
+    query: GET_MAIN_PAGE_CONTENT,
+    variables: {
+      pageUri,
+    },
+  });
+
+  return {
+    props: {
+      data,
+      locale,
+    },
+    revalidate: 1,
+  };
 }

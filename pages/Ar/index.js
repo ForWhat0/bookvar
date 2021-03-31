@@ -86,7 +86,7 @@ export async function getStaticProps({ locale }) {
 
   return {
     props: {
-      data,
+      data: data ? data : [],
       locale,
     },
     revalidate: 1,

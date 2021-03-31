@@ -67,6 +67,23 @@ const PlanetContainer = styled.div`
   @media screen and ${device.laptop} {
     display: ${(props) => props.display};
   }
+
+  @media screen and ${device.tablet} {
+    width: ${(props) => props.mobileSize}px;
+    height: ${(props) => props.mobileSize}px;
+    top: ${(props) => props.mobileTop};
+    left: ${(props) => props.mobileLeft};
+    transform: ${(props) => props.translate};
+    animation: ${(props) =>
+        props.form && props.topPosition
+          ? formMoveContainerTopPosition(props.mobileHalfSize)
+          : props.form
+          ? formMoveContainer(props.mobileHalfSize)
+          : props.topPosition
+          ? moveContainerTopPosition(props.mobileHalfSize, props.mobileCalcSize)
+          : moveContainer(props.mobileHalfSize, props.mobileCalcSize)}
+      50s infinite linear;
+  }
 `;
 
 const PlanetWrap = styled.div`
@@ -75,6 +92,11 @@ const PlanetWrap = styled.div`
   height: ${(props) => props.size}px;
   position: absolute;
   border-radius: 50%;
+
+  @media screen and ${device.tablet} {
+    width: ${(props) => props.mobileSize}px;
+    height: ${(props) => props.mobileSize}px;
+  }
 `;
 
 const PlanetBackground = styled.div`
@@ -92,11 +114,24 @@ const PlanetBackground = styled.div`
   height: ${(props) => props.size}px;
   position: absolute;
   border-radius: 50%;
+
+  @media screen and ${device.tablet} {
+    animation: ${(props) => backgroundAnimation(props.mobileDoubleSize)} 25s
+      infinite linear;
+    width: ${(props) => props.mobileSize}px;
+    height: ${(props) => props.mobileSize}px;
+  }
 `;
 export const PlanetMoveBorder = ({ topPosition, size, form }) => {
   const halfSize = size / 2;
   const calcSize = `calc(100% + ${halfSize}px)`;
   const doubleSize = size * 2;
+
+  const mobileSize = 40;
+  const mobileHalfSize = mobileSize / 2;
+  const mobileCalcSize = `calc(100% + ${mobileHalfSize}px)`;
+  const mobileDoubleSize = mobileSize * 2;
+
   const top =
     form && topPosition
       ? `calc(15% - ${halfSize}px)`
@@ -105,6 +140,14 @@ export const PlanetMoveBorder = ({ topPosition, size, form }) => {
       : topPosition
       ? `-${halfSize}px`
       : calcSize;
+  const mobileTop =
+    form && topPosition
+      ? `calc(15% - ${mobileHalfSize}px)`
+      : form
+      ? `calc(72% + ${mobileHalfSize}px)`
+      : topPosition
+      ? `-${mobileHalfSize}px`
+      : mobileCalcSize;
   const left =
     form && topPosition
       ? `calc(3% - ${halfSize}px)`
@@ -113,6 +156,14 @@ export const PlanetMoveBorder = ({ topPosition, size, form }) => {
       : topPosition
       ? `-${halfSize}px`
       : calcSize;
+  const mobileLeft =
+    form && topPosition
+      ? `calc(3% - ${mobileHalfSize}px)`
+      : form
+      ? `calc(95% + ${mobileHalfSize}px)`
+      : topPosition
+      ? `-${mobileHalfSize}px`
+      : mobileCalcSize;
   const translate = topPosition
     ? `translate(-0%, 0%)`
     : `translate(-100%, -100%)`;
@@ -122,15 +173,25 @@ export const PlanetMoveBorder = ({ topPosition, size, form }) => {
       size={size}
       halfSize={halfSize}
       calcSize={calcSize}
+      mobileSize={mobileSize}
+      mobileHalfSize={mobileHalfSize}
+      mobileCalcSize={mobileCalcSize}
       topPosition={topPosition}
       top={top}
       left={left}
+      mobileTop={mobileTop}
+      mobileLeft={mobileLeft}
       translate={translate}
       form={form}
       display={display}
     >
-      <PlanetWrap size={size}>
-        <PlanetBackground doubleSize={doubleSize} size={size} />
+      <PlanetWrap mobileSize={mobileSize} size={size}>
+        <PlanetBackground
+          mobileDoubleSize={mobileDoubleSize}
+          mobileSize={mobileSize}
+          doubleSize={doubleSize}
+          size={size}
+        />
       </PlanetWrap>
     </PlanetContainer>
   );

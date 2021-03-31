@@ -64,7 +64,7 @@ export const SwiperComponent = ({ classOn, cube, content }) => {
   };
   const media = {
     320: {
-      slidesPerView: 2,
+      slidesPerView: 1.5,
       spaceBetween: 10,
     },
     1024: {

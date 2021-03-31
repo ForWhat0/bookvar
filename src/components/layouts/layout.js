@@ -10,6 +10,8 @@ import { useRef } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useOnClickOutside } from "../hooks/hooks";
 import { actionClickBurger } from "../../redux/actions/actions";
+import { Lines } from "../lines/lines";
+import {Partners} from "../partners/partners";
 
 export const Layout = ({
   showLinks,
@@ -17,9 +19,10 @@ export const Layout = ({
   routerLinkTitle,
   headerLogo,
   locale,
+  partners,
 }) => {
   const node = useRef();
-    const dispatch = useDispatch();
+  const dispatch = useDispatch();
   const { menuBurgerIsOpen } = useSelector((state) => state.app);
   useOnClickOutside(
     node,
@@ -30,15 +33,23 @@ export const Layout = ({
     <>
       <VideoModal />
       <div ref={node}>
-        <Header menuBurgerIsOpen={menuBurgerIsOpen} logo={headerLogo} locale={locale} />
-        <Menu menuBurgerIsOpen={menuBurgerIsOpen} logo={headerLogo} locale={locale} />
+        <Header
+          menuBurgerIsOpen={menuBurgerIsOpen}
+          logo={headerLogo}
+          locale={locale}
+        />
+        <Menu
+          menuBurgerIsOpen={menuBurgerIsOpen}
+          logo={headerLogo}
+          locale={locale}
+        />
       </div>
       <BubbleBg />
       <BlobBg />
       {showLinks && <RouterLink routerLinkTitle={routerLinkTitle} />}
       {children}
       <Form />
-      <PageFooter logo={headerLogo} locale={locale} />
+      <PageFooter partners={partners} logo={headerLogo} locale={locale} />
 
       <style jsx global>{`
         #__next {

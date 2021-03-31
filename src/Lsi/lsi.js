@@ -5,6 +5,13 @@ export const app = {
     RU: "Ru",
   },
 };
+export const buttonText = {
+  learnMore:{
+    UK: "Дізнатись детальніше",
+    EN: "Learn more",
+    RU: "Узнать подробнее",
+  }
+}
 export const VrText={
   benefitsTitle: {
     first: {
@@ -19,6 +26,47 @@ export const VrText={
     }
   }
 }
+export const mainApproach = {
+  firstTitle: {
+    UK: "Ми використовуємо",
+    EN: "We use",
+    RU: "Мы используем",
+  },
+  secondTitle: {
+    UK: "підходу до закріплення отриманих знань на практиці під час уроку",
+    EN: "approach to consolidating the knowledge gained in practice during the lesson",
+    RU: "подхода к закреплению полученных знаний на практике во время урока",
+  },
+};
+export const lessonsInVr = {
+  firstTitle: {
+    UK: "Доступні уроки в",
+    EN: "Available lessons in",
+    RU: "Доступные уроки в ",
+  },
+  secondTitle: {
+    UK: "(віртуальній реальності)",
+    EN: "(virtual reality)",
+    RU: "(виртуальной реальности)",
+  },
+};
+export const PartnersLsi = {
+  UK: "Наші партнери",
+  EN: "Our partners",
+  RU: "Наши партнеры",
+}
+export const lessonsInAr = {
+  firstTitle: {
+    UK: "Доступні уроки в",
+    EN: "Available lessons in",
+    RU: "Доступные уроки в ",
+  },
+  secondTitle: {
+    UK: "(Доповнененій реальності)",
+    EN: "(augmented reality)",
+    RU: "(дополненной реальности)",
+  },
+};
 export const BookVarApp = {
   firstTitle: {
     UK: "Скачайте",

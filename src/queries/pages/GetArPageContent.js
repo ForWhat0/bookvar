@@ -5,8 +5,8 @@ export const GET_AR_PAGE_CONTENT = gql`
       content
       ArField {
         sliderLessons {
-          titleLesson
-          textLesson
+          name
+          text
         }
         arLinkAndroidApp
         arLinkIphoneApp

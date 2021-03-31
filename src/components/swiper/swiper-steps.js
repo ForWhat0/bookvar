@@ -48,14 +48,14 @@ export const SwiperSteps = ({ content }) => {
         {content.map((item, index) => {
           const step = index + 1;
           return (
-            <SwiperSlide key={index + item.titleLesson}>
+            <SwiperSlide key={index + item.name}>
               <Text paddingLeft="20%" width="60%" display="flex">
                 <IndexContainer>
                   <h1>{index > 8 ? step : `0${step}`}</h1>
                   <Blob different={step % 2 === 0} />
                 </IndexContainer>
-                <StepTitle>{item.titleLesson}</StepTitle>
-                <p>{item.textLesson}</p>
+                <StepTitle>{item.name}</StepTitle>
+                <p>{item.text}</p>
               </Text>
             </SwiperSlide>
           );

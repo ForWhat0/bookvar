@@ -74,7 +74,7 @@ export const IconBackground = styled.div`
   width: 100%;
   height: 100%;
   position: absolute;
-  background-image: url("/${(props) => props.background}");
+  background-image: url("${(props) => props.background}");
   background-position: center;
   background-repeat: no-repeat;
   background-size: contain;

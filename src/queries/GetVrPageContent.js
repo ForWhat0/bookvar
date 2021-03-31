@@ -1,9 +1,7 @@
 import gql from "graphql-tag";
 export const GET_VR_PAGE_CONTENT = gql`
   query GET_VR_PAGE_CONTENT($pageUri: ID!) {
-    classes: videosVR(
-      where: { orderby: { field: TITLE, order: ASC } }
-    ) {
+    classes: videosVR(where: { orderby: { field: TITLE, order: ASC } }) {
       nodes {
         title
         databaseId
@@ -11,7 +9,7 @@ export const GET_VR_PAGE_CONTENT = gql`
     }
     videosVR(where: { orderby: { field: TITLE, order: ASC } }, first: 1) {
       nodes {
-      databaseId
+        databaseId
         VideoField {
           flexibleContent {
             ... on VideoVR_Videofield_FlexibleContent_BlockLesson {
@@ -33,9 +31,25 @@ export const GET_VR_PAGE_CONTENT = gql`
       title
       content
       VrField {
+        productVr {
+          ... on Post {
+            id
+            databaseId
+            title
+            featuredImage {
+              node {
+                sourceUrl
+              }
+            }
+            ProductField {
+              oldPrice
+              productPrice
+            }
+          }
+        }
         sliderLessons {
-          titleLesson
-          textLesson
+          name
+          text
         }
         imgVideo {
           sourceUrl

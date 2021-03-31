@@ -6,6 +6,7 @@ import { Lines } from "../lines/lines";
 import { FooterMenu } from "../header/footer-menu";
 import { footerInfo } from "../../Lsi/lsi";
 import { device } from "../deviceSizes/deviceSizes";
+import {Partners} from "../partners/partners";
 
 const Contacts = styled.div`
   display: grid;
@@ -183,10 +184,15 @@ const Develop = styled.div`
 
 const { address, schedule, developBy } = footerInfo;
 
-export const PageFooter = ({ logo, locale }) => {
+export const PageFooter = ({ logo, locale, partners }) => {
   return (
     <>
       <Lines />
+
+      {partners && (
+            <Partners partners={partners} locale={locale}/>
+      )}
+
       <FooterMenu logo={logo} locale={locale} />
       <AppSizeLayout>
         <Contacts>

@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import {device} from "../deviceSizes/deviceSizes";
+import { device } from "../deviceSizes/deviceSizes";
 
 const Text = styled.span`
   background: linear-gradient(180deg, #b0ffc6 0%, #00b4ff 100%);
@@ -7,14 +7,14 @@ const Text = styled.span`
   -webkit-text-fill-color: transparent;
   font-weight: bold;
   font-size: ${(props) => props.size};
-  padding-top:10px;
-  
-  @media screen and ${device.mobileL} {
-  font-size: ${(props) => props.mobileResponseSize};
+  padding-top: 10px;
+
+  @media screen and ${device.tablet} {
+    font-size: 20px;
+    line-height: 24px;
   }
 `;
 
 export const LinearGradientText = ({ text, size }) => {
-  const mobileResponseSize = size === '25px' || size === '45px' ? '20px' : size
-  return <Text mobileResponseSize={mobileResponseSize} size={size}>{text}</Text>
+  return <Text size={size}>{text}</Text>;
 };

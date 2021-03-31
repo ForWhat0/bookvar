@@ -29,7 +29,7 @@ const ContainerProduct = styled.div`
 `;
 const Product = styled.div`
   width: 42%;
-  cursor:pointer;
+  cursor: pointer;
   margin-top: 150px;
   min-width: 488px;
   height: 544px;
@@ -51,6 +51,7 @@ const Product = styled.div`
 
   @media screen and ${device.laptop} {
     max-width: unset;
+    position: initial;
     margin-top: 80px;
     width: 80%;
   }
@@ -152,32 +153,32 @@ export const Products = ({ products, locale, bottom }) => {
       <ContainerProduct>
         {products.map((item, index) => (
           <Link href="/Devices/[id]/" as={`/Devices/${item.databaseId}/`}>
-              <Product
-                position={
-                  (index + 1) % 2 === 0 && bottom ? "absolute" : "initial"
-                }
-                right={(index + 1) % 2 === 0 && bottom ? "0" : "unset"}
-                bottom={(index + 1) % 2 === 0 && bottom ? "100px" : "unset"}
+            <Product
+              position={
+                (index + 1) % 2 === 0 && bottom ? "absolute" : "initial"
+              }
+              right={(index + 1) % 2 === 0 && bottom ? "0" : "unset"}
+              bottom={(index + 1) % 2 === 0 && bottom ? "100px" : "unset"}
+            >
+              <ImgBlock>
+                <ProductImg src={item.featuredImage?.node?.sourceUrl} />
+              </ImgBlock>
+              <TitleBlock
+                right={(index + 1) % 2 === 0 ? "-5%" : "unset"}
+                left={(index + 1) % 2 !== 0 ? "-5%" : "unset"}
               >
-                <ImgBlock>
-                  <ProductImg src={item.featuredImage?.node?.sourceUrl} />
-                </ImgBlock>
-                <TitleBlock
-                  right={(index + 1) % 2 === 0 ? "-5%" : "unset"}
-                  left={(index + 1) % 2 !== 0 ? "-5%" : "unset"}
-                >
-                  <h1>{item.title}</h1>
-                </TitleBlock>
-                <PriceContainer>
-                  {item.ProductField?.oldPrice && (
-                    <Discount>{item.ProductField.oldPrice}</Discount>
-                  )}
-                  <Price>{item.ProductField?.productPrice}</Price>
-                </PriceContainer>
-                <ButtonContainer>
-                  <StyledButton text={details[locale]} />
-                </ButtonContainer>
-              </Product>
+                <h1>{item.title}</h1>
+              </TitleBlock>
+              <PriceContainer>
+                {item.ProductField?.oldPrice && (
+                  <Discount>{item.ProductField.oldPrice}</Discount>
+                )}
+                <Price>{item.ProductField?.productPrice}</Price>
+              </PriceContainer>
+              <ButtonContainer>
+                <StyledButton text={details[locale]} />
+              </ButtonContainer>
+            </Product>
           </Link>
         ))}
       </ContainerProduct>
