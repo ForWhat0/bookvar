@@ -14,7 +14,7 @@ export default function Home({ data, locale }) {
   return (
     <Layout headerLogo="/logo.svg" locale={locale}>
       <AppSizeLayout>
-        <MainText text={data.page.content} />
+        <MainText locale={locale} text={data.page.content} />
         <AdvantageOfVr
           locale={locale}
           advantage={data.page.VrField.listBenefits}
@@ -36,7 +36,11 @@ export default function Home({ data, locale }) {
       />
       <Lines />
       <AppSizeLayout>
-        <Products locale={locale} bottom={true} products={data.page.VrField.productVr} />
+        <Products
+          locale={locale}
+          bottom={true}
+          products={data.page.VrField.productVr}
+        />
       </AppSizeLayout>
     </Layout>
   );

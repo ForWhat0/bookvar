@@ -39,7 +39,7 @@ export default function Home({ data, locale }) {
   return (
     <Layout headerLogo="/logo.svg" locale={locale}>
       <AppSizeLayout>
-        <MainText text={data.page.content} />
+        <MainText locale={locale} text={data.page.content} />
       </AppSizeLayout>
       <BlobVideoAndTextContainer
         video={data.page.ArField.linkVideo}
