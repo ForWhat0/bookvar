@@ -1,3 +1,7 @@
+import Link from "next/link";
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
+import { Element, scroller } from "react-scroll";
 import Layout from "../../src/components/layouts/layout";
 import { AdvantageOfVr } from "../../src/components/advantage-of-vr/advantage-of-vr";
 import { AppSizeLayout } from "../../src/components/layouts/appSizeLayout";
@@ -9,10 +13,28 @@ import { DevelopSteps } from "../../src/components/develop-steps/develop-steps";
 import { UseExperience } from "../../src/components/use-experience/use-experience";
 import { Lines } from "../../src/components/lines/lines";
 import { Products } from "../../src/components/products/products";
+import { ScrollToElement } from "../../src/redux/actions/actions";
+import { StyledButton } from "../../src/components/button/button";
+import { Product } from "../../src/Lsi/lsi";
+import { ButtonContainer } from "../../src/components/main-approach/mainApproach";
 
 export default function Home({ data, locale }) {
+  const dispatch = useDispatch();
+  const { scrollToElement } = useSelector((state) => state.app);
+
+  useEffect(() => {
+    if (scrollToElement) {
+      scroller.scrollTo(scrollToElement, {
+        duration: 800,
+        delay: 0,
+        smooth: "easeInOutQuart",
+      });
+      dispatch(ScrollToElement(null));
+    }
+  }, [scrollToElement]);
+
   return (
-    <Layout headerLogo="/logo.svg" locale={locale}>
+    <Layout siteInfo={data.fragment.mainFields} locale={locale}>
       <AppSizeLayout>
         <MainText locale={locale} text={data.page.content} />
         <AdvantageOfVr
@@ -30,30 +52,47 @@ export default function Home({ data, locale }) {
         locale={locale}
         steps={data.page.VrField.sliderLessons}
       />
-      <UseExperience
-        classes={data.classes.nodes}
-        video={data.videosVR.nodes[0]}
-      />
-      <Lines />
-      <AppSizeLayout>
-        <Products
+      <Element name="#VrLessons" className="element">
+        <UseExperience
+          vr={true}
           locale={locale}
-          bottom={true}
-          products={data.page.VrField.productVr}
+          classes={data.classes.nodes}
+          video={data.videosVR.nodes[0]}
         />
-      </AppSizeLayout>
+      </Element>
+      <Lines />
+      {data.page?.VrField?.productVr && data.page?.VrField?.productVr?.length  && (
+        <AppSizeLayout>
+          <Products
+            locale={locale}
+            bottom={true}
+            products={data.page.VrField.productVr}
+          />
+          <ButtonContainer>
+            <Link scroll={false} href="/Devices">
+              <a>
+                <StyledButton text={Product.buttonText[locale]} />
+              </a>
+            </Link>
+          </ButtonContainer>
+        </AppSizeLayout>
+      )}
     </Layout>
   );
 }
 
 export async function getStaticProps({ locale }) {
-  const pageUri = "/vr/";
+  const pageUri =
+    locale === "EN" ? "/en/vr-en/" : locale === "RU" ? "/vr/" : "/uk/vr-uk/";
+  const fragmentUri =
+    locale === "EN" ? "/en/main/" : locale === "RU" ? "/" : "/uk/golovna";
 
   const { data } = await client.query({
     query: GET_VR_PAGE_CONTENT,
     variables: {
       pageUri,
       language: locale,
+      fragmentUri,
     },
   });
 
@@ -62,6 +101,6 @@ export async function getStaticProps({ locale }) {
       data: data ? data : [],
       locale,
     },
-    revalidate: 1,
+    revalidate: 60,
   };
 }

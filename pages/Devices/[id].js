@@ -1,15 +1,14 @@
 import client from "../../src/apollo/client";
 import { GET_ALL_ID_FROM_DEVICES } from "../../src/queries/get-all-devices-id";
 import { GET_DEVICE_BY_ID_AND_FIRST_TWO_DEVICE } from "../../src/queries/get-device-by-id-and-first-two-device";
-import React from "react";
 import { Product } from "../../src/components/product/product";
 import Layout from "../../src/components/layouts/layout";
 import {AppSizeLayout} from "../../src/components/layouts/appSizeLayout";
 
-export default function DeviceDetails({ locale, devices, device }) {
+export default function DeviceDetails({ locale, siteInfo, device }) {
 
   return (
-    <Layout headerLogo="/logo.svg" locale={locale}>
+    <Layout siteInfo={siteInfo} locale={locale}>
       <AppSizeLayout>
         <Product locale={locale} device={device} />
       </AppSizeLayout>
@@ -19,12 +18,15 @@ export default function DeviceDetails({ locale, devices, device }) {
 
 export const getStaticProps = async ({ params, locale }) => {
   const id = params.id;
+  const fragmentUri =
+      locale === "EN" ? "/en/main/" : locale === "RU" ? "/" : "/uk/golovna";
 
   const { data } = await client.query({
     query: GET_DEVICE_BY_ID_AND_FIRST_TWO_DEVICE,
     variables: {
       id,
       language: locale,
+      fragmentUri
     },
   });
 
@@ -32,9 +34,9 @@ export const getStaticProps = async ({ params, locale }) => {
     props: {
       locale,
       device: data?.post ? data.post : [],
-      devices: data?.posts ? data.posts : [],
+      siteInfo: data?.fragment?.mainFields
     },
-    revalidate: 1,
+    revalidate: 60,
   };
 };
 

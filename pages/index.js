@@ -1,7 +1,10 @@
-import React, { useEffect } from "react";
+import  { useEffect } from "react";
 import animationButton from "../src/components/button/animationButton";
 import { Lines } from "../src/components/lines/lines";
-import { MainApproach } from "../src/components/main-approach/mainApproach";
+import {
+  ButtonContainer,
+  MainApproach,
+} from "../src/components/main-approach/mainApproach";
 import { Products } from "../src/components/products/products";
 import Layout from "../src/components/layouts/layout";
 import { BlobVideoAndTextContainer } from "../src/components/blob-video-text/BlobVideoAndTextContainer";
@@ -11,6 +14,9 @@ import { GET_MAIN_PAGE_CONTENT } from "../src/queries/get-main-page";
 import { MainText } from "../src/components/main-text/main-text";
 import { VrLessonsSwiper } from "../src/components/vr-lessons-swiper/vr-lessons-swiper";
 import { ArLessonsSwiper } from "../src/components/ar-lessons-swiper/ar-lessons-swiper";
+import Link from "next/link";
+import { StyledButton } from "../src/components/button/button";
+import { Product } from "../src/Lsi/lsi";
 
 export default function Home({ data, locale }) {
   const {
@@ -34,11 +40,16 @@ export default function Home({ data, locale }) {
   return (
     <Layout
       partners={data?.page?.mainFields?.listPartners}
-      headerLogo="/logo.svg"
+      siteInfo={data.fragment.mainFields}
       locale={locale}
     >
       <AppSizeLayout>
-        <MainText locale={locale} textCenter={true} text={data.page.content} />
+        <MainText
+          main={true}
+          locale={locale}
+          textCenter={true}
+          text={data.page.content}
+        />
       </AppSizeLayout>
       <Lines />
       <MainApproach
@@ -53,28 +64,44 @@ export default function Home({ data, locale }) {
         background={imgLessonVr?.sourceUrl}
         video={linkLessonVr}
       />
-      <VrLessonsSwiper content={sliderLessonsVr} locale={locale} />
+      {sliderLessonsVr && sliderLessonsVr.length && (
+        <VrLessonsSwiper content={sliderLessonsVr} locale={locale} />
+      )}
       <BlobVideoAndTextContainer
         right={true}
         text={titleLessonAr}
         background={imgLessonAr?.sourceUrl}
         video={linkLessonAr}
       />
-      <ArLessonsSwiper content={sliderLessonsAr} locale={locale} />
+      {sliderLessonsAr && sliderLessonsAr.length && (
+        <ArLessonsSwiper content={sliderLessonsAr} locale={locale} />
+      )}
       <Lines />
-      <AppSizeLayout>
-        <Products locale={locale} bottom={true} products={productList} />
-      </AppSizeLayout>
+      {productList && productList.length && (
+        <AppSizeLayout>
+          <Products locale={locale} bottom={true} products={productList} />
+          <ButtonContainer>
+            <Link scroll={false} href="/Devices">
+              <a>
+                <StyledButton text={Product.buttonText[locale]} />
+              </a>
+            </Link>
+          </ButtonContainer>
+        </AppSizeLayout>
+      )}
     </Layout>
   );
 }
 export async function getStaticProps({ locale }) {
-  const pageUri = "/";
-
+  const pageUri =
+    locale === "EN" ? "/en/main/" : locale === "RU" ? "/" : "/uk/golovna";
+  const fragmentUri =
+    locale === "EN" ? "/en/main/" : locale === "RU" ? "/" : "/uk/golovna";
   const { data } = await client.query({
     query: GET_MAIN_PAGE_CONTENT,
     variables: {
       pageUri,
+      fragmentUri,
     },
   });
 
@@ -83,6 +110,6 @@ export async function getStaticProps({ locale }) {
       data,
       locale,
     },
-    revalidate: 1,
+    revalidate: 60,
   };
 }

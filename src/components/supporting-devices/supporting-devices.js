@@ -71,7 +71,8 @@ const Icon = styled.div`
 `;
 const Devices = styled.div`
   display: flex;
-  overflow-y: scroll;
+  overflow-y: auto;
+  overflow-x: hidden;
   max-height: 400px;
   justify-content: space-between;
 

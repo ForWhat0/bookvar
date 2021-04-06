@@ -1,11 +1,14 @@
 import gql from "graphql-tag";
+import { siteInfoFragment } from "./fragments/site-info";
 export const GET_MAIN_PAGE_CONTENT = gql`
-  query GET_MAIN_PAGE_CONTENT($pageUri: ID!) {
+  query GET_MAIN_PAGE_CONTENT($pageUri: ID!, $fragmentUri: ID!) {
+     ${siteInfoFragment}
     page(id: $pageUri, idType: URI) {
       title
       content
       mainFields {
         listPartners {
+        url
           logo {
             sourceUrl
           }

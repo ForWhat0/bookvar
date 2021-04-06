@@ -4,6 +4,7 @@ import { device } from "../deviceSizes/deviceSizes";
 const Button = styled.div`
   width: 100%;
   cursor: pointer;
+  width:fit-content;
   background: radial-gradient(
     233.93% 3285.08% at 52.55% 50%,
     #0367a9 0%,
@@ -34,6 +35,7 @@ const Button = styled.div`
     padding: 16px 0;
     font-size: 14px;
     line-height: 17px;
+    width:70%;
   }
 `;
 

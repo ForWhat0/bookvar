@@ -1,8 +1,8 @@
-import { useEffect, useLayoutEffect, useState } from "react";
-import { useDispatch } from "react-redux";
-import { ClickVisuallyImpairedModeOff } from "../../redux/actions/actions";
+import {useEffect, useLayoutEffect, useState} from "react";
+import {useDispatch} from "react-redux";
+import {ClickVisuallyImpairedModeOff} from "../../redux/actions/actions";
 import axios from "axios";
-import { format } from "date-fns";
+import {format} from "date-fns";
 
 export const useOnClickOutside = (ref, handler) => {
   useEffect(() => {
@@ -18,7 +18,16 @@ export const useOnClickOutside = (ref, handler) => {
     };
   }, [ref, handler]);
 };
+export const getYoutubeThumbnail = (url) => {
+  if (url === null) {
+    return '';
+  }
+  const results = url.match('[\\?&]v=([^&#]*)');
+  const video   = (results === null) ? url : results[1];
 
+
+  return 'http://img.youtube.com/vi/' + video + '/0.jpg';
+};
 export const ParcMenu = (
   data,
   { idKey = "key", parentKey = "parentId", childrenKey = "children" } = {}
@@ -240,6 +249,26 @@ export const sendGmail = async (sendContent) => {
     const res = await axios({
       method: "post",
       url: "/api/orderProduct",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json, text/plain, */*",
+      },
+      data,
+    });
+    return res;
+  } catch (error) {
+    return error;
+  }
+};
+export const sendStatementHook = async (sendContent) => {
+  const data = {
+    sendContent
+  };
+
+  try {
+    const res = await axios({
+      method: "post",
+      url: "/api/sendStatement",
       headers: {
         "Content-Type": "application/json",
         Accept: "application/json, text/plain, */*",

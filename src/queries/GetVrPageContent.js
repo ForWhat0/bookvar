@@ -1,6 +1,8 @@
 import gql from "graphql-tag";
+import { siteInfoFragment } from "./fragments/site-info";
 export const GET_VR_PAGE_CONTENT = gql`
-  query GET_VR_PAGE_CONTENT($pageUri: ID!) {
+  query GET_VR_PAGE_CONTENT($pageUri: ID!, $fragmentUri: ID!)  {
+   ${siteInfoFragment}
     classes: videosVR(where: { orderby: { field: TITLE, order: ASC } }) {
       nodes {
         title

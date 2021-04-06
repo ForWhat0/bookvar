@@ -7,235 +7,167 @@ import { SendButton } from "../sendButton/sendButton";
 import { actionClickModal } from "../../redux/actions/actions";
 import { ModalLsi } from "../../Lsi/lsi";
 import { useRouter } from "next/router";
-import { registerOnEventHook, registerOnServiceHook } from "../hooks/hooks";
-import { useMutation } from "@apollo/client";
-import SEND_COMMENT from "../../mutations/sendComment";
 import { StyledButton } from "../button/button";
-import { CircleBackground } from "../layouts/lognIn_register_layout";
+import { Blob } from "../blobBg/blob";
+import { sendStatementHook } from "../hooks/hooks";
+import { useMutation } from "@apollo/client";
+import { SendWordpress } from "../../mutations/send-wordpress";
 
-const renderCircles = () => {
-  return (
-    <>
-      <CircleBackground
-        height="100px"
-        left="45px"
-        top="45px"
-        width="100px"
-        background="rgba(0,174, 239, 0.08);"
-        zIndex="-1"
-      />
-      <CircleBackground
-        height="60px"
-        left="150px"
-        bottom="140px"
-        width="60px"
-        background="rgba(255, 222, 0, 0.08);"
-        zIndex="-1"
-      />
-      <CircleBackground
-        height="40px"
-        right="45px"
-        bottom="90px"
-        width="40px"
-        background="rgba(0, 174, 239, 0.08);"
-        zIndex="-1"
-      />
-    </>
-  );
-};
+const {
+  title,
+  subTitleGet,
+  subTitleSignUp,
+  nameLsi,
+  phoneNumber,
+  emptyFields,
+  wrongData,
+  send,
+  thanks,
+  sent,
+  sentText,
+  close,
+} = ModalLsi;
+
 
 export const Modal = () => {
   const { modal } = useSelector((state) => state.app);
-  const { visuallyImpairedModeWhiteTheme } = useSelector((state) => state.app);
-  const { visuallyImpairedMode } = useSelector((state) => state.app);
   const dispatch = useDispatch();
   const router = useRouter();
   const locale = router.locale;
-  const [fName, setFName] = useState("");
-  const [lName, setLName] = useState("");
+  const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
-  const [fNameWarning, setFNameWarning] = useState(null);
-  const [lNameWarning, setLNameWarning] = useState(null);
+  const [nameWarning, setNameWarning] = useState(null);
   const [phoneWarning, setPhoneWarning] = useState(null);
   const [done, setDone] = useState(false);
-  const {
-    titleEvent,
-    subTitleEvent,
-    titleService,
-    subTitleService,
-    send,
-    sent,
-    close,
-    thanks,
-    name,
-    lastName,
-    phoneNumber,
-    emptyFields,
-    wrongData,
-  } = ModalLsi;
-  useEffect(() => {
-    modal
-      ? (document.documentElement.style.overflow = "hidden")
-      : (document.documentElement.style.overflow = "unset");
-  }, [modal]);
 
-  const registerOnEvent = async (event) => {
-    event.preventDefault();
-    if (!fName) {
-      return setFNameWarning(emptyFields[locale]);
-    }
-    if (!lName) {
-      return setLNameWarning(emptyFields[locale]);
-    }
-    await sendWordpress();
-    await registerOnEventHook(
-      modal.title,
-      new Date(modal.hoursEvents?.hoursEvents),
-      fName,
-      lName
-    );
-  };
-  const registerOnService = async (event) => {
-    event.preventDefault();
-    if (!fName) {
-      return setFNameWarning(emptyFields[locale]);
-    }
-    if (!lName) {
-      return setLNameWarning(emptyFields[locale]);
+  useEffect(() => {
+    setDone(false);
+  }, []);
+
+  const sendStatement = async ( event ) => {
+
+    event.preventDefault()
+
+    if (!name) {
+      return setNameWarning(emptyFields[locale]);
     }
     if (!phone) {
       return setPhoneWarning(emptyFields[locale]);
     }
-
     if (
       phone.match(/^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/im)
     ) {
       await sendWordpress();
-      await registerOnServiceHook(modal.title, fName, lName, phone);
+      await sendStatementHook(sendContent);
     } else {
       setPhone("");
       return setPhoneWarning(wrongData[locale]);
     }
   };
-  const contentEvent = `
-        <h1>Реєстрація на захід</h1>
+
+  const clearAllFields = () => {
+    setDone(true);
+    setName("");
+    setPhone("");
+    setNameWarning("");
+    setPhoneWarning("");
+  };
+
+  const sendContent = `
+        <h1>Заява</h1>
+        <h2>${
+          modal === "get"
+            ? "отримати уроки в VR і AR"
+            : "записатися на демонстрацію"
+        }</h2>
         <ul>
-        <li>ім'я: ${fName}</li>
-        <li>прізвище: ${lName}</li>
-        <li>id: ${modal.databaseId + Math.random()}</li>
+        <li>ім'я: ${name};</li>
+        <li>телефон: ${phone};</li>
+        <li>id: ${Math.random() + Math.random()}</li>
         <ul/>
         `;
-  const contentService = `
-        <h1>Запит на послугу</h1>
-        <ul>
-        <li>ім'я: ${fName}</li>
-        <li>прізвище: ${lName}</li>
-        <li>телефон: ${phone}</li>
-         <li>послуга: ${modal.title && modal.title}</li>
-        <li>id: ${modal.databaseId + Math.random()}</li>
-        <ul/>
-        `;
-  let [sendWordpress, { error, loading }] = useMutation(SEND_COMMENT, {
+
+  let [sendWordpress, { data, error, loading }] = useMutation(SendWordpress, {
     variables: {
       input: {
-        commentOn: modal.databaseId,
-        content: modal.type === "event" ? contentEvent : contentService,
+        commentOn: 2,
+        content: sendContent,
+        author: name,
       },
     },
     onCompleted: () => {
       if (!error) {
-        setDone(true);
+        clearAllFields();
       }
     },
     onError: (error) => {
       if (error) {
-        setDone(true);
+        clearAllFields();
       }
     },
   });
-  const closeModal = () => {
+
+  if (modal) {
     return (
-      dispatch(actionClickModal(false)),
-      setFName(""),
-      setLName(""),
-      setPhone(""),
-      setPhoneWarning(""),
-      setFNameWarning(""),
-      setLNameWarning(""),
-      setDone(false)
-    );
-  };
-  return (
-    <StyledModal open={modal}>
-      <FormContainer
-        background={visuallyImpairedModeWhiteTheme ? "white" : "#1D1D1B"}
-      >
-        <form>
-          {!done ? (
-            <>
-              <h2 onClick={() => dispatch(actionClickModal(false))}>X</h2>
-              <h1>
-                {modal.type === "event"
-                  ? titleEvent[locale]
-                  : titleService[locale]}
-              </h1>
-              <h3>
-                {modal.type === "event"
-                  ? subTitleEvent[locale]
-                  : subTitleService[locale]}
-              </h3>
-              <InputStyled
-                value={fName}
-                maxlength="20"
-                warning={fNameWarning}
-                background="transparent"
-                text={name[locale]}
-                onChange={(e) => setFName(e.target.value)}
-                width="100%"
-              />
-              <InputStyled
-                value={lName}
-                maxlength="20"
-                warning={lNameWarning}
-                background="transparent"
-                text={lastName[locale]}
-                onChange={(e) => setLName(e.target.value)}
-                width="100%"
-              />
-              {modal.type !== "event" && (
+      <StyledModal>
+        <FormContainer>
+          <form>
+            <h2 onClick={() => dispatch(actionClickModal(false))}>X</h2>
+            <Blob modal={true} />
+            <Blob modal={true} different={true} />
+            {!done ? (
+              <>
+                <h1>{title[locale]}</h1>
+                <h3>
+                  {modal === "get"
+                    ? subTitleGet[locale]
+                    : subTitleSignUp[locale]}
+                </h3>
+                <InputStyled
+                  value={name}
+                  maxlength="20"
+                  warning={nameWarning}
+                  text={nameLsi[locale]}
+                  onChange={(e) => setName(e.target.value)}
+                  width="100%"
+                />
                 <InputStyled
                   value={phone}
                   maxlength="20"
                   warning={phoneWarning}
-                  background="transparent"
                   text={phoneNumber[locale]}
                   onChange={(e) => setPhone(e.target.value)}
                   width="100%"
                 />
-              )}
-              <LoaderContainer>
-                <SendButton
-                  loading={loading}
-                  click={
-                    modal.type === "event" ? registerOnEvent : registerOnService
-                  }
-                  sendText={send[locale]}
-                />
-              </LoaderContainer>
-            </>
-          ) : (
-            <>
-              <h2 onClick={() => dispatch(actionClickModal(false))}>X</h2>
-              <h1>{thanks[locale]}</h1>
-              <h3>{sent[locale]}</h3>
-              <CloseModalButton>
-                <StyledButton func={closeModal} text={close[locale]} />
-              </CloseModalButton>
-            </>
-          )}
-          {!visuallyImpairedMode && renderCircles()}
-        </form>
-      </FormContainer>
-    </StyledModal>
-  );
+                <LoaderContainer>
+                  <SendButton
+                    sentText={sent[locale]}
+                    sendText={send[locale]}
+                    errorText={sent[locale]}
+                    error={error}
+                    done={data}
+                    loading={loading}
+                    click={sendStatement}
+                  />
+                </LoaderContainer>
+              </>
+            ) : (
+              <>
+                <h1>{thanks[locale]}</h1>
+                <h3>{sent[locale]}</h3>
+                <h3>{sentText[locale]}</h3>
+                <CloseModalButton>
+                  <StyledButton
+                    onclick={() => dispatch(actionClickModal(false))}
+                    text={close[locale]}
+                  />
+                </CloseModalButton>
+              </>
+            )}
+          </form>
+        </FormContainer>
+      </StyledModal>
+    );
+  }
+  return null;
 };

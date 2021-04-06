@@ -10,11 +10,15 @@ import { useDispatch } from "react-redux";
 import Link from "next/link";
 import { menu } from "../../Lsi/lsi";
 import { ChangeLanguageSelector } from "../headers/changeLanguageSelector";
-import { actionClickBurger } from "../../redux/actions/actions";
+import {
+  actionClickBurger,
+  actionClickModal,
+} from "../../redux/actions/actions";
 import { useRouter } from "next/router";
-import React, { createRef, useEffect } from "react";
+import { createRef, useEffect } from "react";
+import { Blob } from "../blobBg/blob";
 
-const Menu = ({ logo, menuBurgerIsOpen }) => {
+const Menu = ({ menuBurgerIsOpen }) => {
   const { locale, pathname } = useRouter();
   const dispatch = useDispatch();
   const handlerCloseMenu = () => {
@@ -22,6 +26,11 @@ const Menu = ({ logo, menuBurgerIsOpen }) => {
   };
 
   const ulRef = createRef();
+
+  const openModal = () => {
+    handlerCloseMenu();
+    dispatch(actionClickModal(true));
+  };
 
   useEffect(() => {
     ulRef.current.scrollTop = 0;
@@ -32,32 +41,49 @@ const Menu = ({ logo, menuBurgerIsOpen }) => {
     text: "text",
     transparent: "transparent",
   };
+  {
+    menu.footerMenu.map((item, index) =>
+      item.link === "#" ? (
+        <li onClick={() => dispatch(actionClickModal(true))}>
+          <a>{item.name[locale]}</a>
+        </li>
+      ) : (
+        <Link href={item.link}>
+          <li key={item.link + index}>
+            <a>{item.name[locale]}</a>
+          </li>
+        </Link>
+      )
+    );
+  }
   return (
     <StyledMenu open={menuBurgerIsOpen} ref={ulRef}>
-      <div id="blobModal" className="blob sizeBlobModal">
-        &nbsp;
-      </div>
-      <div id="blobModalDiff" className="blob sizeBlobModal">
-        &nbsp;
-      </div>
+      <Blob modal={true} different={true} />
+      <Blob modal={true} />
       <Ul>
-        {menu.burgerMenu.map((button, i) => (
-          <Link key={i + button.name} href={button.link}>
-            <Li onClick={() => handlerCloseMenu()}>
-              <PlanetContainer
-                display={pathname === button.link ? "block" : "none"}
-              >
-                <div />
-                <ALink activeLink={pathname === button.link && activeLink}>
-                  {button.name[locale]}
-                </ALink>
-                <div />
-              </PlanetContainer>
+        {menu.burgerMenu.map((button, i) =>
+          button.link === "#" ? (
+            <Li onClick={() => openModal()}>
+              <ALink activeLink={false}>{button.name[locale]}</ALink>
             </Li>
-          </Link>
-        ))}
+          ) : (
+            <Link key={i + button.name} href={button.link}>
+              <Li onClick={() => handlerCloseMenu()}>
+                <PlanetContainer
+                  display={pathname === button.link ? "block" : "none"}
+                >
+                  <div />
+                  <ALink activeLink={pathname === button.link && activeLink}>
+                    {button.name[locale]}
+                  </ALink>
+                  <div />
+                </PlanetContainer>
+              </Li>
+            </Link>
+          )
+        )}
         <SpaceBetween>
-          <ChangeLanguageSelector/>
+          <ChangeLanguageSelector />
         </SpaceBetween>
       </Ul>
     </StyledMenu>

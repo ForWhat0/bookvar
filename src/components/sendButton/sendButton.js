@@ -1,5 +1,6 @@
 import styled, { css, keyframes } from "styled-components";
 import { useEffect, useState } from "react";
+import { device } from "../deviceSizes/deviceSizes";
 
 const icon = keyframes`
   0%   {opacity:1;}
@@ -53,6 +54,16 @@ const Button = styled.button`
   text-align: center;
   cursor: pointer;
   width: 100%;
+
+  @media screen and ${device.tablet} {
+    font-size: 16px;
+  }
+
+  @media screen and ${device.mobileL} {
+    padding: 15px 16px;
+    font-size: 14px;
+    line-height: 17px;
+  }
 `;
 const SuccessText = styled.span`
   display: ${(props) => props.display};

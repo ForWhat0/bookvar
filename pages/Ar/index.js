@@ -1,5 +1,5 @@
+import { useEffect } from "react";
 import Layout from "../../src/components/layouts/layout";
-import { AdvantageOfVr } from "../../src/components/advantage-of-vr/advantage-of-vr";
 import { BlobVideoAndTextContainer } from "../../src/components/blob-video-text/BlobVideoAndTextContainer";
 import { UseExperience } from "../../src/components/use-experience/use-experience";
 import { DevelopSteps } from "../../src/components/develop-steps/develop-steps";
@@ -7,28 +7,28 @@ import { SupportingDevices } from "../../src/components/supporting-devices/suppo
 import { AppSizeLayout } from "../../src/components/layouts/appSizeLayout";
 import { MainText } from "../../src/components/main-text/main-text";
 import { App } from "../../src/components/app/app";
-import { Product } from "../../src/components/product/product";
-import { GET_VR_PAGE_CONTENT } from "../../src/queries/GetVrPageContent";
 import client from "../../src/apollo/client";
 import { GET_AR_PAGE_CONTENT } from "../../src/queries/pages/GetArPageContent";
 import { Lines } from "../../src/components/lines/lines";
-
-const headerArr = [
-  {
-    name: "Уроки в VR",
-  },
-  {
-    name: "Уроки в AR",
-  },
-  {
-    name: "Гарнитура",
-  },
-  {
-    name: "Получить технологию",
-  },
-];
+import { useDispatch, useSelector } from "react-redux";
+import { Element, scroller } from "react-scroll";
+import { ScrollToElement } from "../../src/redux/actions/actions";
 
 export default function Home({ data, locale }) {
+  const dispatch = useDispatch();
+  const { scrollToElement } = useSelector((state) => state.app);
+
+  useEffect(() => {
+    if (scrollToElement) {
+      scroller.scrollTo(scrollToElement, {
+        duration: 800,
+        delay: 0,
+        smooth: "easeInOutQuart",
+      });
+      dispatch(ScrollToElement(null));
+    }
+  }, [scrollToElement]);
+
   const {
     androidListModel,
     ipadListModel,
@@ -37,7 +37,7 @@ export default function Home({ data, locale }) {
   } = data.page.ArField;
 
   return (
-    <Layout headerLogo="/logo.svg" locale={locale}>
+    <Layout siteInfo={data.fragment.mainFields} locale={locale}>
       <AppSizeLayout>
         <MainText locale={locale} text={data.page.content} />
       </AppSizeLayout>
@@ -47,6 +47,13 @@ export default function Home({ data, locale }) {
         background={data.page.ArField.imgVideo.sourceUrl}
         right={true}
       />
+      <Element name="#ArLessons" className="element">
+        <UseExperience
+          locale={locale}
+          classes={data.classes.nodes}
+          video={data.videosAR.nodes[0]}
+        />
+      </Element>
       <App
         locale={locale}
         playLink={data.page.ArField.arLinkAndroidApp}
@@ -69,18 +76,16 @@ export default function Home({ data, locale }) {
 }
 
 export async function getStaticProps({ locale }) {
-  const pageUri = "/ar/";
-  const location =
-    locale === "EN"
-      ? "HEADER_MENU___EN"
-      : locale === "RU"
-      ? "HEADER_MENU___RU"
-      : "HEADER_MENU";
+  const pageUri =
+    locale === "EN" ? "/en/ar-en/" : locale === "RU" ? "/ar/" : "/uk/ar-uk/";
+  const fragmentUri =
+    locale === "EN" ? "/en/main/" : locale === "RU" ? "/" : "/uk/golovna";
 
   const { data } = await client.query({
     query: GET_AR_PAGE_CONTENT,
     variables: {
       pageUri,
+      fragmentUri,
     },
   });
 
@@ -89,6 +94,6 @@ export async function getStaticProps({ locale }) {
       data: data ? data : [],
       locale,
     },
-    revalidate: 1,
+    revalidate: 60,
   };
 }

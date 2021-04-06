@@ -4,6 +4,8 @@ import { device } from "../deviceSizes/deviceSizes";
 import { menu } from "../../Lsi/lsi";
 import Link from "next/link";
 import { ChangeLanguageSelector } from "../headers/changeLanguageSelector";
+import { actionClickModal } from "../../redux/actions/actions";
+import { useDispatch } from "react-redux";
 
 export const HeaderWrapper = styled.div`
   width: 80%;
@@ -51,7 +53,7 @@ const Menu = styled.div`
   span {
     padding: 10px;
     cursor: pointer;
-    
+
     &:hover {
       background: linear-gradient(180deg, #b0ffc6 0%, #00b4ff 100%);
       -webkit-background-clip: text;
@@ -73,6 +75,7 @@ export const Icon = styled.div`
   transform: rotate(${(props) => props.open});
 `;
 export const Logo = styled.div`
+  cursor: pointer;
   background: url(${(props) => props.src}) no-repeat left center;
   background-size: contain;
   width: 263px;
@@ -90,17 +93,20 @@ const Flex = styled.div`
   display: flex;
   align-items: center;
 `;
-const { mainPage, signUp, mainPageLink } = menu.headerMenu;
+const { mainPage, signUp } = menu.headerMenu;
 
 export const Header = ({ logo, locale, menuBurgerIsOpen }) => {
+  const dispatch = useDispatch();
   const zIndex = menuBurgerIsOpen ? "6" : "1";
   const position = menuBurgerIsOpen ? "fixed" : "initial";
   return (
     <HeaderWrapper zIndex={zIndex} position={position}>
       <HeaderContainer>
-        <Logo src={logo} />
+        <Link href='/'>
+          <Logo src={logo} />
+        </Link>
         <Menu>
-          <Link href={mainPageLink}>
+          <Link href='/AllLessons'>
             <span>
               <a>{mainPage[locale]}</a>
             </span>
@@ -108,7 +114,9 @@ export const Header = ({ logo, locale, menuBurgerIsOpen }) => {
           <ChangeLanguageSelector />
           <Flex>
             <Icon src="/star.svg" open="0" />
-            <span>{signUp[locale]}</span>
+            <span onClick={() => dispatch(actionClickModal(true))}>
+              {signUp[locale]}
+            </span>
           </Flex>
         </Menu>
         <Burger />

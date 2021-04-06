@@ -10,9 +10,11 @@ import { SlideToHandler } from "../../redux/actions/actions";
 import { useLazyQuery, useMutation } from "@apollo/client";
 import { GET_VR_CLASS } from "../../queries/get-vr-class";
 import StyledLoader from "../loader/loader";
+import { GET_AR_CLASS } from "../../queries/get-ar-class";
+import { useExperience } from "../../Lsi/lsi";
 
-const Content = styled.div``;
-const FirstBlock = styled.div`
+export const Content = styled.div``;
+export const FirstBlock = styled.div`
   display: flex;
   justify-content: space-between;
   padding-bottom: 40px;
@@ -26,7 +28,7 @@ const FirstBlock = styled.div`
     padding-bottom: 20px;
   }
 `;
-const ArVrContainer = styled.div`
+export const ArVrContainer = styled.div`
   display: flex;
   flex-wrap: wrap;
 
@@ -34,11 +36,11 @@ const ArVrContainer = styled.div`
     margin-bottom: 20px;
   }
 `;
-const KlassContainer = styled.div`
+export const KlassContainer = styled.div`
   display: flex;
   flex-wrap: wrap;
 `;
-const SecondBlock = styled.div`
+export const SecondBlock = styled.div`
   display: flex;
   flex-wrap: wrap;
   padding-bottom: 80px;
@@ -67,6 +69,35 @@ const ThemeContainer = styled.div`
   padding: 30px 30px 0 30px;
   height: min-content;
   width: 30%;
+  overflow-y: auto;
+  overflow-x: hidden;
+  max-height: 400px;
+
+  &::-webkit-scrollbar {
+    width: 5px;
+  }
+
+  &::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 5px grey;
+    border-radius: 10px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: radial-gradient(
+        96% 96% at 70.4% 31.2%,
+        #0089e3 0%,
+        rgba(0, 2, 16, 0) 100%
+      ),
+      #0069ae;
+    box-shadow: 0px 4px 80px #0089e3,
+      inset 0px 2px 10px rgba(255, 255, 255, 0.58),
+      inset 10px 16px 20px rgba(42, 246, 255, 0.95);
+    border-radius: 10px;
+  }
+
+  &::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(180deg, #b0ffc6 0%, #00b4ff 100%);
+  }
 
   @media screen and ${device.laptop} {
     width: 100%;
@@ -109,19 +140,16 @@ const Theme = styled.span`
     letter-spacing: 0.04em;
   }
 `;
-const Icon = styled.div`
+export const Icon = styled.div`
   display: ${(props) => props.display};
   width: 40px;
   height: 40px;
   background: url(${(props) => props.src}) center center no-repeat;
   background-size: contain;
   position: absolute;
-  right: -50px;
+  right: -25px;
   top: -8px;
 
-  @media screen and ${device.laptop} {
-    right: -25px;
-  }
   @media screen and ${device.tablet} {
     right: 0;
     top: 0;
@@ -129,21 +157,23 @@ const Icon = styled.div`
     height: 25px;
   }
 `;
-const Video = styled.div`
+export const Video = styled.div`
   width: 60%;
 
   @media screen and ${device.laptop} {
     width: 100%;
   }
 `;
-const LoaderContainer = styled.div`
+export const LoaderContainer = styled.div`
 display:flex;
 justify-content:center;
 align-items;center;
 padding:50px 0;
 `;
 
-export const UseExperience = ({ video, classes }) => {
+const { first, second } = useExperience;
+
+export const UseExperience = ({ video, classes, vr, locale }) => {
   const dispatch = useDispatch();
   const [state, setState] = useState(
     video.VideoField.flexibleContent[0].listVideoLesson
@@ -152,15 +182,24 @@ export const UseExperience = ({ video, classes }) => {
     video.VideoField.flexibleContent[0].nameLesson
   );
   const [currentClass, setCurrentClass] = useState(video?.databaseId);
-  let [getClass, { data, loading }] = useLazyQuery(GET_VR_CLASS, {
-    variables: { classId: currentClass },
-  });
+  let [getClass, { data, loading }] = useLazyQuery(
+    vr ? GET_VR_CLASS : GET_AR_CLASS,
+    {
+      variables: { classId: currentClass },
+    }
+  );
 
   useEffect(() => {
     if (data) {
-      setState(data.videoVR.VideoField.flexibleContent[0].listVideoLesson);
-      setCurrentLesson(data.videoVR.VideoField.flexibleContent[0].nameLesson);
-      setCurrentClass(data.videoVR.databaseId);
+      if (vr) {
+        setState(data.videoVR.VideoField.flexibleContent[0].listVideoLesson);
+        setCurrentLesson(data.videoVR.VideoField.flexibleContent[0].nameLesson);
+        setCurrentClass(data.videoVR.databaseId);
+      } else {
+        setState(data.videoAR.VideoField.flexibleContent[0].listVideoLesson);
+        setCurrentLesson(data.videoAR.VideoField.flexibleContent[0].nameLesson);
+        setCurrentClass(data.videoAR.databaseId);
+      }
     }
   }, [data]);
 
@@ -176,17 +215,31 @@ export const UseExperience = ({ video, classes }) => {
   };
   const showLessonHandler = (firstArr, mooreArr) => {
     if (mooreArr) {
-      return mooreArr.videoVR.VideoField.flexibleContent.map((item) => (
-        <ButtonHandler
-          opacity={item.nameLesson === currentLesson}
-          key={item.nameLesson}
-          icon={item?.iconLesson?.sourceUrl}
-          less={item.nameLesson}
-          onClick={() =>
-            HandleChangeLesson(item.nameLesson, item.listVideoLesson)
-          }
-        />
-      ));
+      if (vr) {
+        return mooreArr.videoVR.VideoField.flexibleContent.map((item) => (
+          <ButtonHandler
+            opacity={item.nameLesson === currentLesson}
+            key={item.nameLesson}
+            icon={item?.iconLesson?.sourceUrl}
+            less={item.nameLesson}
+            onClick={() =>
+              HandleChangeLesson(item.nameLesson, item.listVideoLesson)
+            }
+          />
+        ));
+      } else {
+        return mooreArr.videoAR.VideoField.flexibleContent.map((item) => (
+          <ButtonHandler
+            opacity={item.nameLesson === currentLesson}
+            key={item.nameLesson}
+            icon={item?.iconLesson?.sourceUrl}
+            less={item.nameLesson}
+            onClick={() =>
+              HandleChangeLesson(item.nameLesson, item.listVideoLesson)
+            }
+          />
+        ));
+      }
     }
 
     return firstArr.map((item) => (
@@ -204,15 +257,15 @@ export const UseExperience = ({ video, classes }) => {
   return (
     <AppSizeLayout>
       <TitleForComponent>
-        Наш опыт применения
-        <h1>VR</h1>
-        для обучения на уроках
+        {first[locale]}
+        <h1>{vr ? "VR" : "AR"}</h1>
+        {second[locale]}
       </TitleForComponent>
       <Content>
         <FirstBlock>
           <ArVrContainer>
-            <ButtonHandler type="AR" />
-            <ButtonHandler opacity={true} type="VR" />
+            <ButtonHandler opacity={!vr} type="AR" />
+            <ButtonHandler opacity={vr} type="VR" />
           </ArVrContainer>
           <KlassContainer>
             {classes.map((item) => (

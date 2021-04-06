@@ -6,6 +6,7 @@ const LinesContainer = styled.div`
     width: 100%;
     height: 300px;
     background-size: contain;
+    padding:unset;
     
      @media screen and ${device.laptopL} {
      height: 200px;
@@ -15,6 +16,7 @@ const LinesContainer = styled.div`
   }
    @media screen and ${device.tablet} {
      height: 100px;
+     padding:40px 0;
   }
   @media screen and ${device.mobileL} {
      height: 50px;

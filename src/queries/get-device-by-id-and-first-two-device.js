@@ -1,7 +1,9 @@
 import { gql } from "@apollo/client";
+import {siteInfoFragment} from "./fragments/site-info";
 
 export const GET_DEVICE_BY_ID_AND_FIRST_TWO_DEVICE = gql`
-  query($id: ID!, $language: LanguageCodeFilterEnum) {
+  query($id: ID!, $language: LanguageCodeFilterEnum, $fragmentUri: ID!) {
+   ${siteInfoFragment}
     post(id: $id, idType: DATABASE_ID) {
       ProductField {
         productPrice

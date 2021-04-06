@@ -1,3 +1,4 @@
+import Head from "next/head";
 import { PageFooter } from "../footer/footer";
 import { RouterLink } from "../routerLink/routerLink";
 import { BubbleBg } from "../bubbleBg/bubbleBg";
@@ -6,50 +7,46 @@ import { BlobBg } from "../blobBg/blobBg";
 import { Form } from "../send-form/sendForm";
 import { VideoModal } from "../modal/video-modal";
 import Menu from "../burgerMenu/menu";
-import { useRef } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { useOnClickOutside } from "../hooks/hooks";
-import { actionClickBurger } from "../../redux/actions/actions";
-import { Lines } from "../lines/lines";
-import {Partners} from "../partners/partners";
+import { useSelector } from "react-redux";
+import { Modal } from "../modal/modal";
 
 export const Layout = ({
   showLinks,
   children,
   routerLinkTitle,
-  headerLogo,
+  siteInfo,
   locale,
   partners,
 }) => {
-  const node = useRef();
-  const dispatch = useDispatch();
+  const { iconSite, siteDescription, logoSite } = siteInfo;
   const { menuBurgerIsOpen } = useSelector((state) => state.app);
-  useOnClickOutside(
-    node,
-    () => menuBurgerIsOpen === true && dispatch(actionClickBurger())
-  );
 
   return (
     <>
+      <Head>
+        <link rel="icon" sizes="10x10" href={iconSite?.sourceUrl} />
+        <meta name="description" content={siteDescription} />
+        <title>Треба добавити</title>
+      </Head>
       <VideoModal />
-      <div ref={node}>
+      <Modal />
+
         <Header
           menuBurgerIsOpen={menuBurgerIsOpen}
-          logo={headerLogo}
+          logo={logoSite?.sourceUrl}
           locale={locale}
         />
         <Menu
           menuBurgerIsOpen={menuBurgerIsOpen}
-          logo={headerLogo}
           locale={locale}
         />
-      </div>
+
       <BubbleBg />
       <BlobBg />
       {showLinks && <RouterLink routerLinkTitle={routerLinkTitle} />}
       {children}
-      <Form />
-      <PageFooter partners={partners} logo={headerLogo} locale={locale} />
+      <Form locale={locale} />
+      <PageFooter partners={partners} siteInfo={siteInfo} locale={locale} />
 
       <style jsx global>{`
         #__next {

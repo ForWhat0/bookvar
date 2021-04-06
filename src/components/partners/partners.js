@@ -30,23 +30,46 @@ const Container = styled.div`
   @media screen and ${device.tablet} {
     margin-bottom: 80px;
   }
+  
+   @media screen and ${device.mobileL} {
+    margin-bottom: 40px;
+  }
+
+  a {
+    margin: 0 40px 40px 0;
+
+    &:last-child {
+      margin: 0 0 40px 0;
+    }
+
+    @media screen and ${device.tablet} {
+      margin: 0 25px 25px 0;
+
+      &:last-child {
+        margin: 0 0 25px 0;
+      }
+    }
+    @media screen and ${device.mobileL} {
+      margin: 0 10px 10px 0;
+
+      &:last-child {
+        margin: 0 0 10px 0;
+      }
+    }
+  }
 `;
 
 const Img = styled.img`
   height: 60px;
   width: auto;
-  margin: 0 40px 40px 0;
+  opacity: 0.8;
 
-  &:last-child {
-    margin: unset;
+  &:hover {
+    opacity: 1;
   }
 
   @media screen and ${device.tablet} {
-    margin: 0 25px 25px 0;
-
-    &:last-child {
-      margin: unset;
-    }
+    height: 30px;
   }
 `;
 
@@ -56,10 +79,12 @@ export const Partners = ({ locale, partners }) => {
       <Title>{PartnersLsi[locale]}</Title>
       <Container>
         {partners.map((partner, index) => (
-          <Img
-            key={index + partner?.logo?.sourceUrl}
-            src={partner?.logo?.sourceUrl}
-          />
+          <a href={partner.url} target="_blank">
+            <Img
+              key={index + partner?.logo?.sourceUrl}
+              src={partner?.logo?.sourceUrl}
+            />
+          </a>
         ))}
       </Container>
     </AppSizeLayout>

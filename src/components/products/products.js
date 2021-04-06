@@ -151,8 +151,8 @@ export const Products = ({ products, locale, bottom }) => {
         {title[locale]}
       </TitleForComponent>
       <ContainerProduct>
-        {products.map((item, index) => (
-          <Link href="/Devices/[id]/" as={`/Devices/${item.databaseId}/`}>
+        {products.map((item, index) => item && (
+          <Link href="/Devices/[id]/" as={`/Devices/${item?.databaseId}/`}>
             <Product
               position={
                 (index + 1) % 2 === 0 && bottom ? "absolute" : "initial"

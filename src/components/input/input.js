@@ -37,6 +37,9 @@ const Input = styled.input.attrs((props) => ({
   @media screen and ${device.tablet} {
     font-size: 16px;
   }
+  @media screen and ${device.mobileL} {
+    font-size: 14px;
+  }
 `;
 export const Text = styled.label`
   font-weight: normal;
@@ -59,47 +62,14 @@ const Icon = styled.i`
   font-size: 20px;
   display: ${(props) => props.display};
 `;
-const File = styled.div`
-  position: absolute;
-  right: 10px;
-  cursor: pointer;
-  width: 20px;
-`;
-const FileInput = styled.input.attrs((props) => ({
-  type: "file",
-  onChange: props.FileOnChange,
-  value: props.FileValue,
-}))`
-  position: absolute;
-  display: ${(props) => props.display};
-  width: 20px;
-  z-index: 5;
-  opacity: 0;
-`;
-
-const FileIcon = styled.i`
-  z-index: 1;
-  font-size: 20px;
-  cursor: pointer;
-  color: ${(props) => props.color};
-  display: ${(props) => props.display};
-
-  ${File}:hover & {
-    color: rgb(0, 174, 239);
-  }
-`;
 
 export const InputStyled = ({
-  borderColor,
   warning,
   maxlength,
   text,
   width,
   onChange,
   value,
-  FileOnChange,
-  FileValue,
-  type,
 }) => {
   const [warningText, setWarningText] = useState("");
 
@@ -125,21 +95,6 @@ export const InputStyled = ({
             maxLength={maxlength || 20}
             onChange={onChange}
           />
-          <File>
-            <FileInput
-              display={type === "file" ? "block" : "none"}
-              FileOnChange={FileOnChange}
-              FileValue={FileValue}
-            />
-            <FileIcon
-              display={
-                warningText.length ? "none" : type === "file" ? "block" : "none"
-              }
-              className="fa fa-file"
-              color={FileValue ? "rgb(0,174,239)" : "unset"}
-              aria-hidden="true"
-            />
-          </File>
         </InputContainer>
       </div>
     </InputField>

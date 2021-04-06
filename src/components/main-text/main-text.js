@@ -1,6 +1,9 @@
 import styled from "styled-components";
 import { device } from "../deviceSizes/deviceSizes";
-import {buttonText} from "../../Lsi/lsi";
+import { buttonText } from "../../Lsi/lsi";
+import Link from "next/link";
+import { useDispatch } from "react-redux";
+import { actionClickModal } from "../../redux/actions/actions";
 
 const Content = styled.div`
  margin-top:40px;
@@ -188,9 +191,10 @@ transform:scale(1.1)
   
 `;
 
-const { learnMore } = buttonText
+const { learnMore, getLessons, order } = buttonText;
 
-export const MainText = ({ text, textCenter, locale }) => {
+export const MainText = ({ main, vrar, text, textCenter, locale }) => {
+  const dispatch = useDispatch();
   const textAlign = textCenter ? "center" : "left";
   const position = textCenter ? "absolute" : "initial";
   const width = textCenter ? "500px" : "100%";
@@ -202,10 +206,24 @@ export const MainText = ({ text, textCenter, locale }) => {
         width={width}
         dangerouslySetInnerHTML={{ __html: text }}
       />
-      <ButtonContainer  textAlign={textAlign}>
-        <button>
-          <span>{learnMore[locale]}</span>
-        </button>
+      <ButtonContainer textAlign={textAlign}>
+        {main ? (
+          <Link href="/AllLessons">
+            <button>
+              <span>{learnMore[locale]}</span>
+            </button>
+          </Link>
+        ) : (
+          <button
+            onClick={()=>
+              vrar
+                ? dispatch(actionClickModal(true))
+                : dispatch(actionClickModal("get"))
+            }
+          >
+            <span>{vrar ? order[locale] : getLessons[locale]}</span>
+          </button>
+        )}
       </ButtonContainer>
     </>
   );

@@ -7,7 +7,7 @@ import {
   clickVisuallyImpairedModeOff,
   clickOnOffVisuallyImpairedModeWhiteTheme,
   changeFontSizeNormal,
-  scrollToElement, clickVideoModal, slideToRedux,
+  scrollToElement, clickVideoModal, slideToRedux, clickModal,
 } from "../types/types";
 
 const initialState = {
@@ -19,7 +19,8 @@ const initialState = {
   images: true,
   visuallyImpairedModeWhiteTheme: true,
   scrollToElement: null,
-  swiperSlideTo: 'null'
+  swiperSlideTo: 'null',
+  modal:false
 };
 
 export const appReducer = (state = initialState, action) => {
@@ -28,6 +29,12 @@ export const appReducer = (state = initialState, action) => {
       return {
         ...state,
         swiperSlideTo: action.payload,
+      };
+    }
+    case clickModal: {
+      return {
+        ...state,
+        modal: action.payload,
       };
     }
     case scrollToElement: {

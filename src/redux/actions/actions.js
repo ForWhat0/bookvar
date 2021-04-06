@@ -12,6 +12,7 @@ import {
   changeFontSizeNormal,
   inputNewsByTitle,
   getNewsByTitle,
+  clickModal,
   scrollToElement, slideToRedux,
 } from "../types/types";
 import GET_MOORE_NEWS from "../../queries/get_moore_news";
@@ -61,6 +62,14 @@ export function actionClickBurger() {
   return (dispatch) => {
     dispatch({
       type: clickBurger,
+    });
+  };
+}
+export function actionClickModal(obj) {
+  return (dispatch) => {
+    dispatch({
+      type: clickModal,
+      payload: obj,
     });
   };
 }

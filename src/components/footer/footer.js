@@ -1,12 +1,11 @@
 import styled from "styled-components";
 import { Icon } from "../icon/icon";
-import { Header } from "../header/header";
 import { AppSizeLayout } from "../layouts/appSizeLayout";
 import { Lines } from "../lines/lines";
 import { FooterMenu } from "../header/footer-menu";
 import { footerInfo } from "../../Lsi/lsi";
 import { device } from "../deviceSizes/deviceSizes";
-import {Partners} from "../partners/partners";
+import { Partners } from "../partners/partners";
 
 const Contacts = styled.div`
   display: grid;
@@ -182,28 +181,37 @@ const Develop = styled.div`
   }
 `;
 
-const { address, schedule, developBy } = footerInfo;
+const { addressLsi, schedule, developBy } = footerInfo;
 
-export const PageFooter = ({ logo, locale, partners }) => {
+export const PageFooter = ({ siteInfo, locale, partners }) => {
+  const {
+    address,
+    logoSite,
+    gmail,
+    linkFacebook,
+    linkInsta,
+    linkYoutube,
+    phone1,
+    phone2,
+    timeWork,
+  } = siteInfo;
   return (
     <>
       <Lines />
 
-      {partners && (
-            <Partners partners={partners} locale={locale}/>
-      )}
+      {partners && <Partners partners={partners} locale={locale} />}
 
-      <FooterMenu logo={logo} locale={locale} />
+      <FooterMenu logo={ logoSite?.sourceUrl } locale={locale} />
       <AppSizeLayout>
         <Contacts>
           <FirstBlock>
             <FirstContent>
-              <span>{address[locale]} Киев, пр. Победы, 36</span>
-              <span>{schedule[locale]} с 10:00 до 19:00</span>
+              <span>{addressLsi[locale]} {address}</span>
+              <span>{schedule[locale]} {timeWork}</span>
               <div>
                 <Icon src="/gmail-icon.svg" />
-                <a href="mailto:rzozyla@gmail.com">
-                  <span>rzozyla@gmail.com</span>
+                <a href={`mailto:?subject=${gmail}`} target="_blank">
+                  <span>{gmail}</span>
                 </a>
               </div>
             </FirstContent>
@@ -211,18 +219,18 @@ export const PageFooter = ({ logo, locale, partners }) => {
           <SecondBlock>
             <Icon src="/phone-icon.svg" />
             <SecondContent>
-              <span>+380 961 77 45 74</span>
-              <span>+380 961 77 45 74</span>
+              <span>{phone1}</span>
+              <span>{phone2}</span>
             </SecondContent>
           </SecondBlock>
           <ThreeBlock>
-            <a href="#" target="_blank">
+            <a href={linkInsta} target="_blank">
               <Icon src="/instagram-icon.svg" />
             </a>
-            <a href="#" target="_blank">
+            <a href={linkYoutube} target="_blank">
               <Icon src="/youtube-icon.svg" />
             </a>
-            <a href="#" target="_blank">
+            <a href={linkFacebook} target="_blank">
               <Icon src="/facebook-icon.svg" />
             </a>
           </ThreeBlock>

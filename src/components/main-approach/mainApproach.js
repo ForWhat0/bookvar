@@ -5,6 +5,7 @@ import { TitleForComponent } from "../titleForComponent/title";
 import { device } from "../deviceSizes/deviceSizes";
 import { AppSizeLayout } from "../layouts/appSizeLayout";
 import {buttonText, mainApproach} from "../../Lsi/lsi";
+import Link from "next/link";
 
 const Container = styled.div`
   display: flex;
@@ -106,14 +107,16 @@ const IconContainer = styled.div`
 `;
 export const ButtonContainer = styled.div`
   margin-top: 30px;
-  margin-left: 22%;
-  width: 44%;
-
-  @media screen and ${device.tablet} {
-    margin-top: unset;
-  }
-  @media screen and ${device.mobileL} {
-    margin-left: 26%;
+  width:100%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  
+  a {
+  width:100%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
   }
 `;
 const ButtonContainerr = styled.div`
@@ -181,7 +184,9 @@ export const MainApproach = ({ locale, textAr, textVr, titleAr, titleVr }) => {
             {textVr.length > 195 ? `${textVr.substring(0, 195)}...` : textVr}
           </p>
           <ButtonContainerr>
-            <button>{learnMore[locale]}</button>
+            <Link href='/Vr'>
+              <button>{learnMore[locale]}</button>
+            </Link>
           </ButtonContainerr>
 
           <IconContainer right="-70px" top="-20px">
@@ -202,7 +207,9 @@ export const MainApproach = ({ locale, textAr, textVr, titleAr, titleVr }) => {
             {textAr.length > 195 ? `${textAr.substring(0, 195)}...` : textAr}
           </p>
           <ButtonContainerr>
-            <button>{learnMore[locale]}</button>
+            <Link href='/Ar'>
+              <button>{learnMore[locale]}</button>
+            </Link>
           </ButtonContainerr>
 
           <IconContainer right="-70px" top="-20px">

@@ -4,6 +4,8 @@ import { device } from "../deviceSizes/deviceSizes";
 import { Logo } from "./header";
 import { menu } from "../../Lsi/lsi";
 import Link from "next/link";
+import { useDispatch } from "react-redux";
+import { actionClickModal } from "../../redux/actions/actions";
 
 const HeaderContainer = styled.div`
   display: flex;
@@ -43,7 +45,7 @@ const HeaderContainer = styled.div`
     }
 
     @media screen and ${device.laptop} {
-      padding-top:10px;
+      padding-top: 10px;
       justify-content: center;
       flex-direction: column;
       align-items: center;
@@ -71,18 +73,27 @@ const HeaderContainer = styled.div`
   }
 `;
 export const FooterMenu = ({ logo, locale }) => {
+  const dispatch = useDispatch();
   return (
     <AppSizeLayout>
       <HeaderContainer>
-        <Logo src={logo} />
+        <Link href="/">
+          <Logo src={logo} />
+        </Link>
         <ul>
-          {menu.footerMenu.map((item, index) => (
-            <Link href={item.link}>
-              <li key={item.link + index}>
+          {menu.footerMenu.map((item, index) =>
+            item.link === '#' ? (
+              <li onClick={() => dispatch(actionClickModal(true))}>
                 <a>{item.name[locale]}</a>
               </li>
-            </Link>
-          ))}
+            ) : (
+              <Link href={item.link}>
+                <li key={item.link + index}>
+                  <a>{item.name[locale]}</a>
+                </li>
+              </Link>
+            )
+          )}
         </ul>
       </HeaderContainer>
     </AppSizeLayout>

@@ -5,11 +5,22 @@ export const app = {
     RU: "Ru",
   },
 };
+
 export const buttonText = {
   learnMore:{
     UK: "Дізнатись детальніше",
     EN: "Learn more",
     RU: "Узнать подробнее",
+  },
+  getLessons: {
+    UK: "Отримати уроки",
+    EN: "Получить уроки",
+    RU: "Получить уроки",
+  },
+  order: {
+    UK: "Замовити",
+    EN: "To order",
+    RU: "Заказать",
   }
 }
 export const VrText={
@@ -49,7 +60,19 @@ export const lessonsInVr = {
     EN: "(virtual reality)",
     RU: "(виртуальной реальности)",
   },
+  buttonText: {
+    UK: "Дивитися всі уроки",
+    EN: "Watch all lessons",
+    RU: "Смотреть все уроки",
+  }
 };
+export const Product = {
+  buttonText: {
+    UK: "Перейти в магазин",
+    EN: "Go to the store",
+    RU: "Перейти в магазин",
+  }
+}
 export const PartnersLsi = {
   UK: "Наші партнери",
   EN: "Our partners",
@@ -66,6 +89,11 @@ export const lessonsInAr = {
     EN: "(augmented reality)",
     RU: "(дополненной реальности)",
   },
+  buttonText: {
+    UK: "Дивитися всі уроки",
+    EN: "Watch all lessons",
+    RU: "Смотреть все уроки",
+  }
 };
 export const BookVarApp = {
   firstTitle: {
@@ -229,7 +257,7 @@ export const DevicesText = {
   },
 };
 export const footerInfo = {
-  address: {
+  addressLsi: {
     UK: "Адреса :",
     EN: "The address :",
     RU: "Адрес :",
@@ -245,6 +273,18 @@ export const footerInfo = {
     RU: "Компания разработчик:",
   },
 };
+export const FooterForm = {
+  titleLsi: {
+    UK: "ЗАЛИШИТИ ЗАЯВКУ",
+    EN: "LEAVE AN APPLICATION",
+    RU: "ОСТАВЬТЕ ЗАЯВКУ",
+  },
+  subTitle: {
+    UK: "Ми знайдемо правильне рішення для вашої школи",
+    EN: "We will find the right solution for your school",
+    RU: "Мы найдем подходящее решение для Вашей школы",
+  }
+}
 export const menu = {
   headerMenu: {
     mainPage: {
@@ -252,7 +292,6 @@ export const menu = {
       EN: "School lessons in VR and AR",
       RU: "Школьные уроки в VR и AR",
     },
-    mainPageLink: "/",
     signUp: {
       UK: "Записатися на демонстрацію",
       EN: "Sign up for a demonstration",
@@ -282,7 +321,7 @@ export const menu = {
         EN: "All lessons in VR and AR",
         RU: "Все уроки в VR и AR",
       },
-      link: "/LessonsVrAr",
+      link: "/AllLessons",
     },
     {
       name: {
@@ -556,6 +595,18 @@ export const events = {
     RU: "Свернуть",
   },
 };
+export const useExperience = {
+  first:{
+    UK: "Наш досвід застосування",
+    EN: "Our application experience",
+    RU: "Наш опыт применения",
+  },
+  second:{
+    UK: "для навчання на уроках",
+    EN: "for teaching in the classroom",
+    RU: "для обучения на уроках ",
+  }
+}
 export const services = {
   learnMore: {
     UK: "Дізнатися більше",
@@ -953,40 +1004,30 @@ export const LogInLsi = {
   },
 };
 export const ModalLsi = {
-  titleEvent: {
-    UK: "Реєстрація на захід",
-    EN: "Registration for the event",
-    RU: "Регистрация на мероприятие",
+  title :{
+    UK: "Заява",
+    EN: "Statement",
+    RU: "Заява",
   },
-  subTitleEvent: {
-    UK: "Для реєстрації введіть Ваші дані",
-    EN: "To register, enter your details",
-    RU: "Для регистрации введите Ваши данныемя",
+  subTitleSignUp: {
+    UK: "Щоб записатися на демонстрацію, заповніть форму",
+    EN: "To sign up for a demo, fill out the form",
+    RU: "Чтобы записаться на демонстрацию, заполните форму",
   },
-  titleService: {
-    UK: "Запит на послугу",
-    EN: "Service request",
-    RU: "Запрос на услугу",
+  subTitleGet: {
+    UK: "Щоб отримати уроки в VR і AR, заповніть форму",
+    EN: "To get lessons in VR and AR, fill out the form",
+    RU: "Чтобы получить уроки в VR и AR, заполните форму",
   },
-  subTitleService: {
-    UK: "Для запиту введіть Ваші дані",
-    EN: "To request, enter your details",
-    RU: "Для запроса введите Ваши данныемя",
-  },
-  name: {
+  nameLsi: {
     UK: "Ім'я",
     EN: "First name",
     RU: "Имя",
   },
-  lastName: {
-    UK: "Прізвище",
-    EN: "Last name",
-    RU: "Фамилия",
-  },
   phoneNumber: {
-    UK: "Телефон:",
-    EN: "Phone:",
-    RU: "Телефон:",
+    UK: "Телефон",
+    EN: "Phone",
+    RU: "Телефон",
   },
   thanks: {
     UK: "Дякуємо!",
@@ -994,9 +1035,14 @@ export const ModalLsi = {
     RU: "Спасибо!",
   },
   sent: {
-    UK: "Ваш запит прийнято.",
-    EN: "Your request has been accepted.",
-    RU: "Ваш запрос принят.",
+    UK: "Ваша заявка прийнята!",
+    EN: "Your application is accepted!",
+    RU: "Ваша заявка принята!",
+  },
+  sentText: {
+    UK: "Наш менеджер зв'яжеться з Вами протягом 10 хвилин.",
+    EN: "Our manager will contact you within 10 minutes.",
+    RU: "Наш менеджер свяжется с Вами в течении 10 минут.",
   },
   send: {
     UK: "Відправити",
@@ -1017,12 +1063,7 @@ export const ModalLsi = {
     UK: "Введіть коректні дані",
     EN: "Enter the correct data",
     RU: "Введите корректные данные",
-  },
-  error: {
-    UK: "помилка",
-    EN: "error",
-    RU: "ошибка",
-  },
+  }
 };
 export const linkTitleLsi = {
   home: {

@@ -1,7 +1,9 @@
 import { gql } from "@apollo/client";
+import { siteInfoFragment } from "./fragments/site-info";
 
 export const GET_ALL_DEVICES = gql`
-  query GET_ALL_DEVICES($size: Int, $offset: Int, $language: LanguageCodeFilterEnum) {
+  query GET_ALL_DEVICES($size: Int, $offset: Int, $language: LanguageCodeFilterEnum, $fragmentUri: ID!) {
+   ${siteInfoFragment}
   posts(where: {language: $language, offsetPagination: {size: $size, offset: $offset}}) {
     nodes {
       title
