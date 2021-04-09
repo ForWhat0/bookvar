@@ -5,18 +5,51 @@ import Link from "next/link";
 import { device } from "../deviceSizes/deviceSizes";
 
 const Global = styled.div`
-  margin: 40px 0 40px 10%;
+  margin: 87px 0 40px 10%;
+  display: flex;
+  letter-spacing: 0.04em;
+  font-weight: 500;
   @media screen and ${device.tablet} {
-    margin: 40px 0 40px 3.2%;
+    margin: 23px 0 20px 3.2%;
   }
 `;
 const Home = styled.span`
-  color: #bdbdbd;
   cursor: pointer;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  line-height: 20px;
+  font-size: 16px;
+  @media screen and ${device.tablet} {
+    font-size: 12px;
+    line-height: 15px;
+  }
 `;
-const CurrentLink = styled.span``;
-const NextIcon = styled.i`
-  margin: 0 20px 0 20px;
+const CurrentLink = styled.span`
+  font-size: 18px;
+  line-height: 22px;
+  font-weight: bold;
+  background: linear-gradient(180deg, #b0ffc6 0%, #00b4ff 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+
+  @media screen and ${device.tablet} {
+    font-size: 13px;
+    line-height: 16px;
+  }
+`;
+const NextIcon = styled.div`
+  margin: 0 10px 0 10px;
+  width: 15px;
+  height: 15px;
+  background: url(/star.svg) no-repeat center center;
+  background-size: contain;
+
+  @media screen and ${device.tablet} {
+    margin: 0 10px 0 18px;
+    width: 10px;
+    height: 10px;
+  }
 `;
 
 export const RouterLink = ({ routerLinkTitle }) => {
@@ -32,7 +65,7 @@ export const RouterLink = ({ routerLinkTitle }) => {
         <a>
           <Home>
             {linkTitleLsi.home[locale]}
-            <NextIcon className="fa fa-play" aria-hidden="true" />
+            <NextIcon />
           </Home>
         </a>
       </Link>
@@ -42,16 +75,14 @@ export const RouterLink = ({ routerLinkTitle }) => {
           <a>
             <Home>
               {currentLinkTitle}
-              <NextIcon className="fa fa-play" aria-hidden="true" />
+              <NextIcon />
             </Home>
           </a>
         </Link>
       )}
 
       <CurrentLink>
-        {routerLinkTitle
-          ? `${routerLinkTitle.substring(0, 27)}...`
-          : currentLinkTitle}
+        {routerLinkTitle ? routerLinkTitle : currentLinkTitle}
       </CurrentLink>
     </Global>
   );

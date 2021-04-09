@@ -1,15 +1,15 @@
 import gql from "graphql-tag";
 import { siteInfoFragment } from "./fragments/site-info";
 export const GET_VR_PAGE_CONTENT = gql`
-  query GET_VR_PAGE_CONTENT($pageUri: ID!, $fragmentUri: ID!)  {
+  query GET_VR_PAGE_CONTENT($pageUri: ID!, $fragmentUri: ID!, $language: LanguageCodeFilterEnum)  {
    ${siteInfoFragment}
-    classes: videosVR(where: { orderby: { field: TITLE, order: ASC } }) {
+    classes: videosVR(where: {language: $language, orderby: { field: TITLE, order: ASC } }) {
       nodes {
         title
         databaseId
       }
     }
-    videosVR(where: { orderby: { field: TITLE, order: ASC } }, first: 1) {
+    videosVR(where: {language: $language, orderby: { field: TITLE, order: ASC } }, first: 1) {
       nodes {
         databaseId
         VideoField {

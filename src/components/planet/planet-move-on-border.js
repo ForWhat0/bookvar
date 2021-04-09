@@ -29,14 +29,7 @@ const formMoveContainerTopPosition = (size) => keyframes`
   100% { left: calc(3% - ${size}px); top: calc(15% - ${size}px); transform: translate(-0%, 0%); }
 `;
 
-const backgroundAnimation = (size) => keyframes`
-  0%{
-    background-position-x:0;
-  }
-  100%{
-    background-position-x:-${size}px;
-  }
-`;
+
 
 const WrapRotate = keyframes`
   0%{
@@ -100,8 +93,6 @@ const PlanetWrap = styled.div`
 `;
 
 const PlanetBackground = styled.div`
-  animation: ${(props) => backgroundAnimation(props.doubleSize)} 25s infinite
-    linear;
   background: radial-gradient(
       96% 96% at 70.4% 31.2%,
       #0089e3 0%,
@@ -116,8 +107,6 @@ const PlanetBackground = styled.div`
   border-radius: 50%;
 
   @media screen and ${device.tablet} {
-    animation: ${(props) => backgroundAnimation(props.mobileDoubleSize)} 25s
-      infinite linear;
     width: ${(props) => props.mobileSize}px;
     height: ${(props) => props.mobileSize}px;
   }

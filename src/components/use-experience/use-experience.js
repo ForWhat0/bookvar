@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { TitleForComponent } from "../titleForComponent/title";
 import { AppSizeLayout } from "../layouts/appSizeLayout";
 import { ButtonHandler } from "./button-handler";
-import { HandlerlideTo, slideTo, SwiperComponent } from "../swiper/swiper";
+import { SwiperComponent } from "../swiper/swiper";
 import { device } from "../deviceSizes/deviceSizes";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";

@@ -37,7 +37,11 @@ export default function Home({ data, locale }) {
   } = data.page.ArField;
 
   return (
-    <Layout siteInfo={data.fragment.mainFields} locale={locale}>
+    <Layout
+      showLinks={true}
+      siteInfo={data.fragment.mainFields}
+      locale={locale}
+    >
       <AppSizeLayout>
         <MainText locale={locale} text={data.page.content} />
       </AppSizeLayout>
@@ -86,6 +90,7 @@ export async function getStaticProps({ locale }) {
     variables: {
       pageUri,
       fragmentUri,
+      language: locale,
     },
   });
 

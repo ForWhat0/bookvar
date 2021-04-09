@@ -65,7 +65,7 @@ const TextAlign = styled.div`
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     font-weight: bold;
-    font-size: 54px;
+    font-size: 40px;
     padding-top: 10px;
 
     @media screen and ${device.tablet} {
@@ -80,7 +80,7 @@ const TextAlign = styled.div`
 
   span {
     font-weight: 500;
-    font-size: 30px;
+    font-size: 20px;
     line-height: 37px;
     color: rgba(255, 255, 255, 0.8);
     padding-top: 20px;
@@ -99,7 +99,6 @@ const TextAlign = styled.div`
 const { titleLsi, subTitle } = FooterForm
 
 const {
-    title,
     nameLsi,
     phoneNumber,
     emptyFields,

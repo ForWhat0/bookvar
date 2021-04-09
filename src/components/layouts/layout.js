@@ -16,9 +16,10 @@ export const Layout = ({
   routerLinkTitle,
   siteInfo,
   locale,
+  hideForm,
   partners,
 }) => {
-  const { iconSite, siteDescription, logoSite } = siteInfo;
+  const { iconSite, siteDescription, titleSite, logoSite } = siteInfo;
   const { menuBurgerIsOpen } = useSelector((state) => state.app);
 
   return (
@@ -26,26 +27,23 @@ export const Layout = ({
       <Head>
         <link rel="icon" sizes="10x10" href={iconSite?.sourceUrl} />
         <meta name="description" content={siteDescription} />
-        <title>Треба добавити</title>
+        <title>{titleSite}</title>
       </Head>
       <VideoModal />
       <Modal />
 
-        <Header
-          menuBurgerIsOpen={menuBurgerIsOpen}
-          logo={logoSite?.sourceUrl}
-          locale={locale}
-        />
-        <Menu
-          menuBurgerIsOpen={menuBurgerIsOpen}
-          locale={locale}
-        />
+      <Header
+        menuBurgerIsOpen={menuBurgerIsOpen}
+        logo={logoSite?.sourceUrl}
+        locale={locale}
+      />
+      <Menu menuBurgerIsOpen={menuBurgerIsOpen} locale={locale} />
 
       <BubbleBg />
       <BlobBg />
       {showLinks && <RouterLink routerLinkTitle={routerLinkTitle} />}
       {children}
-      <Form locale={locale} />
+      {!hideForm && <Form locale={locale} />}
       <PageFooter partners={partners} siteInfo={siteInfo} locale={locale} />
 
       <style jsx global>{`

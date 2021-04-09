@@ -11,12 +11,8 @@ const Content = styled.div`
   grid-template-areas:
     "title picture"
     "text picture";
-  grid-template-columns 1fr 0.5fr;
+  grid-template-columns 0.5fr 0.5fr;
   text-align:${(props) => props.textAlign};
-
- @media screen and (max-width:1800px) {
-       grid-template-columns 1fr 0.3fr;
-  }
  
  @media screen and ${device.laptop} {
        grid-template-columns 1fr 0.5fr;
@@ -34,6 +30,7 @@ const Content = styled.div`
        align-items: flex-end;
    @media screen and ${device.tablet} {
      text-align:center;
+      align-items: unset;
   }
   }
   
@@ -45,8 +42,8 @@ const Content = styled.div`
   padding: 0;
     margin: 0;   
     font-weight: bold;
-    font-size: 54px;
-    line-height: 66px;
+    font-size: 40px;
+    line-height: 45px;
     color: #ffffff;
     display: inline;
     @media screen and ${device.laptop} {
@@ -85,7 +82,7 @@ line-height: 24px;
    p {
   grid-area: text;
   font-weight: 500;
-  font-size: 25px;
+  font-size: 20px;
   line-height: 30px;
   color: #ffffff;
   padding-top: 50px;
@@ -99,17 +96,12 @@ line-height: 24px;
   }
   
    figure {
+   width:100%;
    position:relative;
       padding: 0;
     margin: 0;
    grid-area: picture;
-   width:50%;
-   height:50%;
-   
-    @media screen and (max-width:2000px) {
-        width:100%;
-   height:100%;
-  }
+   width:100%;
    
     @media screen and ${device.tablet} {
      padding-top:20px;
@@ -119,22 +111,42 @@ line-height: 24px;
 
   }
   figure img {
-    @media screen and (max-width:1800px) {
-   position: ${(props) => props.position};
-  width: ${(props) => props.width}!important;
-  max-width:unset;
-  left:0;
-  top:-20%;
+       position: absolute;
+    max-width: unset!important;
+    width: 55%!important;
+    top: -100%;
+    left:0;
+    
+    @media screen and (max-width: 2320px) {
+        width: 80%!important;
+    }
+    @media screen and (max-width: 1900px) {
+           width: 100%!important;
+            top: -80%;
+
+    }
+     @media screen and (max-width: 1700px) {
+           width: 110%!important;
+            top: -60%;
+
+    }
+    @media screen and ${device.laptopL} {
+    top: -40%;
+    width:120%!important;
   }
-   @media screen and ${device.tablet} {
-       top:-20%;
-        position:initial;
-  width:100%!important;
-  max-width:100%!important;
-  left:unset;
-  top:unset;
+     @media screen and (max-width: 1200px) {
+           width: 130%!important;
+            top: 0;
+
+    }
+      @media screen and ${device.laptop} {
+   width: 150%!important;
   }
+  @media screen and ${device.tablet} {
+   width: 100%!important;
+   position:initial;
   }
+   }
 `;
 
 const ButtonContainer = styled.div`
@@ -215,7 +227,7 @@ export const MainText = ({ main, vrar, text, textCenter, locale }) => {
           </Link>
         ) : (
           <button
-            onClick={()=>
+            onClick={() =>
               vrar
                 ? dispatch(actionClickModal(true))
                 : dispatch(actionClickModal("get"))

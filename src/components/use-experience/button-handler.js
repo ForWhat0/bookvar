@@ -8,7 +8,7 @@ const Container = styled.button`
   border: unset;
   border-radius: 20px;
   font-weight: 500;
-  font-size: 25px;
+  font-size: 20px;
   line-height: 30px;
   text-align: center;
   letter-spacing: 0.04em;

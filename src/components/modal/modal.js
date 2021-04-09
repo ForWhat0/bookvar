@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
-import { CloseModalButton, FormContainer, StyledModal } from "./modalStyled";
+import { CloseModalButton, FormContainer, StyledModal,Close } from "./modalStyled";
 import { InputStyled } from "../input/input";
 import { LoaderContainer } from "../leftComment/leftCommentStyLedComponents";
 import { useEffect, useState } from "react";
@@ -112,7 +112,7 @@ export const Modal = () => {
       <StyledModal>
         <FormContainer>
           <form>
-            <h2 onClick={() => dispatch(actionClickModal(false))}>X</h2>
+            <Close  onClick={() => dispatch(actionClickModal(false))}/>
             <Blob modal={true} />
             <Blob modal={true} different={true} />
             {!done ? (

@@ -10,6 +10,7 @@ export const siteInfoFragment = `
       address
       timeWork
       siteDescription
+      titleSite
       logoSite {
         sourceUrl
       }

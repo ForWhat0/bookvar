@@ -7,7 +7,11 @@ import { AllLessonsVideos } from "../../src/components/all-lessons/all-lessons";
 
 export default function AllLessons({ data, locale }) {
   return (
-    <Layout siteInfo={data.fragment.mainFields} locale={locale}>
+    <Layout
+      showLinks={true}
+      siteInfo={data.fragment.mainFields}
+      locale={locale}
+    >
       <AppSizeLayout>
         <MainText vrar={true} locale={locale} text={data.page.content} />
       </AppSizeLayout>
@@ -34,6 +38,7 @@ export async function getStaticProps({ locale }) {
     query: GET_ALL_LESSONS_CONTENT,
     variables: {
       pageUri,
+      language: locale,
       fragmentUri,
     },
   });

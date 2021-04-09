@@ -105,7 +105,7 @@ export const StepTitle = styled.span`
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   font-weight: bold;
-  font-size: 45px;
+  font-size: 40px;
   padding-top: 10px;
 
   @media screen and ${device.laptop} {
@@ -118,6 +118,15 @@ export const StepTitle = styled.span`
   @media screen and ${device.mobileL} {
     font-size: 20px;
   }
+`;
+export const IconBackground = styled.div`
+  width: 50%;
+  height: 50%;
+  position: absolute;
+  background-image: url("${(props) => props.background}");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
 `;
 export const Text = styled.div`
   margin-top: 10px;

@@ -5,11 +5,19 @@ import { device } from "../deviceSizes/deviceSizes";
 
 const Container = styled.div`
   display: flex;
+  justify-content: space-between;
   position: relative;
-  width: 100%;
+  width: 80%;
+  margin-left: 10%;
   height: 700px;
   flex-direction: ${(props) => props.rowAlign};
   padding: 180px 0 80px 0;
+
+  @media screen and (max-width: 1800px) {
+    width: 100%;
+    margin-left: unset;
+    justify-content: unset;
+  }
 
   @media screen and (max-width: 950px) {
     height: 400px;
@@ -31,7 +39,7 @@ const Text = styled.div`
 
   @media screen and ${device.tablet} {
     width: 100%;
-    margin-left:unset;
+    margin-left: unset;
     justify-content: center;
   }
 
@@ -49,7 +57,7 @@ const Text = styled.div`
     @media screen and ${device.tablet} {
       margin-left: unset;
       font-size: 24px;
-line-height: 24px;
+      line-height: 24px;
       text-align: center;
       padding-bottom: 40px;
     }
@@ -71,7 +79,7 @@ const BlobContainer = styled.div`
   }
 `;
 const Blob = styled.div`
-  position: absolute;
+  position: initial;
   left: ${(props) => props.left};
   right: ${(props) => props.right};
   width: 100%;
@@ -101,14 +109,17 @@ const Blob = styled.div`
     );
   }
 
+  @media screen and (max-width: 1800px) {
+    position: absolute;
+  }
+
   @media screen and ${device.tablet} {
     position: initial;
   }
 `;
 
 const Background = styled.div`
-  background: url(${(props) => props.background});
-    center center no-repeat;
+  background: url(${(props) => props.background}) center center no-repeat;
   background-size: cover;
   width: 100%;
   height: 100%;

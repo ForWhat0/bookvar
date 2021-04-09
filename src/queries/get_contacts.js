@@ -1,37 +1,9 @@
 import { gql } from "@apollo/client";
+import { siteInfoFragment } from "./fragments/site-info";
 
 const GET_CONTACTS = gql`
-  query($location: MenuLocationEnum, $contactsUri: ID!) {
-    menuItems(where: { location: $location }) {
-      nodes {
-        key: id
-        parentId
-        path
-        title: label
-        url
-      }
-    }
-
-    contacts: page(id: $contactsUri, idType: URI) {
-      databaseId
-      contactsFields {
-        adress
-        facebookLink
-        instagramLink
-        gmail
-        iconSite {
-          sourceUrl
-        }
-        titleSite
-        descrSite
-        telegramLink
-        phoneNumber
-        mapsLink
-        mapsImg {
-          sourceUrl
-        }
-      }
-    }
+  query($fragmentUri: ID!) {
+     ${siteInfoFragment}
   }
 `;
 

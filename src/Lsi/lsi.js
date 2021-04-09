@@ -7,7 +7,7 @@ export const app = {
 };
 
 export const buttonText = {
-  learnMore:{
+  learnMore: {
     UK: "Дізнатись детальніше",
     EN: "Learn more",
     RU: "Узнать подробнее",
@@ -21,9 +21,9 @@ export const buttonText = {
     UK: "Замовити",
     EN: "To order",
     RU: "Заказать",
-  }
-}
-export const VrText={
+  },
+};
+export const VrText = {
   benefitsTitle: {
     first: {
       UK: "Переваги",
@@ -34,9 +34,9 @@ export const VrText={
       UK: "навчання",
       EN: "learning",
       RU: "обучения",
-    }
-  }
-}
+    },
+  },
+};
 export const mainApproach = {
   firstTitle: {
     UK: "Ми використовуємо",
@@ -45,7 +45,8 @@ export const mainApproach = {
   },
   secondTitle: {
     UK: "підходу до закріплення отриманих знань на практиці під час уроку",
-    EN: "approach to consolidating the knowledge gained in practice during the lesson",
+    EN:
+      "approach to consolidating the knowledge gained in practice during the lesson",
     RU: "подхода к закреплению полученных знаний на практике во время урока",
   },
 };
@@ -64,20 +65,20 @@ export const lessonsInVr = {
     UK: "Дивитися всі уроки",
     EN: "Watch all lessons",
     RU: "Смотреть все уроки",
-  }
+  },
 };
 export const Product = {
   buttonText: {
     UK: "Перейти в магазин",
     EN: "Go to the store",
     RU: "Перейти в магазин",
-  }
-}
+  },
+};
 export const PartnersLsi = {
   UK: "Наші партнери",
   EN: "Our partners",
   RU: "Наши партнеры",
-}
+};
 export const lessonsInAr = {
   firstTitle: {
     UK: "Доступні уроки в",
@@ -93,7 +94,7 @@ export const lessonsInAr = {
     UK: "Дивитися всі уроки",
     EN: "Watch all lessons",
     RU: "Смотреть все уроки",
-  }
+  },
 };
 export const BookVarApp = {
   firstTitle: {
@@ -242,13 +243,18 @@ export const Device = {
     UK: "На головну",
     EN: "To the main",
     RU: "На главную",
-  }
+  },
 };
 export const DevicesText = {
   title: {
     UK: "Гарнітура",
     EN: "Devices",
     RU: "Гарнитура",
+  },
+  titleMore: {
+    UK: "Ще гарнітура",
+    EN: "Another headset",
+    RU: "Еще гарнитура",
   },
   details: {
     UK: "Детальніше",
@@ -283,8 +289,8 @@ export const FooterForm = {
     UK: "Ми знайдемо правильне рішення для вашої школи",
     EN: "We will find the right solution for your school",
     RU: "Мы найдем подходящее решение для Вашей школы",
-  }
-}
+  },
+};
 export const menu = {
   headerMenu: {
     mainPage: {
@@ -596,17 +602,17 @@ export const events = {
   },
 };
 export const useExperience = {
-  first:{
+  first: {
     UK: "Наш досвід застосування",
     EN: "Our application experience",
     RU: "Наш опыт применения",
   },
-  second:{
+  second: {
     UK: "для навчання на уроках",
     EN: "for teaching in the classroom",
     RU: "для обучения на уроках ",
-  }
-}
+  },
+};
 export const services = {
   learnMore: {
     UK: "Дізнатися більше",
@@ -950,20 +956,15 @@ export const appeal = {
   },
 };
 export const errorsLsi = {
-  pageNotExist: {
-    UK: "Вибачте, сторінку не знайдено",
-    EN: "Sorry, the page was not found",
-    RU: "Извините, страница не найдена",
+  text: {
+    UK: "Вибачте. сторінку, не знайдено",
+    EN: "Sorry. page not found",
+    RU: "Извините. страницу не найдено",
   },
-  internetError: {
-    UK: "Вибачте, немає зв’язку з інтернетом",
-    EN: "Sorry, no internet connection",
-    RU: "Извините, нет связи с интернетом",
-  },
-  refresh: {
-    UK: "Обновіть сторінку або поверніться та натисніть повторно",
-    EN: "Please refresh the page or go back and click again",
-    RU: "Обновите страницу или вернитесь и нажмите повторно",
+  home: {
+    UK: "На головну",
+    EN: "To the main",
+    RU: "На главную",
   },
 };
 export const LogInLsi = {
@@ -1004,7 +1005,7 @@ export const LogInLsi = {
   },
 };
 export const ModalLsi = {
-  title :{
+  title: {
     UK: "Заява",
     EN: "Statement",
     RU: "Заява",
@@ -1063,62 +1064,37 @@ export const ModalLsi = {
     UK: "Введіть коректні дані",
     EN: "Enter the correct data",
     RU: "Введите корректные данные",
-  }
+  },
 };
 export const linkTitleLsi = {
+  Vr: {
+    UK: "VR",
+    EN: "VR",
+    RU: "VR",
+  },
+  Ar: {
+    UK: "AR",
+    EN: "AR",
+    RU: "AR",
+  },
+  AllLessons: {
+    UK: "Шкільні уроки в VR і AR",
+    EN: "School lessons in VR and AR",
+    RU: "Школьные уроки в VR и AR",
+  },
+  Devices: {
+    UK: "Магазин VR гарнітур",
+    EN: "VR headset store",
+    RU: "Магазин VR гарнитур",
+  },
   home: {
     UK: "Головна",
     EN: "Home",
     RU: "Главная",
   },
   404: {
-    UK: "Помилка",
-    EN: "Error",
-    RU: "Ошибка",
-  },
-  structure: {
-    UK: "Структура",
-    EN: "Structure",
-    RU: "Структура",
-  },
-  service: {
-    UK: "Послуги",
-    EN: "Services",
-    RU: "Услуги",
-  },
-  projects: {
-    UK: "Проєкти",
-    EN: "Projects",
-    RU: "Проекты",
-  },
-  news: {
-    UK: "Новини",
-    EN: "News",
-    RU: "Новости",
-  },
-  regulatoryFramework: {
-    UK: "Нормативна база",
-    EN: "Regulatory framework",
-    RU: "Нормативная база",
-  },
-  contacts: {
-    UK: "Контакти",
-    EN: "Contacts",
-    RU: "Контакты",
-  },
-  calendar: {
-    UK: "Календар подій",
-    EN: "Calendar of events",
-    RU: "Календарь событий",
-  },
-  appeal: {
-    UK: "Звернення",
-    EN: "Appeal",
-    RU: "Обращение",
-  },
-  leaders: {
-    UK: "Керівництво",
-    EN: "Leaders",
-    RU: "Руководство",
+    UK: "Сторінку не знайдено",
+    EN: "Page not found",
+    RU: "Страница не найдена",
   },
 };

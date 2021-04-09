@@ -6,7 +6,12 @@ import { Products } from "../../src/components/products/products";
 import { startEndPagination } from "../../src/components/hooks/hooks";
 import { Pagination } from "../../src/components/pagination/pagination";
 
-export default function AllDevices({ locale, devices, currentPageNumber, siteInfo }) {
+export default function AllDevices({
+  locale,
+  devices,
+  currentPageNumber,
+  siteInfo,
+}) {
   const { total, hasMore, hasPrevious } = devices.pageInfo.offsetPagination;
   const totalPages = Math.ceil(total / 6.0);
   const { startPage, endPage } = startEndPagination(
@@ -14,7 +19,7 @@ export default function AllDevices({ locale, devices, currentPageNumber, siteInf
     totalPages
   );
   return (
-    <Layout siteInfo={siteInfo} locale={locale}>
+    <Layout showLinks={true} siteInfo={siteInfo} locale={locale}>
       <AppSizeLayout>
         {devices.nodes && (
           <>
@@ -58,7 +63,7 @@ export async function getStaticProps({ params, locale }) {
       locale,
       currentPageNumber,
       devices: data?.posts?.nodes ? data.posts : [],
-      siteInfo: data?.fragment?.mainFields
+      siteInfo: data?.fragment?.mainFields,
     },
     revalidate: 60,
   };

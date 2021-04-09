@@ -727,7 +727,7 @@ export const Product = ({ locale, device }) => {
               <Price>{productPrice}</Price>
             </PriceContainer>
             <Content>
-              <Title display={true}>OCULUS QUEST</Title>
+              <Title display={true}>{title}</Title>
               <Exist>
                 {availability[locale]}{" "}
                 {productExistence ? exist[locale] : notExist[locale]}

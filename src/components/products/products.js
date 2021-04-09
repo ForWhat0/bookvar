@@ -94,8 +94,8 @@ const TitleBlock = styled.div`
     position: absolute;
     left: ${(props) => props.left};
     right: ${(props) => props.right};
-    font-size: 54px;
-    line-height: 66px;
+    font-size: 40px;
+    line-height: 54px;
     margin: 0;
 
     @media screen and ${device.tablet} {
@@ -119,8 +119,8 @@ const PriceContainer = styled.div`
 `;
 const Discount = styled.span`
   font-weight: 500;
-  font-size: 20px;
-  line-height: 24px;
+  font-size: 16;
+  line-height: 20px;
   letter-spacing: 0.04em;
   text-decoration-line: line-through;
   margin-right: 20px;
@@ -132,8 +132,8 @@ const Discount = styled.span`
 `;
 const Price = styled.span`
   font-weight: 500;
-  font-size: 30px;
-  line-height: 37px;
+  font-size: 20px;
+  line-height: 24px;
   letter-spacing: 0.04em;
 
   @media screen and ${device.tablet} {
@@ -141,46 +141,58 @@ const Price = styled.span`
     line-height: 20px;
   }
 `;
-const { title, details } = DevicesText;
+const { title, titleMore,  details } = DevicesText;
 
-export const Products = ({ products, locale, bottom }) => {
+export const Products = ({ more, products, locale, bottom }) => {
   return (
     <>
       <TitleForComponent>
-        <h1>VR</h1>
-        {title[locale]}
+        {!more ? (
+          <>
+            <h1>VR</h1>
+            {title[locale]}
+          </>
+        ) : (
+          <>
+            {titleMore[locale]}
+            <h1>VR</h1>
+          </>
+        )}
       </TitleForComponent>
       <ContainerProduct>
-        {products.map((item, index) => item && (
-          <Link href="/Devices/[id]/" as={`/Devices/${item?.databaseId}/`}>
-            <Product
-              position={
-                (index + 1) % 2 === 0 && bottom ? "absolute" : "initial"
-              }
-              right={(index + 1) % 2 === 0 && bottom ? "0" : "unset"}
-              bottom={(index + 1) % 2 === 0 && bottom ? "100px" : "unset"}
-            >
-              <ImgBlock>
-                <ProductImg src={item.featuredImage?.node?.sourceUrl} />
-              </ImgBlock>
-              <TitleBlock
-                right={(index + 1) % 2 === 0 ? "-5%" : "unset"}
-                left={(index + 1) % 2 !== 0 ? "-5%" : "unset"}
-              >
-                <h1>{item.title}</h1>
-              </TitleBlock>
-              <PriceContainer>
-                {item.ProductField?.oldPrice && (
-                  <Discount>{item.ProductField.oldPrice}</Discount>
-                )}
-                <Price>{item.ProductField?.productPrice}</Price>
-              </PriceContainer>
-              <ButtonContainer>
-                <StyledButton text={details[locale]} />
-              </ButtonContainer>
-            </Product>
-          </Link>
-        ))}
+        {products.map(
+          (item, index) =>
+            item && (
+              <Link href="/Devices/[id]/" as={`/Devices/${item?.databaseId}/`}>
+                <Product
+                  position={
+                    (index + 1) % 2 === 0 && bottom ? "absolute" : "initial"
+                  }
+                  right={(index + 1) % 2 === 0 && bottom ? "0" : "unset"}
+                  bottom={(index + 1) % 2 === 0 && bottom ? "100px" : "unset"}
+                >
+                  <ImgBlock>
+                    <ProductImg src={item.featuredImage?.node?.sourceUrl} />
+                  </ImgBlock>
+                  <TitleBlock
+                    right={(index + 1) % 2 === 0 ? "-5%" : "unset"}
+                    left={(index + 1) % 2 !== 0 ? "-5%" : "unset"}
+                  >
+                    <h1>{item.title}</h1>
+                  </TitleBlock>
+                  <PriceContainer>
+                    {item.ProductField?.oldPrice && (
+                      <Discount>{item.ProductField.oldPrice}</Discount>
+                    )}
+                    <Price>{item.ProductField?.productPrice}</Price>
+                  </PriceContainer>
+                  <ButtonContainer>
+                    <StyledButton text={details[locale]} />
+                  </ButtonContainer>
+                </Product>
+              </Link>
+            )
+        )}
       </ContainerProduct>
     </>
   );

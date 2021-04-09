@@ -241,11 +241,17 @@
   transform: scale(0.33);
 }
 .swiper-pagination-bullet {
-  width: 20px;
-  height: 20px;
+  width: 15px;
+  height: 15px;
   display: inline-block;
   border-radius: 50%;
   background: #ffffff;
+}
+@media screen and (max-width: 450px) {
+  .swiper-pagination-bullet {
+    width: 10px;
+    height: 10px;
+  }
 }
 button.swiper-pagination-bullet {
   border: none;

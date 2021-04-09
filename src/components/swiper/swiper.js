@@ -12,10 +12,10 @@ import {
   Video,
   SwiperContent,
   Text,
+  IconBackground
 } from "./swiperStyled";
 
 import ReactPlayer from "react-player/lazy";
-import { IconBackground } from "../leftComment/leftCommentStyLedComponents";
 import { LinearGradientText } from "../linear-gradient-text/linear-gradient-text";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";

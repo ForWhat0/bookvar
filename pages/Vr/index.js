@@ -34,7 +34,11 @@ export default function Home({ data, locale }) {
   }, [scrollToElement]);
 
   return (
-    <Layout siteInfo={data.fragment.mainFields} locale={locale}>
+    <Layout
+      showLinks={true}
+      siteInfo={data.fragment.mainFields}
+      locale={locale}
+    >
       <AppSizeLayout>
         <MainText locale={locale} text={data.page.content} />
         <AdvantageOfVr
@@ -61,7 +65,7 @@ export default function Home({ data, locale }) {
         />
       </Element>
       <Lines />
-      {data.page?.VrField?.productVr && data.page?.VrField?.productVr?.length  && (
+      {data.page?.VrField?.productVr && data.page?.VrField?.productVr?.length && (
         <AppSizeLayout>
           <Products
             locale={locale}
