@@ -21,6 +21,8 @@ const Content = styled.div`
     
     @media screen and ${device.laptopL} {
          margin-top: ${(props) => (props.main ? "100px" : "40px")};
+          grid-template-columns: ${(props) =>
+            !props.main && !props.vrar ? "0.6fr 0.4fr" : "0.5fr 0.5fr"};
   }
  
  @media screen and ${device.laptop} {
@@ -120,19 +122,19 @@ line-height: 24px;
 
   }
   figure img {
-  
-       position: absolute;
-    max-width: unset!important;
+       position: ${(props) =>
+         !props.main && !props.vrar ? "initial" : "absolute"};
+     max-width: ${(props) =>
+       !props.main && !props.vrar ? "100%" : "unset"}!important;
     width: ${(props) =>
-      props.main ? "140%" : props.all ? "55%" : "100%"}!important;
+      props.main ? "140%" : props.vrar ? "55%" : "100%"}!important;
      top: ${(props) => (props.main ? "-340%" : props.vrar ? "-100%" : "unset")};
     left:0;
     
     @media screen and (max-width: 2320px) {
         width: ${(props) =>
           props.main ? "140%" : props.vrar ? "80%" : "100%"}!important;
-     top: ${(props) =>
-       props.main ? "-200%" : props.vrar ? "-100%" : "unset"};
+     top: ${(props) => (props.main ? "-200%" : props.vrar ? "-100%" : "unset")};
   
     }
     
@@ -152,12 +154,13 @@ width: ${(props) => (props.main ? "140%" : "100%")}!important;
      top: ${(props) => (props.main ? "-50%" : props.vrar ? "-40%" : "unset")};
   }
      @media screen and (max-width: 1200px) {
-           width: 130%!important;
+          
             top: 0;
-
+ width: ${(props) => (!props.main && !props.vrar ? "100%" : "130%")}!important;
     }
       @media screen and ${device.laptop} {
-   width: 150%!important;
+   width: ${(props) =>
+     !props.main && !props.vrar ? "100%" : "150%"}!important;
   }
   @media screen and ${device.tablet} {
    width: 100%!important;
