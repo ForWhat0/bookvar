@@ -125,31 +125,31 @@ line-height: 24px;
     max-width: unset!important;
     width: ${(props) =>
       props.main ? "140%" : props.all ? "55%" : "100%"}!important;
-     top: ${(props) => (props.main ? "-340%" : props.all ? "-100%" : "unset")};
+     top: ${(props) => (props.main ? "-340%" : props.vrar ? "-100%" : "unset")};
     left:0;
     
     @media screen and (max-width: 2320px) {
         width: ${(props) =>
-          props.main ? "140%" : props.all ? "80%" : "100%"}!important;
+          props.main ? "140%" : props.vrar ? "80%" : "100%"}!important;
      top: ${(props) =>
-       props.main ? "-200%" : props.all ? "-100%" : "unset"};
+       props.main ? "-200%" : props.vrar ? "-100%" : "unset"};
   
     }
     
     @media screen and (max-width: 1900px) {
 width: ${(props) => (props.main ? "140%" : "100%")}!important;
-     top: ${(props) => (props.main ? "-180%" : props.all ? "-80%" : "unset")};
+     top: ${(props) => (props.main ? "-180%" : props.vrar ? "-80%" : "unset")};
   
     }
     
     
      @media screen and (max-width: 1700px) {
             width: ${(props) => (props.main ? "140%" : "110%")}!important;
-     top: ${(props) => (props.main ? "-120%" : props.all ? "-60%" : "unset")};
+     top: ${(props) => (props.main ? "-120%" : props.vrar ? "-60%" : "unset")};
     }
     @media screen and ${device.laptopL} {
      width: ${(props) => (props.main ? "140%" : "120%")}!important;
-     top: ${(props) => (props.main ? "-50%" : props.all ? "-40%" : "unset")};
+     top: ${(props) => (props.main ? "-50%" : props.vrar ? "-40%" : "unset")};
   }
      @media screen and (max-width: 1200px) {
            width: 130%!important;
@@ -238,6 +238,7 @@ export const MainText = ({ main, vrar, text, textCenter, locale }) => {
     <>
       <Content
         main={main}
+        vrar={vrar}
         textAlign={textAlign}
         position={position}
         width={width}
