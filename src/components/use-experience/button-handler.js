@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import { device } from "../deviceSizes/deviceSizes";
 import {addSpacesBetweenNumbers, separatePriceAndCurrency} from "../hooks/hooks";
+import {klassLsi} from "../../Lsi/lsi";
 
 const Container = styled.button`
   opacity: ${(props) => props.opacity};
@@ -64,12 +65,10 @@ const showClassNum= (classNum) => {
     const {price}=separatePriceAndCurrency(classNum)
     return price
 }
-const showClassStr= (classNum) => {
-    const {currency}=separatePriceAndCurrency(classNum)
-    return currency
-}
 
-export const ButtonHandler = ({ type, classNum, icon, less, opacity, onClick }) => {
+const {grade} = klassLsi
+
+export const ButtonHandler = ({ type, classNum, icon, less, opacity, onClick, locale }) => {
 
     return (
     <Container opacity={opacity ? "1" : "0.5"} onClick={onClick}>
@@ -80,7 +79,7 @@ export const ButtonHandler = ({ type, classNum, icon, less, opacity, onClick }) 
         >
           {type ? type : classNum && showClassNum(classNum)}
         </First>
-        {classNum ? <Second>{showClassStr(classNum)}</Second> : less && <Second>{less}</Second>}
+        {classNum ? <Second> {grade[locale]} </Second> : less && <Second>{less}</Second>}
       </ContentWrapper>
     </Container>
   );

@@ -1,13 +1,13 @@
 import gql from "graphql-tag";
 export const GET_AR_TYPE_CLASS = gql`
-  query GET_AR_TYPE_CLASS {
-    classes: videosAR(where: { orderby: { field: TITLE, order: ASC } }) {
+  query GET_AR_TYPE_CLASS($language: LanguageCodeFilterEnum) {
+    classes: videosAR(where: {language: $language, orderby: { field: TITLE, order: ASC } }) {
       nodes {
         title
         databaseId
       }
     }
-    videosAR(where: { orderby: { field: TITLE, order: ASC } }, first: 1) {
+    videosAR(where: {language: $language, orderby: { field: TITLE, order: ASC } }, first: 1) {
       nodes {
         databaseId
         VideoField {

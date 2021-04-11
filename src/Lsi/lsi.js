@@ -955,6 +955,13 @@ export const appeal = {
     RU: "ошибка",
   },
 };
+export const klassLsi = {
+  grade: {
+    UK: "клас",
+    EN: "grade",
+    RU: "класс",
+  }
+}
 export const errorsLsi = {
   text: {
     UK: "Вибачте. сторінку, не знайдено",

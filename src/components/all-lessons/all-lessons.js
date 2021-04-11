@@ -79,7 +79,6 @@ const Conteiner = styled.div`
   height: 100%;
 `;
 
-
 const VideoContainerWrapper = styled.div`
   height: 360px;
   position: relative;
@@ -109,6 +108,7 @@ export const AllLessonsVideos = ({ video, classes, locale }) => {
   let [getType, { data: dataType, loading: loadingType }] = useLazyQuery(
     isVrClasses ? GET_VR_TYPE_CLASS : GET_AR_TYPE_CLASS,
     {
+      variables: { language: locale },
       onCompleted: () => {
         setState(
           isVrClasses
@@ -238,6 +238,7 @@ export const AllLessonsVideos = ({ video, classes, locale }) => {
             <KlassContainer>
               {classState.map((item) => (
                 <ButtonHandler
+                  locale={locale}
                   key={item.title}
                   opacity={item.databaseId === currentClass}
                   classNum={item.title}

@@ -6,16 +6,26 @@ import { useDispatch } from "react-redux";
 import { actionClickModal } from "../../redux/actions/actions";
 
 const Content = styled.div`
- margin-top:40px;
+
   display: grid;
   grid-template-areas:
     "title picture"
     "text picture";
   grid-template-columns 0.5fr 0.5fr;
   text-align:${(props) => props.textAlign};
+     margin-top: ${(props) => (props.main ? "400px" : "40px")};
+ 
+ @media screen and (max-width: 2320px) {
+         margin-top: ${(props) => (props.main ? "300px" : "40px")};
+    }
+    
+    @media screen and ${device.laptopL} {
+         margin-top: ${(props) => (props.main ? "100px" : "40px")};
+  }
  
  @media screen and ${device.laptop} {
        grid-template-columns 1fr 0.5fr;
+       margin-top:40px;
   }
   @media screen and ${device.tablet} {
      grid-template-columns 1fr;
@@ -96,7 +106,6 @@ line-height: 24px;
   }
   
    figure {
-   width:100%;
    position:relative;
       padding: 0;
     margin: 0;
@@ -111,28 +120,36 @@ line-height: 24px;
 
   }
   figure img {
+  
        position: absolute;
     max-width: unset!important;
-    width: 55%!important;
-    top: -100%;
+    width: ${(props) =>
+      props.main ? "140%" : props.all ? "55%" : "100%"}!important;
+     top: ${(props) => (props.main ? "-340%" : props.all ? "-100%" : "unset")};
     left:0;
     
     @media screen and (max-width: 2320px) {
-        width: 80%!important;
+        width: ${(props) =>
+          props.main ? "140%" : props.all ? "80%" : "100%"}!important;
+     top: ${(props) =>
+       props.main ? "-200%" : props.all ? "-100%" : "unset"};
+  
     }
+    
     @media screen and (max-width: 1900px) {
-           width: 100%!important;
-            top: -80%;
-
+width: ${(props) => (props.main ? "140%" : "100%")}!important;
+     top: ${(props) => (props.main ? "-180%" : props.all ? "-80%" : "unset")};
+  
     }
+    
+    
      @media screen and (max-width: 1700px) {
-           width: 110%!important;
-            top: -60%;
-
+            width: ${(props) => (props.main ? "140%" : "110%")}!important;
+     top: ${(props) => (props.main ? "-120%" : props.all ? "-60%" : "unset")};
     }
     @media screen and ${device.laptopL} {
-    top: -40%;
-    width:120%!important;
+     width: ${(props) => (props.main ? "140%" : "120%")}!important;
+     top: ${(props) => (props.main ? "-50%" : props.all ? "-40%" : "unset")};
   }
      @media screen and (max-width: 1200px) {
            width: 130%!important;
@@ -152,14 +169,21 @@ line-height: 24px;
 const ButtonContainer = styled.div`
  display: grid;
   margin-top:80px;
-  grid-template-columns 1fr 0.5fr;
+  grid-template-columns 0.5fr 0.5fr;
+      margin-bottom: ${(props) => (props.main ? "400px" : "unset")};
+  
+  
+   @media screen and (max-width: 2320px) {
+         margin-bottom: ${(props) => (props.main ? "200px" : "40px")};
+    }
   
    @media screen and (max-width:1800px) {
-       grid-template-columns 1fr 0.3fr;
+      margin-bottom: ${(props) => (props.main ? "120px" : "40px")};
   }
  
  @media screen and ${device.laptop} {
        grid-template-columns 1fr 0.5fr;
+       margin-bottom: 40px;
   }
   @media screen and ${device.tablet} {
      grid-template-columns 1fr;
@@ -213,12 +237,13 @@ export const MainText = ({ main, vrar, text, textCenter, locale }) => {
   return (
     <>
       <Content
+        main={main}
         textAlign={textAlign}
         position={position}
         width={width}
         dangerouslySetInnerHTML={{ __html: text }}
       />
-      <ButtonContainer textAlign={textAlign}>
+      <ButtonContainer main={main} textAlign={textAlign}>
         {main ? (
           <Link href="/AllLessons">
             <button>

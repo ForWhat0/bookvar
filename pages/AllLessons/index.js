@@ -6,6 +6,7 @@ import { GET_ALL_LESSONS_CONTENT } from "../../src/queries/get-all-lessons-conte
 import { AllLessonsVideos } from "../../src/components/all-lessons/all-lessons";
 
 export default function AllLessons({ data, locale }) {
+  console.log(data.classes.nodes)
   return (
     <Layout
       showLinks={true}
