@@ -122,35 +122,34 @@ line-height: 24px;
 
   }
   figure img {
-       position: ${(props) =>
-         !props.main && !props.vrar ? "initial" : "absolute"};
+       position: absolute;
      max-width: ${(props) =>
        !props.main && !props.vrar ? "100%" : "unset"}!important;
     width: ${(props) =>
-      props.main ? "140%" : props.vrar ? "55%" : "100%"}!important;
+      props.main ? "140%" : props.vrar ? "55%" : "50%"}!important;
      top: ${(props) => (props.main ? "-340%" : props.vrar ? "-100%" : "unset")};
     left:0;
     
     @media screen and (max-width: 2320px) {
         width: ${(props) =>
-          props.main ? "140%" : props.vrar ? "80%" : "100%"}!important;
-     top: ${(props) => (props.main ? "-200%" : props.vrar ? "-100%" : "unset")};
+          props.main ? "140%" :  "80%"}!important;
+     top: ${(props) => (props.main ? "-200%" : '-100%')};
   
     }
     
     @media screen and (max-width: 1900px) {
 width: ${(props) => (props.main ? "140%" : "100%")}!important;
-     top: ${(props) => (props.main ? "-180%" : props.vrar ? "-80%" : "unset")};
+     top: ${(props) => (props.main ? "-180%" : "-80%" )};
   
     }
     
     
      @media screen and (max-width: 1700px) {
-            width: ${(props) => (props.main ? "140%" : "110%")}!important;
-     top: ${(props) => (props.main ? "-120%" : props.vrar ? "-60%" : "unset")};
+            width: ${(props) => (props.main ? "140%" : props.vrar ? "110%" : "100%")}!important;
+     top: ${(props) => (props.main ? "-120%" : props.vrar ? "-60%" : "-50%")};
     }
     @media screen and ${device.laptopL} {
-     width: ${(props) => (props.main ? "140%" : "120%")}!important;
+     width: ${(props) => (props.main ? "140%" : props.vrar ? "120%" : "100%")}!important;
      top: ${(props) => (props.main ? "-50%" : props.vrar ? "-40%" : "unset")};
   }
      @media screen and (max-width: 1200px) {
