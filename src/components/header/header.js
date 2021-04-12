@@ -3,7 +3,7 @@ import Burger from "../burgerMenu/burgerMenu";
 import { device } from "../deviceSizes/deviceSizes";
 import { menu } from "../../Lsi/lsi";
 import Link from "next/link";
-import { ChangeLanguageSelector } from "../headers/changeLanguageSelector";
+import { ChangeLanguageSelector } from "./changeLanguageSelector";
 import { actionClickModal } from "../../redux/actions/actions";
 import { useDispatch } from "react-redux";
 
@@ -29,6 +29,7 @@ export const HeaderContainer = styled.div`
 `;
 const Menu = styled.div`
   padding-left: 50px;
+  z-index:2;
   display: flex;
   list-style-type: none;
   justify-content: space-between;

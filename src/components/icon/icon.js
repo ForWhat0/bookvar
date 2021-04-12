@@ -1,33 +1,5 @@
-import Image from "next/image";
 import styled from "styled-components";
 import { device } from "../deviceSizes/deviceSizes";
-
-const IconBackground = styled.div`
-  background: url(${(props) => props.src}) no-repeat;
-  width: 60%;
-  background-size: contain;
-  height: 80%;
-  background-position: center;
-`;
-const IconBackgroundContainer = styled.div`
-  min-height: 30px;
-  min-width: 30px;
-  width: 30px;
-  height: 30px;
-  margin-right: 20px;
-  display: flex;
-  border-radius: 30px;
-  align-items: center;
-  justify-content: center;
-  background: linear-gradient(180deg, #b0ffc6 0%, #00b4ff 100%);
-`;
-export const IconBackgroundSvg = ({ src }) => {
-  return (
-    <IconBackgroundContainer>
-      <IconBackground src={src} />
-    </IconBackgroundContainer>
-  );
-};
 
 const IconContainer = styled.div`
   width: 40px;
@@ -40,7 +12,15 @@ const IconContainer = styled.div`
     height: 25px;
   }
 `;
-
+export const IconBackground = styled.div`
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  background-image: url("${(props) => props.background}");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+`;
 export const Icon = ({ src }) => {
   return <IconContainer src={src} />;
 };

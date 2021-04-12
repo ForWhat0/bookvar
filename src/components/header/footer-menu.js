@@ -83,11 +83,11 @@ export const FooterMenu = ({ logo, locale }) => {
         <ul>
           {menu.footerMenu.map((item, index) =>
             item.link === '#' ? (
-              <li onClick={() => dispatch(actionClickModal(true))}>
+              <li  key={item.link + index} onClick={() => dispatch(actionClickModal(true))}>
                 <a>{item.name[locale]}</a>
               </li>
             ) : (
-              <Link href={item.link}>
+              <Link key={item.link + index} href={item.link}>
                 <li key={item.link + index}>
                   <a>{item.name[locale]}</a>
                 </li>

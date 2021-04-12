@@ -1,5 +1,4 @@
 import { gql } from "@apollo/client";
-import { siteInfoFragment } from "./fragments/site-info";
 
 export const GET_DEVICES = gql`
   query GET_DEVICES($size: Int, $offset: Int, $language: LanguageCodeFilterEnum) {

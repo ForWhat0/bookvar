@@ -79,7 +79,7 @@ export const Partners = ({ locale, partners }) => {
       <Title>{PartnersLsi[locale]}</Title>
       <Container>
         {partners.map((partner, index) => (
-          <a href={partner.url} target="_blank">
+          <a key={index+partner.url} href={partner.url} target="_blank">
             <Img
               key={index + partner?.logo?.sourceUrl}
               src={partner?.logo?.sourceUrl}

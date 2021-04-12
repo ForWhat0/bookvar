@@ -100,9 +100,9 @@ line-height: 24px;
   padding-top: 50px;
     margin: 0;
     @media screen and ${device.tablet} {
-     font-size: 20px;
+     font-size: 16px;
       padding-top: 40px;
-  line-height: 24px;
+  line-height: 20px;
   text-align:center;
   }
   }
@@ -116,8 +116,8 @@ line-height: 24px;
    
     @media screen and ${device.tablet} {
      padding-top:20px;
-     width:50%;
-     margin-left:25%;
+     width:90%;
+     margin-left:5%;
   }
 
   }
@@ -132,24 +132,26 @@ line-height: 24px;
     
     @media screen and (max-width: 2320px) {
         width: ${(props) =>
-          props.main ? "140%" :  "80%"}!important;
-     top: ${(props) => (props.main ? "-200%" :  props.vrar ?  '-100%' : '0')};
+          props.main ? "140%" : props.vrar ? "80%" : "50%"}!important;
+     top: ${(props) => (props.main ? "-200%" : props.vrar ? "-100%" : "0")};
   
     }
     
     @media screen and (max-width: 1900px) {
-width: ${(props) => (props.main ? "140%" : "100%")}!important;
-     top: ${(props) => (props.main ? "-180%" : props.vrar ?  "-80%" : '0' )};
+width: ${(props) => (props.main ? "140%" : "80%")}!important;
+     top: ${(props) => (props.main ? "-180%" : props.vrar ? "-80%" : "0")};
   
     }
     
     
      @media screen and (max-width: 1700px) {
-            width: ${(props) => (props.main ? "140%" : props.vrar ? "110%" : "100%")}!important;
+            width: ${(props) =>
+              props.main ? "140%" : props.vrar ? "110%" : "100%"}!important;
      top: ${(props) => (props.main ? "-120%" : props.vrar ? "-60%" : "0")};
     }
     @media screen and ${device.laptopL} {
-     width: ${(props) => (props.main ? "140%" : props.vrar ? "120%" : "100%")}!important;
+     width: ${(props) =>
+       props.main ? "140%" : props.vrar ? "120%" : "100%"}!important;
      top: ${(props) => (props.main ? "-50%" : props.vrar ? "-40%" : "0")};
   }
      @media screen and (max-width: 1200px) {
@@ -190,6 +192,7 @@ const ButtonContainer = styled.div`
   @media screen and ${device.tablet} {
      grid-template-columns 1fr;
       margin-top:30px;
+       margin-bottom: unset;
   }
   
   button {

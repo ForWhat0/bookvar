@@ -4,7 +4,7 @@ import styled from "styled-components";
 import { ButtonHandler } from "../use-experience/button-handler";
 import { device } from "../deviceSizes/deviceSizes";
 import { useState } from "react";
-import {SupportingDevicesLsi} from "../../Lsi/lsi";
+import {BookVarApp} from "../../Lsi/lsi";
 
 const Container = styled.div`
   display: flex;
@@ -174,7 +174,7 @@ export const SupportingDevices = ({
       ? setIosDevices(ipadListModel)
       : setIosDevices(ipodListModel);
   };
-  const { firstTitle, secondTitle } = SupportingDevicesLsi;
+  const { firstTitle, secondTitle } = BookVarApp;
   return (
     <AppSizeLayout>
       <TitleForComponent>

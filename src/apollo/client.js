@@ -16,7 +16,7 @@ const cache = new InMemoryCache({
 });
 
 const link = createHttpLink({
-  uri: 'https://bookvar.flexreality.pro/graphql',
+  uri: process.env.WP_NEXT_PUBLIC_URL,
 })
 
 const client = new ApolloClient({

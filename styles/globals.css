@@ -2,27 +2,28 @@
   font-family: "Montserrat";
   src: url("/fonts/montserrat/Montserrat-Medium.ttf");
   font-style: normal;
-  font-weight: 400;
+  font-weight: 500;
   font-display: swap;
 }
 html:focus,
 body:focus {
   outline: none;
 }
-html,
-
-body {
-  max-width: 2560px;
-  text-align: left;
-  margin: 0px auto;
-  position: relative;
-  background: linear-gradient(360deg, #04184C 0%, #12162A 100%, #5860B8 100%);
+html, body {
   -webkit-tap-highlight-color: transparent;
   outline: none;
   width: 100%;
   overflow-x: hidden;
   padding: 0;
   font-family: Montserrat;
+  margin:0;
+}
+body {
+  max-width: 2560px;
+  text-align: left;
+  margin: 0px auto;
+  position: relative;
+  background: linear-gradient(360deg, #04184C 0%, #12162A 100%, #5860B8 100%);
 }
 button, span {
   font-family: Montserrat;

@@ -56,7 +56,12 @@ const Loader = styled.div`
   height: 150px;
   animation: ${rotate} 5s linear infinite;
 `;
-
+export const LoaderContainer = styled.div`
+  display: flex;
+  margin-top: 20px;
+  width: 100%;
+  align-items: center;
+`;
 const StyledLoader = () => {
   return (
     <Container>

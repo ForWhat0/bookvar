@@ -80,7 +80,7 @@ export default function Home({ data, locale }) {
       {productList && productList.length && (
         <AppSizeLayout>
           <Products locale={locale} bottom={true} products={productList} />
-          <ButtonContainer>
+          <ButtonContainer margin={true}>
             <Link scroll={false} href="/Devices">
               <a>
                 <StyledButton text={Product.buttonText[locale]} />

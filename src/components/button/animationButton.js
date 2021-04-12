@@ -1,27 +1,12 @@
-
 import $ from "jquery";
 
 export default function animationButton() {
-  var radius = 8;
-  TweenMax.staggerFromTo('.blob', 4 ,{
-    cycle: {
-      attr:function(i) {
-        var r = i*90;
-        return {
-          transform:'rotate('+r+') translate('+radius+',0.1) rotate('+(-r)+')'
-        }
-      }
+    $(window).bind("scroll", function () {
+        parallaxScroll();
+    });
+
+    function parallaxScroll() {
+        let scrolled = $(window).scrollTop();
+        $("#parallax-lvl-3").css("top", 0 - scrolled * 0.5 + "px");
     }
-  },{
-    cycle: {
-      attr:function(i) {
-        var r = i*90+360;
-        return {
-          transform:'rotate('+r+') translate('+radius+',0.1) rotate('+(-r)+')'
-        }
-      }
-    },
-    ease:Linear.easeNone,
-    repeat:-1
-  });
 }

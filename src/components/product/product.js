@@ -79,6 +79,10 @@ const MainProductPhoto = styled.div`
     height: 100%;
     width: 100%;
     animation: ${(props) => props.animation};
+    
+    @media screen and ${device.tablet} {
+     background-size: 70%;
+  }
   }
 `;
 const RestProductPhotoContainer = styled.div`
@@ -215,6 +219,7 @@ const ButtonContainer = styled.div`
 
   @media screen and ${device.tablet} {
     display: flex;
+    justify-content: center;
     align-self: center;
   }
   @media screen and ${device.mobileL} {
@@ -234,6 +239,11 @@ const Count = styled.div`
     line-height: 37px;
     letter-spacing: 0.04em;
     color: #ffffff;
+
+    @media screen and ${device.tablet} {
+      font-size: 16px;
+      line-height: 24px;
+    }
   }
 
   div {

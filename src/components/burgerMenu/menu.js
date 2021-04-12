@@ -9,7 +9,7 @@ import {
 import { useDispatch } from "react-redux";
 import Link from "next/link";
 import { menu } from "../../Lsi/lsi";
-import { ChangeLanguageSelector } from "../headers/changeLanguageSelector";
+import { ChangeLanguageSelector } from "../header/changeLanguageSelector";
 import {
   actionClickBurger,
   actionClickModal,

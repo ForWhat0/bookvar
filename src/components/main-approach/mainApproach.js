@@ -1,4 +1,4 @@
-import { IconBackground } from "../leftComment/leftCommentStyLedComponents";
+import { IconBackground } from "../icon/icon";
 import { PlanetMoveBorder } from "../planet/planet-move-on-border";
 import styled from "styled-components";
 import { TitleForComponent } from "../titleForComponent/title";
@@ -20,6 +20,7 @@ const Container = styled.div`
 
 const Global = styled.div`
   width: 100%;
+  margin-left:unset;
   height: 554px;
   background: linear-gradient(251.35deg, #e8f2fd 0%, #c3cee9 100%);
   border-radius: 40px;
@@ -29,6 +30,14 @@ const Global = styled.div`
 
   @media screen and ${device.laptop} {
     height: auto;
+  }
+  @media screen and ${device.tablet} {
+  width: 80%;
+  margin-left:10%;
+  }
+  @media screen and ${device.mobileL} {
+  width: 90%;
+  margin-left:5%;
   }
 
   h1 {
@@ -106,7 +115,7 @@ const IconContainer = styled.div`
   }
 `;
 export const ButtonContainer = styled.div`
-  margin-top: 30px;
+  margin:${props=>props.margin ? '60px 0' : '30px 0 0 0'};
   width:100%;
   display:flex;
   align-items:center;

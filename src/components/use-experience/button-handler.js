@@ -38,7 +38,7 @@ const ContentWrapper = styled.div`
   }
   @media screen and ${device.mobileL} {
     padding: ${(props) =>
-      props.padding === "12px 30px" ? "12px 24px" : "8px 13px"};
+      props.padding === "12px 30px" ? "10px 20px" : "8px 13px"};
   }
 `;
 const First = styled.div`

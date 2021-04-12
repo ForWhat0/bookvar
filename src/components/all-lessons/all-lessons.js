@@ -9,7 +9,7 @@ import { GET_VR_CLASS } from "../../queries/get-vr-class";
 import StyledLoader from "../loader/loader";
 import { GET_AR_CLASS } from "../../queries/get-ar-class";
 import { useExperience } from "../../Lsi/lsi";
-import { ButtonHandler } from "../use-experience/button-handler";
+import { ButtonHandler } from "../use-experience/button-handler";R
 import { GET_VR_TYPE_CLASS } from "../../queries/get-Vr-type-class.";
 import { GET_AR_TYPE_CLASS } from "../../queries/get-ar-type-class";
 import {
@@ -22,7 +22,7 @@ import {
 } from "../use-experience/use-experience";
 import { Text } from "../swiper/swiperStyled";
 import { LinearGradientText } from "../linear-gradient-text/linear-gradient-text";
-import { IconBackground } from "../leftComment/leftCommentStyLedComponents";
+import { IconBackground } from "../icon/icon";
 import { getYoutubeThumbnail } from "../hooks/hooks";
 import { useDispatch } from "react-redux";
 import { actionClickVideoModal } from "../../redux/actions/actions";

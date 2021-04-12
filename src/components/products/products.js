@@ -53,11 +53,12 @@ const Product = styled.div`
     max-width: unset;
     position: initial;
     margin-top: 80px;
+    padding-top: 80px;
     width: 80%;
   }
 
   @media screen and ${device.tablet} {
-    height: 328px;
+    height: 370px;
   }
 
   @media screen and ${device.mobileL} {
@@ -141,7 +142,7 @@ const Price = styled.span`
     line-height: 20px;
   }
 `;
-const { title, titleMore,  details } = DevicesText;
+const { title, titleMore, details } = DevicesText;
 
 export const Products = ({ more, products, locale, bottom }) => {
   return (
@@ -163,7 +164,11 @@ export const Products = ({ more, products, locale, bottom }) => {
         {products.map(
           (item, index) =>
             item && (
-              <Link href="/Devices/[id]/" as={`/Devices/${item?.databaseId}/`}>
+              <Link
+                key={index + item.databaseId + item.databaseId}
+                href="/Devices/[id]/"
+                as={`/Devices/${item.databaseId}/`}
+              >
                 <Product
                   position={
                     (index + 1) % 2 === 0 && bottom ? "absolute" : "initial"

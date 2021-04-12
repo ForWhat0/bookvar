@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import { CloseModalButton, FormContainer, StyledModal,Close } from "./modalStyled";
 import { InputStyled } from "../input/input";
-import { LoaderContainer } from "../leftComment/leftCommentStyLedComponents";
+import { LoaderContainer } from "../loader/loader";
 import { useEffect, useState } from "react";
 import { SendButton } from "../sendButton/sendButton";
 import { actionClickModal } from "../../redux/actions/actions";

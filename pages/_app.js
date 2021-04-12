@@ -3,8 +3,6 @@ import { createWrapper } from "next-redux-wrapper";
 import store from "../src/redux/store/store";
 import "../styles/globals.css";
 import "../styles/swiper.scss";
-import "../styles/calendar.css";
-import "../styles/button.scss";
 import "../styles/blobs-animation.css";
 import "../styles/bubbleBg.css";
 import Router from "next/router";
@@ -28,12 +26,6 @@ function MyApp({ Component, pageProps }) {
               rel="preload"
               as="font"
               type="font/ttf"
-            />
-            <link
-              href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
-              rel="stylesheet"
-              integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN"
-              crossOrigin="anonymous"
             />
             <meta
               name="viewport"

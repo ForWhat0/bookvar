@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { app } from "../../Lsi/lsi";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import {Icon} from "../header/header";
+import {Icon} from "./header";
 
 const Select = styled.div`
   padding: 0 20px;

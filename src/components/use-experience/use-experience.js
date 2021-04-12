@@ -151,7 +151,7 @@ export const Icon = styled.div`
   top: -8px;
 
   @media screen and ${device.tablet} {
-    right: 0;
+    right: -10px;
     top: 0;
     width: 35px;
     height: 25px;
