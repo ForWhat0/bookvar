@@ -9,7 +9,7 @@ import { GET_VR_CLASS } from "../../queries/get-vr-class";
 import StyledLoader from "../loader/loader";
 import { GET_AR_CLASS } from "../../queries/get-ar-class";
 import { useExperience } from "../../Lsi/lsi";
-import { ButtonHandler } from "../use-experience/button-handler";R
+import { ButtonHandler } from "../use-experience/button-handler";
 import { GET_VR_TYPE_CLASS } from "../../queries/get-Vr-type-class.";
 import { GET_AR_TYPE_CLASS } from "../../queries/get-ar-type-class";
 import {
