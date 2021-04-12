@@ -29,26 +29,22 @@ export const Layout = ({
         <meta name="description" content={siteDescription} />
         <title>{titleSite}</title>
       </Head>
+      <VideoModal />
+      <Modal />
 
-        <div style={{zIndex:-1}}>
-            <BubbleBg />
-            <BlobBg />
-        </div>
-        <div style={{zIndex:1}}>
-            <VideoModal />
-            <Modal />
+      <Header
+        menuBurgerIsOpen={menuBurgerIsOpen}
+        logo={logoSite?.sourceUrl}
+        locale={locale}
+      />
+      <Menu menuBurgerIsOpen={menuBurgerIsOpen} locale={locale} />
 
-            <Header
-                menuBurgerIsOpen={menuBurgerIsOpen}
-                logo={logoSite?.sourceUrl}
-                locale={locale}
-            />
-            <Menu menuBurgerIsOpen={menuBurgerIsOpen} locale={locale} />
-            {showLinks && <RouterLink routerLinkTitle={routerLinkTitle} />}
-            {children}
-            {!hideForm && <Form locale={locale} />}
-            <PageFooter partners={partners} siteInfo={siteInfo} locale={locale} />
-        </div>
+      <BubbleBg />
+      <BlobBg />
+      {showLinks && <RouterLink routerLinkTitle={routerLinkTitle} />}
+      {children}
+      {!hideForm && <Form locale={locale} />}
+      <PageFooter partners={partners} siteInfo={siteInfo} locale={locale} />
 
       <style jsx global>{`
         #__next {
