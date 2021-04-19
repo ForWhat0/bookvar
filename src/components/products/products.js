@@ -14,6 +14,7 @@ const ContainerProduct = styled.div`
   flex-wrap: wrap;
   position: relative;
   color: white;
+  margin-bottom:80px;
 
   @media screen and ${device.laptopL} {
     width: 95%;

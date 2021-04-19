@@ -16,7 +16,6 @@ import {
 } from "./swiperStyled";
 
 import ReactPlayer from "react-player/lazy";
-import { LinearGradientText } from "../linear-gradient-text/linear-gradient-text";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { SlideToHandler } from "../../redux/actions/actions";
@@ -99,7 +98,7 @@ export const SwiperComponent = ({ classOn, cube, content }) => {
                     {showPLayer(isActive, item)}
                   </SwiperContainerWrapper>
                   <Text display={isActive ? "flex" : "none"}>
-                    <LinearGradientText text={item.name} size="45px" />
+                    <span>{item.name}</span>
                     <p>{item.text}</p>
                   </Text>
                 </SwiperContent>

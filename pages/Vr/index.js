@@ -73,7 +73,7 @@ export default function Home({ data, locale }) {
             products={data.page.VrField.productVr}
           />
           <ButtonContainer margin={true}>
-            <Link scroll={false} href="/Devices">
+            <Link href="/Devices">
               <a>
                 <StyledButton text={Product.buttonText[locale]} />
               </a>

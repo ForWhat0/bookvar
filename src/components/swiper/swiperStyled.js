@@ -67,10 +67,10 @@ export const Arrow = styled.div`
   &:hover div {
     animation: ${WrapRotate} 0.5s ease-in-out;
   }
-  
-   @media screen and ${device.mobileL} {
-    width:44px;
-    height:33px;
+
+  @media screen and ${device.mobileL} {
+    width: 44px;
+    height: 33px;
   }
 
   div {
@@ -113,7 +113,7 @@ export const StepTitle = styled.span`
   }
   @media screen and ${device.tablet} {
     font-size: 24px;
-     line-height: 24px;
+    line-height: 24px;
   }
   @media screen and ${device.mobileL} {
     font-size: 20px;
@@ -137,6 +137,16 @@ export const Text = styled.div`
   animation: ${open} 2s ease-in-out;
   width: ${(props) => props.width};
   padding-left: ${(props) => props.paddingLeft};
+
+  span {
+    background: linear-gradient(180deg, #b0ffc6 0%, #00b4ff 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-weight: bold;
+    font-size: 32px;
+    line-height: 44px;
+    padding-top: 10px;
+  }
 
   p {
     font-weight: 500;

@@ -15,6 +15,7 @@ import {
 import { useMutation } from "@apollo/client";
 import { SendWordpress } from "../../mutations/send-wordpress";
 import Link from "next/link";
+import { Element, scroller } from "react-scroll";
 
 const growAnimation = keyframes`
 from {
@@ -520,6 +521,15 @@ export const Product = ({ locale, device }) => {
     setOrdered(false);
   }, []);
 
+  const HandleSetProduct = async () => {
+    await setBuyProduct(true);
+    scroller.scrollTo("#BuyProduct", {
+      duration: 800,
+      delay: 0,
+      smooth: "easeInOutQuart",
+    });
+  };
+
   const orderProduct = async () => {
     if (!name) {
       return setNameWarning(emptyFields[locale]);
@@ -761,7 +771,7 @@ export const Product = ({ locale, device }) => {
               </PriceContainer>
               <ButtonContainer>
                 <StyledButton
-                  onclick={() => setBuyProduct(true)}
+                  onclick={() => HandleSetProduct()}
                   text={buy[locale]}
                 />
               </ButtonContainer>
@@ -804,5 +814,9 @@ export const Product = ({ locale, device }) => {
     );
   };
 
-  return <Global>{buyProduct ? showBuyProduct() : showProduct()}</Global>;
+  return (
+      <Element name="#BuyProduct" className="element">
+        <Global>{buyProduct ? showBuyProduct() : showProduct()}</Global>
+      </Element>
+  )
 };
