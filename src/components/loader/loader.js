@@ -1,5 +1,6 @@
 import styled, { keyframes } from "styled-components";
 import { PlanetMoveBorder } from "../planet/planet-move-on-border";
+import { device } from '../deviceSizes/deviceSizes'
 
 const rotate = keyframes`
   from {
@@ -42,9 +43,15 @@ const TextContainer = styled.h1`
   color: #ffffff;
   padding-top: 80px;
   margin:0;
+  
   &:after {
     content: " .";
     animation: ${dots} 1s steps(5, end) infinite;
+  }
+
+  @media screen and ${device.tablet} {
+    font-size: 16px;
+    line-height: 24px;
   }
 `;
 

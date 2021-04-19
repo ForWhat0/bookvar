@@ -32,7 +32,7 @@ const Container = styled.div`
   }
   
    @media screen and ${device.mobileL} {
-    margin-bottom: 40px;
+    margin-bottom: 20px;
   }
 
   a {
@@ -67,9 +67,14 @@ const Img = styled.img`
   &:hover {
     opacity: 1;
   }
-
   @media screen and ${device.tablet} {
     height: 30px;
+  }
+  @media screen and ${device.mobileL} {
+    height: 19px;
+  }
+  @media screen and ${device.mobileS} {
+    height: 15px;
   }
 `;
 

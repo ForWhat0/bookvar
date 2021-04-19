@@ -11,26 +11,21 @@ const Content = styled.div`
   grid-template-areas:
     "title picture"
     "text picture";
-  grid-template-columns 0.5fr 0.5fr;
+  grid-template-columns: 0.5fr 0.5fr;
   text-align:${(props) => props.textAlign};
      margin-top: ${(props) => (props.main ? "400px" : "40px")};
  
  @media screen and (max-width: 2320px) {
-         margin-top: ${(props) => (props.main ? "300px" : "40px")};
-    }
-    
-    @media screen and ${device.laptopL} {
+   grid-template-columns: 0.6fr 0.4fr;
          margin-top: ${(props) => (props.main ? "100px" : "40px")};
-          grid-template-columns: ${(props) =>
-            !props.main && !props.vrar ? "0.6fr 0.4fr" : "0.5fr 0.5fr"};
-  }
+    }
  
  @media screen and ${device.laptop} {
-       grid-template-columns 1fr 0.5fr;
+       grid-template-columns: 1fr 0.5fr;
        margin-top:40px;
   }
   @media screen and ${device.tablet} {
-     grid-template-columns 1fr;
+     grid-template-columns: 1fr;
      grid-template-areas:
     "title"
     "picture"
@@ -129,17 +124,18 @@ line-height: 24px;
       props.main ? "140%" : props.vrar ? "55%" : "50%"}!important;
      top: ${(props) => (props.main ? "-340%" : props.vrar ? "-100%" : "unset")};
     left:0;
+    margin-left: unset;
     
     @media screen and (max-width: 2320px) {
         width: ${(props) =>
           props.main ? "140%" : props.vrar ? "80%" : "50%"}!important;
-     top: ${(props) => (props.main ? "-200%" : props.vrar ? "-100%" : "0")};
+     top: ${(props) => (props.main ? "-150%" : props.vrar ? "-100%" : "0")};
   
     }
     
     @media screen and (max-width: 1900px) {
 width: ${(props) => (props.main ? "140%" : "80%")}!important;
-     top: ${(props) => (props.main ? "-180%" : props.vrar ? "-80%" : "0")};
+     top: ${(props) => (props.main || props.vrar ? "-80%" : "0")};
   
     }
     
@@ -147,12 +143,12 @@ width: ${(props) => (props.main ? "140%" : "80%")}!important;
      @media screen and (max-width: 1700px) {
             width: ${(props) =>
               props.main ? "140%" : props.vrar ? "110%" : "100%"}!important;
-     top: ${(props) => (props.main ? "-120%" : props.vrar ? "-60%" : "0")};
+     top: ${(props) => (props.main ? "-80%" : props.vrar ? "-60%" : "0")};
     }
     @media screen and ${device.laptopL} {
      width: ${(props) =>
        props.main ? "140%" : props.vrar ? "120%" : "100%"}!important;
-     top: ${(props) => (props.main ? "-50%" : props.vrar ? "-40%" : "0")};
+     top: ${(props) => (props.main ? "-80%" : props.vrar ? "-40%" : "0")};
   }
      @media screen and (max-width: 1200px) {
           
@@ -164,8 +160,9 @@ width: ${(props) => (props.main ? "140%" : "80%")}!important;
      !props.main && !props.vrar ? "100%" : "150%"}!important;
   }
   @media screen and ${device.tablet} {
-   width: 100%!important;
-   position:initial;
+    width: 80%!important;  
+    margin-left: 10%;
+    position: initial;
   }
    }
 `;
@@ -173,24 +170,24 @@ width: ${(props) => (props.main ? "140%" : "80%")}!important;
 const ButtonContainer = styled.div`
  display: grid;
   margin-top:80px;
-  grid-template-columns 0.5fr 0.5fr;
-      margin-bottom: ${(props) => (props.main ? "400px" : "unset")};
-  
+  grid-template-columns: 0.5fr 0.5fr;
+  margin-bottom: ${(props) => (props.main ? "400px" : "40px")};
   
    @media screen and (max-width: 2320px) {
          margin-bottom: ${(props) => (props.main ? "200px" : "40px")};
+     grid-template-columns: 0.6fr 0.4fr;
     }
   
-   @media screen and (max-width:1800px) {
-      margin-bottom: ${(props) => (props.main ? "120px" : "40px")};
+   @media screen and (max-width:1700px) {
+      margin-bottom: 40px;
   }
  
  @media screen and ${device.laptop} {
-       grid-template-columns 1fr 0.5fr;
+       grid-template-columns: 1fr 0.5fr;
        margin-bottom: 40px;
   }
   @media screen and ${device.tablet} {
-     grid-template-columns 1fr;
+     grid-template-columns: 1fr;
       margin-top:30px;
        margin-bottom: unset;
   }

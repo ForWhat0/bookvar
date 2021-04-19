@@ -133,13 +133,7 @@
 @media screen and (max-width: 768px) {
   .swiper-button-next,
   .swiper-button-prev {
-    top: 250px;
-  }
-}
-@media screen and (max-width: 425px) {
-  .swiper-button-next,
-  .swiper-button-prev {
-    top: 100%;
+    top: 110%;
     width: 44px;
     height: 33px;
   }

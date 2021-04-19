@@ -45,24 +45,21 @@ const Text = styled.div`
 
   span {
     font-weight: bold;
-    font-size: 54px;
-    line-height: 66px;
+    font-size: 40px;
+    line-height: 45px;
     text-align: ${(props) => props.textAlign};
     color: #ffffff;
 
-    @media screen and (max-width: 950px) {
-      font-size: 40px;
-      line-height: 50px;
+    @media screen and ${device.laptop} {
+      font-size: 32px;
+      line-height: 44px;
     }
     @media screen and ${device.tablet} {
-      margin-left: unset;
-      font-size: 24px;
+      font-size: 20px;
       line-height: 24px;
+      margin-left: unset;
       text-align: center;
       padding-bottom: 40px;
-    }
-    @media screen and ${device.mobileL} {
-      font-size: 20px;
     }
   }
 `;
@@ -90,24 +87,6 @@ const Blob = styled.div`
   box-shadow: 0 10px 10px rgb(0 0 0 / 20%);
   background: linear-gradient(180deg, #b0ffc6 0%, #00b4ff 100%) border-box;
   border: 4px solid transparent;
-
-  &:after {
-    z-index: -1;
-    content: "";
-    position: absolute;
-    top: -110%;
-    left: -210%;
-    width: 200%;
-    height: 200%;
-    background: rgba(255, 255, 255, 0.13);
-    background: linear-gradient(
-      to right,
-      rgba(255, 255, 255, 0.13) 0%,
-      rgba(255, 255, 255, 0.13) 77%,
-      rgba(255, 255, 255, 0.5) 92%,
-      rgba(255, 255, 255, 0) 100%
-    );
-  }
 
   @media screen and (max-width: 1800px) {
     position: absolute;

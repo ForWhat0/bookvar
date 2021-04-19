@@ -15,6 +15,7 @@ const Container = styled.div`
   @media screen and (max-width: 1290px) {
     display: flex;
     flex-direction: column;
+    grid-gap: unset;
   }
 `;
 
@@ -28,6 +29,10 @@ const Global = styled.div`
   display: flex;
   flex-direction: column;
 
+  @media screen and (max-width: 1290px) {
+    margin-bottom:${props=>props.margin ? '80px' : 'unset'};
+  
+  
   @media screen and ${device.laptop} {
     height: auto;
   }
@@ -55,7 +60,6 @@ const Global = styled.div`
       width: 100%;
       font-size: 20px;
       line-height: 24px;
-      margin: 0;
       height: auto;
       min-height: auto;
       padding: 0;
@@ -76,11 +80,9 @@ const Global = styled.div`
 
     @media screen and ${device.tablet} {
       padding: 0;
-      margin: 0;
+      margin: 0 25% 40px 0;
       min-height: auto;
-      margin-bottom: 40px;
       width: 50%;
-      margin-left: 25%;
       font-size: 16px;
       line-height: 20px;
     }
@@ -114,6 +116,12 @@ const IconContainer = styled.div`
     bottom: ${(props) => (props.left ? '-30px' : "unset")};
   }
 `;
+export const Space = styled.div`
+padding: 40px 0;
+   @media screen and ${device.tablet} {
+     padding: 20px 0;
+  }
+`
 export const ButtonContainer = styled.div`
   margin:${props=>props.margin ? '60px 0' : '30px 0 0 0'};
   width:100%;
@@ -187,7 +195,7 @@ export const MainApproach = ({ locale, textAr, textVr, titleAr, titleVr }) => {
         {secondTitle[locale]}
       </TitleForComponent>
       <Container>
-        <Global gradient={titleGradient}>
+        <Global margin={true} gradient={titleGradient}>
           <h1>{titleVr}</h1>
           <p>
             {textVr.length > 195 ? `${textVr.substring(0, 195)}...` : textVr}

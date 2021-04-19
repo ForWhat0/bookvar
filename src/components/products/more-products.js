@@ -6,6 +6,8 @@ import { GET_DEVICES } from "../../queries/get-devices";
 import StyledLoader from "../loader/loader";
 import { Icon } from "../pagination/paginationStyled";
 import { device } from "../deviceSizes/deviceSizes";
+import {TitleForComponent} from "../titleForComponent/title";
+import {DevicesText} from "../../Lsi/lsi";
 
 const Space = styled.div`
   margin-top: 20px;
@@ -23,11 +25,14 @@ const Container = styled.div`
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
+  align-items: center;
 
   @media screen and ${device.tablet} {
     display: ${(props) => (props.display ? "flex" : "none")};
   }
 `;
+
+const { titleMore } = DevicesText;
 
 export const MoreProducts = ({ locale, devices }) => {
   const [offsetState, setOffsetState] = useState(2);
@@ -89,6 +94,10 @@ export const MoreProducts = ({ locale, devices }) => {
           opacity={checkDataExistHandler("prev")}
           icon="/leftArrow.svg"
         />
+        <TitleForComponent paddingUnset={true}>
+                {titleMore[locale]}
+                <h1>VR</h1>
+        </TitleForComponent>
         <Icon
           onClick={(e) => getDataHandler(e, null)}
           opacity={checkDataExistHandler(null)}

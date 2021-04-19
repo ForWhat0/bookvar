@@ -15,6 +15,7 @@ import {
 import { useMutation } from "@apollo/client";
 import { SendWordpress } from "../../mutations/send-wordpress";
 import Link from "next/link";
+import { Element, scroller } from "react-scroll";
 
 const growAnimation = keyframes`
 from {
@@ -73,6 +74,10 @@ const MainProductPhoto = styled.div`
   background: linear-gradient(251.35deg, #e8f2fd 0%, #c3cee9 100%);
   border-radius: 20px;
 
+  @media screen and ${device.tablet} {
+    height: 280px;
+  }
+  
   div {
     background: url(${(props) => props.src}) center center no-repeat;
     background-size: 80%;
@@ -144,8 +149,8 @@ const Content = styled.div`
 const Title = styled.h1`
   display: ${(props) => (props.display ? "block" : "none")};
   font-weight: bold;
-  font-size: 54px;
-  line-height: 66px;
+  font-size: 40px;
+  line-height: 45px;
   color: #ffffff;
   margin: 0;
   padding: 0;
@@ -156,7 +161,8 @@ const Title = styled.h1`
     text-align: center;
   }
   @media screen and ${device.tablet} {
-    font-size: 32px;
+    font-size: 24px;
+    line-height: 24px;
   }
   @media screen and ${device.mobileL} {
     font-size: 20px;
@@ -204,8 +210,8 @@ const Discount = styled.span`
   }
 `;
 const Price = styled.span`
-  font-size: 30px;
-  line-height: 37px;
+  font-size: 24px;
+  line-height: 30px;
   letter-spacing: 0.04em;
 
   @media screen and ${device.mobileL} {
@@ -216,6 +222,8 @@ const Price = styled.span`
 const ButtonContainer = styled.div`
   width: 255px;
   margin-top: 60px;
+  display: flex;
+  justify-content: center;
 
   @media screen and ${device.tablet} {
     display: flex;
@@ -228,15 +236,15 @@ const ButtonContainer = styled.div`
 `;
 const Count = styled.div`
   margin-left: 20px;
-  width: 115px;
+  width: 80px;
   display: flex;
   justify-content: space-between;
   align-items: center;
 
   span {
     font-weight: 500;
-    font-size: 30px;
-    line-height: 37px;
+    font-size: 24px;
+    line-height: 30px;
     letter-spacing: 0.04em;
     color: #ffffff;
 
@@ -249,15 +257,15 @@ const Count = styled.div`
   div {
     border-radius: 5px;
     cursor: pointer;
-    width: 30px;
-    height: 30px;
+    width: 20px;
+    height: 20px;
     display: flex;
     justify-content: center;
     align-items: center;
     background: white;
     color: #12162a;
     font-weight: bold;
-    font-size: 40px;
+    font-size: 24px;
 
     &:hover {
       opacity: 0.9;
@@ -278,7 +286,8 @@ const Specifications = styled.div`
   h1 {
     margin: 50px 0 0 0;
     color: #ffffff;
-    font-size: 54px;
+    font-size: 32px;
+    line-height:45px;
     @media screen and ${device.tablet} {
       font-size: 16px;
     }
@@ -441,8 +450,8 @@ const Form = styled.div`
   h1,
   span {
     font-weight: 500;
-    font-size: 30px;
-    line-height: 37px;
+    font-size: 20px;
+    line-height: 24px;
     text-align: center;
     letter-spacing: 0.04em;
     color: #ffffff;
@@ -519,6 +528,15 @@ export const Product = ({ locale, device }) => {
     setBuyProduct(false);
     setOrdered(false);
   }, []);
+
+  const HandleSetProduct = async () => {
+    await setBuyProduct(true);
+    scroller.scrollTo("#BuyProduct", {
+      duration: 800,
+      delay: 0,
+      smooth: "easeInOutQuart",
+    });
+  };
 
   const orderProduct = async () => {
     if (!name) {
@@ -632,12 +650,13 @@ export const Product = ({ locale, device }) => {
           <ProductInfo>
             <h1>{title}</h1>
             <h2>
-              {fixedPrice}
-              {currency}
+              {fixedPrice} {currency}
             </h2>
             <span>
+              (
               {quality[locale]} {count}
               {item[locale]}
+              )
             </span>
           </ProductInfo>
         </ProductContainer>
@@ -761,7 +780,7 @@ export const Product = ({ locale, device }) => {
               </PriceContainer>
               <ButtonContainer>
                 <StyledButton
-                  onclick={() => setBuyProduct(true)}
+                  onclick={() => HandleSetProduct()}
                   text={buy[locale]}
                 />
               </ButtonContainer>
@@ -804,5 +823,9 @@ export const Product = ({ locale, device }) => {
     );
   };
 
-  return <Global>{buyProduct ? showBuyProduct() : showProduct()}</Global>;
+  return (
+      <Element name="#BuyProduct" className="element">
+        <Global>{buyProduct ? showBuyProduct() : showProduct()}</Global>
+      </Element>
+  )
 };

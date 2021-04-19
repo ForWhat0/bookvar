@@ -16,7 +16,7 @@ import { Products } from "../../src/components/products/products";
 import { ScrollToElement } from "../../src/redux/actions/actions";
 import { StyledButton } from "../../src/components/button/button";
 import { Product } from "../../src/Lsi/lsi";
-import { ButtonContainer } from "../../src/components/main-approach/mainApproach";
+import { ButtonContainer, Space } from "../../src/components/main-approach/mainApproach";
 
 export default function Home({ data, locale }) {
   const dispatch = useDispatch();
@@ -73,12 +73,13 @@ export default function Home({ data, locale }) {
             products={data.page.VrField.productVr}
           />
           <ButtonContainer margin={true}>
-            <Link scroll={false} href="/Devices">
+            <Link href="/Devices">
               <a>
                 <StyledButton text={Product.buttonText[locale]} />
               </a>
             </Link>
           </ButtonContainer>
+          <Space/>
         </AppSizeLayout>
       )}
     </Layout>

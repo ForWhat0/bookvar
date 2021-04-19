@@ -31,6 +31,9 @@ import { LocalPagination } from "../pagination/local-pagination";
 const Video = styled.div`
   overflow: hidden;
   z-index: 2;
+  display:flex;
+  align-items:center;
+  justify-content:center;
   cursor: pointer;
   height: 100%;
   box-shadow: 0 10px 10px rgb(0 0 0 / 20%);
@@ -266,7 +269,7 @@ export const AllLessonsVideos = ({ video, classes, locale }) => {
                       </Video>
                     </VideoContainerWrapper>
                     <Text display="flex">
-                      <LinearGradientText text={item.name} size="45px" />
+                      <span>{item.name}</span>
                       <p>{item.text}</p>
                     </Text>
                   </Conteiner>

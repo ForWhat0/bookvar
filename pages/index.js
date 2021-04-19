@@ -4,6 +4,7 @@ import { Lines } from "../src/components/lines/lines";
 import {
   ButtonContainer,
   MainApproach,
+  Space
 } from "../src/components/main-approach/mainApproach";
 import { Products } from "../src/components/products/products";
 import Layout from "../src/components/layouts/layout";
@@ -81,12 +82,13 @@ export default function Home({ data, locale }) {
         <AppSizeLayout>
           <Products locale={locale} bottom={true} products={productList} />
           <ButtonContainer margin={true}>
-            <Link scroll={false} href="/Devices">
+            <Link href="/Devices">
               <a>
                 <StyledButton text={Product.buttonText[locale]} />
               </a>
             </Link>
           </ButtonContainer>
+          <Space/>
         </AppSizeLayout>
       )}
     </Layout>

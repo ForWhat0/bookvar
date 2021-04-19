@@ -13,7 +13,13 @@ import StyledLoader from "../loader/loader";
 import { GET_AR_CLASS } from "../../queries/get-ar-class";
 import { useExperience } from "../../Lsi/lsi";
 
-export const Content = styled.div``;
+export const Content = styled.div`
+
+  @media screen and ${device.tablet} {
+    padding-bottom: 15%;
+  }
+  
+`;
 export const FirstBlock = styled.div`
   display: flex;
   justify-content: space-between;
@@ -114,7 +120,6 @@ const ThemeWrapper = styled.div`
   padding-bottom: 30px;
 
   @media screen and ${device.laptop} {
-    padding-bottom: unset;
     padding: 0 20px 20px 20px;
     width: 90%;
   }
@@ -126,7 +131,7 @@ const Theme = styled.span`
   text-align: center;
   letter-spacing: 0.04em;
   color: ${(props) => props.color};
-  width: 100%;
+  width: 95%;
   cursor: pointer;
   transition: color 0.3s linear;
 
@@ -151,7 +156,7 @@ export const Icon = styled.div`
   top: -8px;
 
   @media screen and ${device.tablet} {
-    right: -10px;
+    right: 10px;
     top: 0;
     width: 35px;
     height: 25px;

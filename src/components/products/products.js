@@ -14,6 +14,7 @@ const ContainerProduct = styled.div`
   flex-wrap: wrap;
   position: relative;
   color: white;
+  margin-bottom:80px;
 
   @media screen and ${device.laptopL} {
     width: 95%;
@@ -52,9 +53,11 @@ const Product = styled.div`
   @media screen and ${device.laptop} {
     max-width: unset;
     position: initial;
-    margin-top: 80px;
-    padding-top: 80px;
     width: 80%;
+    
+    & :first-child {
+      margin-top:50px;
+    }
   }
 
   @media screen and ${device.tablet} {
@@ -142,24 +145,19 @@ const Price = styled.span`
     line-height: 20px;
   }
 `;
-const { title, titleMore, details } = DevicesText;
+const { title, details } = DevicesText;
 
 export const Products = ({ more, products, locale, bottom }) => {
   return (
     <>
-      <TitleForComponent>
-        {!more ? (
-          <>
-            <h1>VR</h1>
-            {title[locale]}
-          </>
-        ) : (
-          <>
-            {titleMore[locale]}
-            <h1>VR</h1>
-          </>
-        )}
-      </TitleForComponent>
+        {
+            !more && (
+                <TitleForComponent>
+                    <h1>VR</h1>
+                    {title[locale]}
+                </TitleForComponent>
+            )
+        }
       <ContainerProduct>
         {products.map(
           (item, index) =>

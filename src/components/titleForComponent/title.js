@@ -12,14 +12,13 @@ const Text = styled.div`
   color: #ffffff;
   width: 100%;
   text-align: center;
-  text-align: center;
-  padding: 0 0 80px 0;
+  padding: ${props=>props.paddingUnset ? 'unset' : '0 0 80px 0;'};
 
   @media screen and ${device.tablet} {
     font-size: 20px;
     line-height: 20px;
     letter-spacing: 0.04em;
-     padding: 0 0 40px 0;
+    padding: ${props=>props.paddingUnset ? 'unset' : '0 0 40px 0;'};
   }
 
   @media screen and ${device.mobileL} {
@@ -48,6 +47,6 @@ const Text = styled.div`
   }
 `;
 
-export const TitleForComponent = ({ children }) => {
-  return <Text>{children}</Text>;
+export const TitleForComponent = ({ children, paddingUnset }) => {
+  return <Text paddingUnset={paddingUnset}>{children}</Text>;
 };

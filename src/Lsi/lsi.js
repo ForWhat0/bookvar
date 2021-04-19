@@ -210,7 +210,7 @@ export const Device = {
   quality: {
     UK: "Кількість:",
     EN: "Qty:",
-    RU: "Кол-во:",
+    RU: "Кол:",
   },
   item: {
     UK: "шт.",

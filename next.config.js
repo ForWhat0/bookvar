@@ -8,7 +8,7 @@ module.exports = {
   env: {
     FROM_USER_LOGIN: "bookvarSite@gmail.com",
     FROM_USER_PASSWORD: "bookvarSitebookvarSite",
-    TO_USER_LOGIN: "rzozyla@gmail.com",
+    TO_USER_LOGIN: "Rk@flexreality.pro",
     WP_NEXT_PUBLIC_URL: "https://bookvar.flexreality.pro/graphql",
   },
   webpackDevMiddleware: (config) => {
