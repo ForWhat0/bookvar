@@ -28,6 +28,7 @@ const ContainerProduct = styled.div`
     align-items: center;
   }
 `;
+
 const Product = styled.div`
   width: 42%;
   cursor: pointer;
