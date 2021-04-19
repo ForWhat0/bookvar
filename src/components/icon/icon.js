@@ -13,8 +13,8 @@ const IconContainer = styled.div`
   }
 `;
 export const IconBackground = styled.div`
-  width: 100%;
-  height: 100%;
+  width: 50%;
+  height: 50%;
   position: absolute;
   background-image: url("${(props) => props.background}");
   background-position: center;
