@@ -36,8 +36,13 @@ const Global = styled.div`
   margin-left:10%;
   }
   @media screen and ${device.mobileL} {
+  
+    &:first-child {
+      margin: 0 0 40px 5%;
+    }
   width: 90%;
-  margin-left:5%;
+  margin-left: unset;
+  margin: 0 0 0 5%;
   }
   h1 {
     background: conic-gradient(${(props) => props.gradient});
