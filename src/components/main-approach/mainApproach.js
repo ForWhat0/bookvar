@@ -28,11 +28,6 @@ const Global = styled.div`
   position: relative;
   display: flex;
   flex-direction: column;
-
-  @media screen and (max-width: 1290px) {
-    margin-bottom:${props=>props.margin ? '80px' : 'unset'};
-  
-  
   @media screen and ${device.laptop} {
     height: auto;
   }
@@ -44,7 +39,6 @@ const Global = styled.div`
   width: 90%;
   margin-left:5%;
   }
-
   h1 {
     background: conic-gradient(${(props) => props.gradient});
     -webkit-background-clip: text;
@@ -55,11 +49,11 @@ const Global = styled.div`
     font-size: 45px;
     line-height: 55px;
     margin: 0;
-
     @media screen and ${device.tablet} {
       width: 100%;
       font-size: 20px;
       line-height: 24px;
+      margin: 0;
       height: auto;
       min-height: auto;
       padding: 0;
@@ -67,7 +61,6 @@ const Global = styled.div`
       margin: 40px 0 10px 0;
     }
   }
-
   p {
     font-weight: 500;
     font-size: 20px;
@@ -77,26 +70,24 @@ const Global = styled.div`
     color: #113a39;
     margin: 0;
     min-height: 192px;
-
     @media screen and ${device.tablet} {
       padding: 0;
-      margin: 0 25% 40px 0;
+      margin: 0;
       min-height: auto;
+      margin-bottom: 40px;
       width: 50%;
+      margin-left: 25%;
       font-size: 16px;
       line-height: 20px;
     }
-
     @media screen and ${device.mobileL} {
       width: 80%;
       margin-left: 10%;
-
       font-size: 14px;
       line-height: 17px;
     }
   }
 `;
-
 const IconContainer = styled.div`
   width: 170px;
   height: 130px;
@@ -207,11 +198,11 @@ export const MainApproach = ({ locale, textAr, textVr, titleAr, titleVr }) => {
           </ButtonContainerr>
 
           <IconContainer right="-70px" top="-20px">
-            <IconBackground background="/VrTopIconApproach.svg" />
+            <IconBackground size='100%' background="/VrTopIconApproach.svg" />
           </IconContainer>
 
           <IconContainer left="-70px" bottom="-20px">
-            <IconBackground background="/key.svg" />
+            <IconBackground size='100%' background="/key.svg" />
           </IconContainer>
 
           <PlanetMoveBorder topPosition={true} size={40} />
@@ -230,7 +221,7 @@ export const MainApproach = ({ locale, textAr, textVr, titleAr, titleVr }) => {
           </ButtonContainerr>
 
           <IconContainer right="-70px" top="-20px">
-            <IconBackground background="/ArIconApproach.svg" />
+            <IconBackground size='100%' background="/ArIconApproach.svg" />
           </IconContainer>
 
           <PlanetMoveBorder topPosition={true} size={80} />
