@@ -249,7 +249,7 @@ export const MainText = ({ json, main, vrar, text, textCenter, locale }) => {
       container: document.querySelector("#json-parcer"),
       animationData: json
     });
-  }, []);
+  }, [text]);
 
   return (
     <>
