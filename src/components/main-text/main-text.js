@@ -1,3 +1,5 @@
+import {useEffect} from 'react';
+import lottie from "lottie-web";
 import styled from "styled-components";
 import { device } from "../deviceSizes/deviceSizes";
 import { buttonText } from "../../Lsi/lsi";
@@ -115,8 +117,13 @@ line-height: 24px;
      margin-left:5%;
   }
 
+  figure p {
+    display: none;
   }
-  figure img {
+
+  }
+  figure svg {
+    height: auto!important;
        position: absolute;
      max-width: ${(props) =>
        !props.main && !props.vrar ? "100%" : "unset"}!important;
@@ -133,7 +140,7 @@ line-height: 24px;
   
     }
     
-    @media screen and (max-width: 1900px) {
+    @media screen and (max-width: 2000px) {
 width: ${(props) => (props.main ? "140%" : "80%")}!important;
      top: ${(props) => (props.main || props.vrar ? "-80%" : "0")};
   
@@ -231,11 +238,19 @@ transform:scale(1.1)
 
 const { learnMore, getLessons, order } = buttonText;
 
-export const MainText = ({ main, vrar, text, textCenter, locale }) => {
+export const MainText = ({ json, main, vrar, text, textCenter, locale }) => {
   const dispatch = useDispatch();
   const textAlign = textCenter ? "center" : "left";
   const position = textCenter ? "absolute" : "initial";
   const width = textCenter ? "500px" : "100%";
+
+  useEffect(() => {
+    lottie.loadAnimation({
+      container: document.querySelector("#json-parcer"),
+      animationData: json
+    });
+  }, []);
+
   return (
     <>
       <Content
@@ -245,7 +260,8 @@ export const MainText = ({ main, vrar, text, textCenter, locale }) => {
         position={position}
         width={width}
         dangerouslySetInnerHTML={{ __html: text }}
-      />
+      >
+      </Content>
       <ButtonContainer main={main} textAlign={textAlign}>
         {main ? (
           <Link href="/AllLessons">

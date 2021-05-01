@@ -18,6 +18,7 @@ import { ArLessonsSwiper } from "../src/components/ar-lessons-swiper/ar-lessons-
 import Link from "next/link";
 import { StyledButton } from "../src/components/button/button";
 import { Product } from "../src/Lsi/lsi";
+import mainJson from "../src/components/main-text/main-images/main.json";
 
 export default function Home({ data, locale }) {
   const {
@@ -46,6 +47,7 @@ export default function Home({ data, locale }) {
     >
       <AppSizeLayout>
         <MainText
+          json={mainJson}
           main={true}
           locale={locale}
           textCenter={true}
