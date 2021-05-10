@@ -13,6 +13,7 @@ import { Lines } from "../../src/components/lines/lines";
 import { useDispatch, useSelector } from "react-redux";
 import { Element, scroller } from "react-scroll";
 import { ScrollToElement } from "../../src/redux/actions/actions";
+import arJson from "../../src/components/main-text/json/ar.json";
 
 export default function Home({ data, locale }) {
   const dispatch = useDispatch();
@@ -43,7 +44,7 @@ export default function Home({ data, locale }) {
       locale={locale}
     >
       <AppSizeLayout>
-        <MainText locale={locale} text={data.page.content} />
+        <MainText locale={locale} text={data.page.content}  json={arJson} />
       </AppSizeLayout>
       <BlobVideoAndTextContainer
         video={data.page.ArField.linkVideo}

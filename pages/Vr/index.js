@@ -17,6 +17,7 @@ import { ScrollToElement } from "../../src/redux/actions/actions";
 import { StyledButton } from "../../src/components/button/button";
 import { Product } from "../../src/Lsi/lsi";
 import { ButtonContainer, Space } from "../../src/components/main-approach/mainApproach";
+import vrJson from "../../src/components/main-text/json/vr.json";
 
 export default function Home({ data, locale }) {
   const dispatch = useDispatch();
@@ -40,7 +41,11 @@ export default function Home({ data, locale }) {
       locale={locale}
     >
       <AppSizeLayout>
-        <MainText locale={locale} text={data.page.content} />
+        <MainText 
+        locale={locale} 
+        text={data.page.content}
+        json={vrJson}
+         />
         <AdvantageOfVr
           locale={locale}
           advantage={data.page.VrField.listBenefits}

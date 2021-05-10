@@ -4,6 +4,7 @@ import { MainText } from "../../src/components/main-text/main-text";
 import client from "../../src/apollo/client";
 import { GET_ALL_LESSONS_CONTENT } from "../../src/queries/get-all-lessons-content";
 import { AllLessonsVideos } from "../../src/components/all-lessons/all-lessons";
+import ar_vrJson from "../../src/components/main-text/json/ar_vr.json";
 
 export default function AllLessons({ data, locale }) {
 
@@ -14,7 +15,7 @@ export default function AllLessons({ data, locale }) {
       locale={locale}
     >
       <AppSizeLayout>
-        <MainText vrar={true} locale={locale} text={data.page.content} />
+        <MainText vrar={true} locale={locale} text={data.page.content} json={ar_vrJson} />
       </AppSizeLayout>
       <AllLessonsVideos
         locale={locale}
