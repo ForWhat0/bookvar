@@ -19,7 +19,7 @@ const Content = styled.div`
  
  @media screen and (max-width: 2320px) {
    grid-template-columns: 0.6fr 0.4fr;
-         margin-top: ${(props) => (props.main ? "100px" : "40px")};
+         margin-top: ${(props) => (props.main ? "200px" : "40px")};
     }
  
  @media screen and ${device.laptop} {
@@ -122,7 +122,7 @@ line-height: 24px;
   }
 
   }
-  figure svg {
+  figure svg, img {
     height: auto!important;
        position: absolute;
      max-width: ${(props) =>
@@ -142,7 +142,8 @@ line-height: 24px;
     
     @media screen and (max-width: 2000px) {
 width: ${(props) => (props.main ? "140%" : "80%")}!important;
-     top: ${(props) => (props.main || props.vrar ? "-80%" : "0")};
+margin-left: ${(props) => (props.main ? "unset" : "20%")}!important;
+     top: ${(props) => (props.main ? "-80%" : props.vrar ? "-40%" : "0")};
   
     }
     
@@ -150,12 +151,10 @@ width: ${(props) => (props.main ? "140%" : "80%")}!important;
      @media screen and (max-width: 1700px) {
             width: ${(props) =>
               props.main ? "140%" : props.vrar ? "110%" : "100%"}!important;
-     top: ${(props) => (props.main ? "-80%" : props.vrar ? "-60%" : "0")};
     }
     @media screen and ${device.laptopL} {
      width: ${(props) =>
        props.main ? "140%" : props.vrar ? "120%" : "100%"}!important;
-     top: ${(props) => (props.main ? "-80%" : props.vrar ? "-40%" : "0")};
   }
      @media screen and (max-width: 1200px) {
           
@@ -245,10 +244,12 @@ export const MainText = ({ json, main, vrar, text, textCenter, locale }) => {
   const width = textCenter ? "500px" : "100%";
 
   useEffect(() => {
-    lottie.loadAnimation({
-      container: document.querySelector("#json-parcer"),
-      animationData: json
-    });
+    if (json) {
+      lottie.loadAnimation({
+        container: document.querySelector("#json-parcer"),
+        animationData: json
+      });
+    }
   }, [text]);
 
   return (
