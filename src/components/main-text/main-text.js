@@ -142,13 +142,14 @@ line-height: 24px;
     
     @media screen and (max-width: 2000px) {
 width: ${(props) => (props.main ? "140%" : "80%")}!important;
-margin-left: ${(props) => (props.main ? "unset" : "20%")}!important;
+margin-left: ${(props) => (props.main ? "unset" : "20%")};
      top: ${(props) => (props.main ? "-80%" : props.vrar ? "-40%" : "0")};
   
     }
     
     
      @media screen and (max-width: 1700px) {
+      margin-left: unset;
             width: ${(props) =>
               props.main ? "140%" : props.vrar ? "110%" : "100%"}!important;
     }
